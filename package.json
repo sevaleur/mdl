@@ -1,20 +1,24 @@
 {
-  "name": "boilerplate",
+  "name": "itsforgotham",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack --progress --config webpack.prod.js",
-    "dev": "webpack serve --progress --config webpack.dev.js",
-    "start": "npm run dev"
+    "b:build": "node app.js",
+    "b:dev": "nodemon app.js",
+    "f:build": "webpack --progress --config webpack.prod.js",
+    "f:dev": "webpack serve --progress --config webpack.dev.js",
+    "start": "concurrently --kill-others \"npm run b:dev\" \"npm run f:dev\""
   },
   "author": "Sune Valeur",
   "license": "ISC",
   "devDependencies": {
     "babel-loader": "^9.1.0",
     "clean-webpack-plugin": "^4.0.0",
+    "concurrently": "^7.6.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.2",
     "file-loader": "^6.2.0",
     "glslify-loader": "^2.0.0",
+    "include-media": "^1.4.10",
     "mini-css-extract-plugin": "^2.7.2",
     "postcss-loader": "^7.0.2",
     "sass": "^1.56.2",
@@ -24,5 +28,14 @@
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@prismicio/client": "^6.7.3",
+    "@prismicio/helpers": "^2.3.8",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.7",
+    "nodemon": "^2.0.20",
+    "pug": "^3.0.2"
   }
 }

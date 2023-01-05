@@ -1,0 +1,19 @@
+extends ../base.pug
+
+block variables
+    - var template = 'home'
+
+block content
+  .home
+    .home__wrapper
+      .home__gallery
+        .home__gallery__wrapper
+          each project in home.projects
+            a.home__gallery__link(href=Link=(`${project.projects_project.type}/${project.projects_project.uid}`))
+              figure.home__gallery__media
+                img.home__gallery__media__image(alt=project.projects_project.data.project_home_image.alt src=project.projects_project.data.project_home_image.url)
+
+        .home__gallery__content
+          each project, index in home.projects
+            .home__gallery__title(class=`${index === 0 ? 'home__gallery__title--active' : ''}`)
+              h2.home__gallery__title__text=project.projects_project.data.title

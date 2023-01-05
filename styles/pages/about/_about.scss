@@ -1,0 +1,217 @@
+.about
+{
+  /* @extend %cover; */
+}
+
+.about__wrapper
+{
+
+}
+
+.about__info
+{
+  display: flex;
+  margin: 20rem 0;
+
+  /* &:first-child
+  {
+    margin-top: 0;
+  } */
+
+  &:last-child
+  {
+    margin-bottom: 0;
+  }
+}
+
+.about__info__title
+{
+  @extend %title-100;
+
+  margin: auto;
+  max-width: 107.4rem;
+  text-align: center;
+}
+
+.about__info__title__text
+{
+
+}
+
+.about__info__desc
+{
+  @extend %desc-20;
+
+  margin: auto;
+  max-width: 70rem;
+
+}
+
+.about__info__desc__text
+{
+  line-height: 2.5rem;
+}
+
+.about__background
+{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10rem;
+  margin: 20rem 0;
+
+  &:first-child
+  {
+    margin-top: 0;
+  }
+
+  &:last-child
+  {
+    margin-bottom: 0;
+  }
+}
+
+.about__background__content
+{
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.about__background__title
+{
+
+}
+
+.about__background__title__text
+{
+  @extend %title-50;
+
+}
+
+.about__background__desc
+{
+
+}
+
+.about__background__desc__text
+{
+  @extend %desc-20;
+
+  line-height: 2.5rem;
+}
+
+.about__background__portrait
+{
+
+}
+
+.about__background__portrait__media
+{
+  height: 80rem;
+  width: 50rem;
+
+  position: relative;
+}
+
+.about__background__portrait__media__image
+{
+  @extend %cover;
+}
+
+.about__clients
+{
+  margin: 20rem 0;
+
+  &:first-child
+  {
+    margin-top: 0;
+  }
+
+  &:last-child
+  {
+    margin-bottom: 0;
+  }
+}
+
+.about__clients__title
+{
+
+}
+
+.about__clients__title__text
+{
+  @extend %title-50;
+
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+}
+
+.about__clients__gallery
+{
+  padding: 5rem;
+}
+
+.about__clients__gallery__wrapper
+{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__clients__gallery__media
+{
+  height: 20rem;
+  width: 20rem;
+  position: relative;
+  margin: 5rem;
+}
+
+.about__clients__gallery__media__image
+{
+  @extend %cover;
+
+  object-fit: contain;
+
+}
+
+
+.about__contact
+{
+  margin: 20rem 0;
+
+  &:first-child
+  {
+    margin-top: 0;
+  }
+
+  &:last-child
+  {
+    margin-bottom: 0;
+  }
+}
+
+.about__contact__title
+{
+
+}
+
+.about__contact__title__text
+{
+
+}
+
+.about__contact__details
+{
+
+}
+
+.about__contact__details__text
+{
+
+}

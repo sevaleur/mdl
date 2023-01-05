@@ -1,0 +1,39 @@
+extends ../base.pug
+
+block variables
+    - var template = 'about'
+
+block content
+    .about
+      .about__wrapper
+        section.about__info
+          .about__info__title
+            h1.about__info__title__text=about.title
+          .about__info__desc
+            p.about__info__desc__text!=about.title_desc.replace(/\n/g, '<br>')
+
+        section.about__background
+          .about__background__content
+            .about__background__title
+              h2.about__background__title__text=about.background
+            .about__background__desc
+              p.about__background__desc__text!=about.background_desc.replace(/\n/g, '<br>')
+          .about__background__portrait
+            figure.about__background__portrait__media
+              img.about__background__portrait__media__image(src=about.image.url alt=about.image.alt)
+
+        section.about__clients
+          .about__clients__title
+            h2.about__clients__title__text=about.clients
+          .about__clients__gallery
+            .about__clients__gallery__wrapper
+              each client in about.client_logos
+                figure.about__clients__gallery__media
+                  img.about__clients__gallery__media__image(src=client.client_logo.url alt=client.client_logo.alt)
+
+        section.about__contact
+          .about__contact__title
+            h2.about__contact__title__text=about.contact
+          .about__contact__details
+            p.about__contact__details__text=about.contact_desc
+

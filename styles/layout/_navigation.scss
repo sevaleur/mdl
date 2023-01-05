@@ -1,0 +1,47 @@
+.navigation
+{
+  @extend %cover; 
+}
+
+.navigation__wrapper
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5rem;
+}
+
+.navigation__media
+{
+  height: 15rem;
+  width: 15rem;
+
+  position: relative
+}
+
+.navigation__media__link
+{
+
+}
+
+.navigation__media__link__image
+{
+  @extend %cover;
+
+  object-fit: cover;
+}
+
+.navigation__list
+{
+
+}
+
+.navigation__list__item
+{
+
+}
+
+.navigation__list__item__link
+{
+  @extend %desc-20;
+}

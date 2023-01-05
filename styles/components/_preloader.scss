@@ -1,0 +1,26 @@
+.preloader
+{
+  @extend %cover;
+  @extend %center;
+
+  background: $color-charade;
+  color: $color-mercury;
+  text-align: center;
+
+  display: none;
+}
+
+.preloader__text
+{
+  @extend %title-100;
+}
+
+.preloader__number
+{
+  @extend %desc-16;
+
+  position: absolute;
+  bottom: 7.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+}

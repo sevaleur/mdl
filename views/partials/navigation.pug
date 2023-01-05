@@ -1,0 +1,11 @@
+nav.navigation
+  .navigation__wrapper
+    .navigation__media
+      a.navigation__media__link(href='/')
+        img.navigation__media__link__image(src=navigation.data.logo.url alt=navigation.data.logo.alt)
+
+
+    ul.navigation__list
+      each item in navigation.data.list
+        li.navigation__list__item
+          a.navigation__list__item__link(href=Link(item.link))=item.text
