@@ -6,13 +6,18 @@
   background: $color-charade;
   color: $color-mercury;
   text-align: center;
-
-  display: none;
+  z-index: z('preloader');
 }
 
 .preloader__text
 {
   @extend %title-100;
+
+  span
+  {
+    display: inline-block;
+    overflow: hidden;
+  }
 }
 
 .preloader__number
@@ -23,4 +28,10 @@
   bottom: 7.3rem;
   left: 50%;
   transform: translateX(-50%);
+  overflow: hidden;
+}
+
+.preloader__number__text
+{
+  display: inline-block;
 }

@@ -1,8 +1,8 @@
 @function z($name)
 {
-  @if($z-indexes, $name)
+  @if index($z-indexes, $name)
   {
-    @return index($z-indexes) - index($z-indexes, $name) + 1;
+    @return (length($z-indexes) - index($z-indexes, $name)) + 1;
   }
   @else
   {

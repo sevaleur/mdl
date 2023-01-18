@@ -1,8 +1,9 @@
 nav.navigation
   .navigation__wrapper
     .navigation__media
-      a.navigation__media__link(href='/')
-        img.navigation__media__link__image(src=navigation.data.logo.url alt=navigation.data.logo.alt)
+      a.navigation__media__link(href='/')=meta.data.title
+        img.navigation__media__link__image(data-src=navigation.data.logo.url alt=navigation.data.logo.alt)
+        //svg.navigation__media__link__icon
 
 
     ul.navigation__list

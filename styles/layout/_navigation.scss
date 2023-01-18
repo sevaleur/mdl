@@ -1,6 +1,10 @@
 .navigation
 {
-  @extend %cover; 
+  @extend %cover;
+
+  z-index: z('navigation');
+  position: fixed;
+  /* pointer-events: none; */
 }
 
 .navigation__wrapper
@@ -21,7 +25,7 @@
 
 .navigation__media__link
 {
-
+  font-size: 0rem;
 }
 
 .navigation__media__link__image
@@ -31,6 +35,19 @@
   object-fit: cover;
 }
 
+.navigation__location
+{
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  transform: translate(-50%, -5%);
+}
+
+.navigation__location__active
+{
+  @extend %desc-20;
+}
+
 .navigation__list
 {
 
@@ -38,6 +55,10 @@
 
 .navigation__list__item
 {
+  pointer-events: auto;
+  /* position: absolute;
+  right: 4rem;
+  top: 4rem; */
 
 }
 

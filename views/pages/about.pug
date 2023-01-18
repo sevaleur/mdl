@@ -20,7 +20,7 @@ block content
               p.about__background__desc__text!=about.background_desc.replace(/\n/g, '<br>')
           .about__background__portrait
             figure.about__background__portrait__media
-              img.about__background__portrait__media__image(src=about.image.url alt=about.image.alt)
+              img.about__background__portrait__media__image(data-src=about.image.url alt=about.image.alt)
 
         section.about__clients
           .about__clients__title
@@ -29,7 +29,7 @@ block content
             .about__clients__gallery__wrapper
               each client in about.client_logos
                 figure.about__clients__gallery__media
-                  img.about__clients__gallery__media__image(src=client.client_logo.url alt=client.client_logo.alt)
+                  img.about__clients__gallery__media__image(data-src=client.client_logo.url alt=client.client_logo.alt)
 
         section.about__contact
           .about__contact__title

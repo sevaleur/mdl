@@ -5,18 +5,33 @@
 
 html
 {
+  @extend %cover; 
+
   font-size: calc(100vw / 1920 * 10);
   color: $color-mercury;
-
   overscroll-behavior: none;
+  overflow: hidden;
+  position: fixed;
+
+  @include media('<phone')
+  {
+    font-size: calc(100vw / 750 * 10);
+  }
 }
 
 body
 {
+  @extend %cover;
   @extend %desc-16;
 
+  position: fixed;
   font-family: $font-source-sans-pro;
-  background: $color-charade;
+  background: #232323;
+
+  /* @include media('<=phone')
+  {
+    font-size: 100px;
+  } */
 }
 
 a
@@ -29,4 +44,9 @@ a
 img
 {
   vertical-align: middle;
+}
+
+.content
+{
+  @extend %cover;
 }

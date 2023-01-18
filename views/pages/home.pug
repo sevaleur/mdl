@@ -6,12 +6,16 @@ block variables
 block content
   .home
     .home__wrapper
+
+      //.home__title
+        //h1.home__title__text=meta.data.title
+
       .home__gallery
         .home__gallery__wrapper
           each project in home.projects
             a.home__gallery__link(href=Link=(`${project.projects_project.type}/${project.projects_project.uid}`))
               figure.home__gallery__media
-                img.home__gallery__media__image(alt=project.projects_project.data.project_home_image.alt src=project.projects_project.data.project_home_image.url)
+                img.home__gallery__media__image(alt=project.projects_project.data.project_home_image.alt data-src=project.projects_project.data.project_home_image.url)
 
         .home__gallery__content
           each project, index in home.projects
