@@ -5,13 +5,15 @@
 
 html
 {
-  @extend %cover; 
+  @extend %cover;
 
   font-size: calc(100vw / 1920 * 10);
+  background: #232323;
   color: $color-mercury;
   overscroll-behavior: none;
   overflow: hidden;
   position: fixed;
+
 
   @include media('<phone')
   {
@@ -26,7 +28,6 @@ body
 
   position: fixed;
   font-family: $font-source-sans-pro;
-  background: #232323;
 
   /* @include media('<=phone')
   {
@@ -49,4 +50,15 @@ img
 .content
 {
   @extend %cover;
+}
+
+[data-animation="paragraph"],
+[data-animation="label"],
+[data-animation="title"]
+{
+  span
+  {
+    display: inline-block;
+    overflow: hidden;
+  }
 }

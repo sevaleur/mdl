@@ -39,13 +39,16 @@
 {
   position: absolute;
   left: 50%;
-  top: 5%;
-  transform: translate(-50%, -5%);
+  top: 4rem;
+  transform: translateX(-50%);
 }
 
 .navigation__location__active
 {
-  @extend %desc-20;
+  @extend %title-25;
+
+  text-transform: uppercase;
+  letter-spacing: 1rem;
 }
 
 .navigation__list
@@ -56,13 +59,16 @@
 .navigation__list__item
 {
   pointer-events: auto;
-  /* position: absolute;
+  position: absolute;
   right: 4rem;
-  top: 4rem; */
+  top: 4rem;
 
 }
 
 .navigation__list__item__link
 {
+  @extend %link--hidden;
   @extend %desc-20;
+
+  display: block;
 }

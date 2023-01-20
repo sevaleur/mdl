@@ -2,9 +2,7 @@
 {
   @extend %page;
 
-  color: $color-mercury;
-
-  /* &:before,
+  &:before,
   &:after
   {
     content: '';
@@ -25,7 +23,7 @@
   {
     background: linear-gradient(to top, $color-charade 0%, rgba($color-charade, 0) 100%);
     bottom: 0;
-  } */
+  }
 }
 
 .project__wrapper
@@ -34,22 +32,6 @@
 
   display: flex;
   align-items: center;
-}
-
-.project__title
-{
-  @extend %title-200;
-  @extend %center;
-
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  text-transform: uppercase;
-  mix-blend-mode: difference;
-  font-weight: 600;
-  z-index: 10;
 }
 
 .project__gallery

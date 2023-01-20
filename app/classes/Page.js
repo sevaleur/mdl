@@ -1,19 +1,40 @@
 import gsap from 'gsap'
+
+import normalizeWheel from 'normalize-wheel'
+
 import each from 'lodash/each'
+import map from 'lodash/map'
+
 import Prefix from 'prefix'
+
+import Title from 'animations/Title'
+import Paragraph from 'animations/Paragraph'
+import Label from 'animations/Label'
+
+import { ColorManager } from 'classes/Colors'
 
 export default class Page
 {
   constructor({ element, elements, id })
   {
     this.selector = element
-    this.selectorChildren = { ...elements }
+    this.selectorChildren = {
+      ...elements,
+      animationTitles: `[data-animation="title"]`,
+      animationParagraphs: `[data-animation="paragraph"]`,
+      animationLabel: `[data-animation="label"]`,
+    }
 
     this.id = id
+
     this.transform_prefix = Prefix('transform')
 
     this.onMouseWheelEvent = this.onMouseWheel.bind(this)
   }
+
+  /*
+    Create.
+  */
 
   create()
   {
@@ -46,15 +67,69 @@ export default class Page
           this.elements[key] = document.querySelector(entry)
         }
       }
-
     })
 
+    this.createAnimations()
   }
+
+  /*
+    Content animations.
+  */
+
+  createAnimations()
+  {
+    this.animations = []
+
+    /*
+      Titles.
+    */
+    this.animationTitles = map(this.elements.animationTitles, element =>
+    {
+      return new Title({
+        element
+      })
+    })
+
+    this.animations.push(...this.animationTitles)
+
+    /*
+      Paragraphs.
+    */
+    this.animationParagraphs = map(this.elements.animationParagraphs, element =>
+    {
+      return new Paragraph({
+        element
+      })
+    })
+
+    this.animations.push(...this.animationParagraphs)
+
+    /*
+      Labels.
+    */
+    this.animationLabel = map(this.elements.animationLabel, element =>
+    {
+      return new Label({
+        element
+      })
+    })
+
+    this.animations.push(...this.animationLabel)
+  }
+
+  /*
+    Page animation.
+  */
 
   show()
   {
     return new Promise(resolve =>
     {
+      ColorManager.change({
+        backgroundColor: this.element.getAttribute('data-background'),
+        color: this.element.getAttribute('data-color')
+      })
+
       this.animateIn = gsap.timeline()
 
       this.animateIn.fromTo(this.element,
@@ -91,18 +166,28 @@ export default class Page
     })
   }
 
+  /*
+    Events.
+  */
+
   onMouseWheel(e)
   {
-    const { deltaY } = e
+    const { pixelY } = normalizeWheel(e)
 
-    this.scroll.target += deltaY
+    this.scroll.target += pixelY
   }
 
   onResize()
   {
     if(this.elements.wrapper)
       this.scroll.limit = this.elements.wrapper.clientHeight - window.innerHeight
+
+    each(this.animations, animation => animation.onResize())
   }
+
+  /*
+    Loop.
+  */
 
   update()
   {
@@ -116,6 +201,10 @@ export default class Page
     if(this.elements.wrapper)
       this.elements.wrapper.style[this.transform_prefix] = `translateY(-${this.scroll.current}px)`
   }
+
+  /*
+    Listeners.
+  */
 
   addEventListeners()
   {
