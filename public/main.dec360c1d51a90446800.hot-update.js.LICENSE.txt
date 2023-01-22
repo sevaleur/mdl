@@ -4,6 +4,10 @@
 
 /*! animations/Title */
 
+/*! classes/AsyncLoad */
+
+/*! classes/Colors */
+
 /*! gsap */
 
 /*! lodash/each */

@@ -2,7 +2,7 @@ import gsap from 'gsap'
 
 import Component from "classes/Component"
 
-import { COLOR_BIG_STONE, COLOR_MERCURY } from "utils/colors";
+import { COLOR_BIG_STONE, COLOR_MERCURY } from "utils/color_variables";
 
 export default class Navigation extends Component
 {

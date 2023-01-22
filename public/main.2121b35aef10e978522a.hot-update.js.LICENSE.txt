@@ -1,6 +1,12 @@
+/*! animations/Label */
+
 /*! animations/Paragraph */
 
 /*! animations/Title */
+
+/*! classes/AsyncLoad */
+
+/*! classes/Colors */
 
 /*! gsap */
 
