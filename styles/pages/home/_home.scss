@@ -60,7 +60,7 @@
 
 .home__gallery__content
 {
-  @extend %cover;
+
 }
 
 .home__gallery__title
@@ -79,7 +79,7 @@
 
 .home__gallery__title__text
 {
-  @extend %title-200;
+  @extend %title-100;
 
   text-transform: uppercase;
 }

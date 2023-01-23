@@ -1,9 +1,10 @@
 .navigation
 {
-  @extend %cover;
+  //@extend %cover;
 
   z-index: z('navigation');
   position: fixed;
+  width: 100%;
   /* pointer-events: none; */
 }
 
@@ -68,8 +69,9 @@
 .navigation__list__item__link
 {
   @extend %link--hidden;
-  @extend %desc-20;
+  @extend %desc-25;
 
+  font-weight: 500;
   display: block;
   line-height: 1;
 }
