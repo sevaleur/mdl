@@ -40,7 +40,7 @@ export default class Label extends Animation
         },
         {
           autoAlpha: 1,
-          delay: index * 0.2,
+          delay: 0.5,
           duration: 1.,
           ease: 'expo.out',
           y: '0%'

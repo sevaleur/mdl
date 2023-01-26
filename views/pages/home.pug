@@ -20,4 +20,4 @@ block content
         .home__gallery__content
           each project, index in home.projects
             .home__gallery__title(class=`${index === 0 ? 'home__gallery__title--active' : ''}`)
-              h2.home__gallery__title__text=project.projects_project.data.title
+              h2.home__gallery__title__text(data-animation='title')=project.projects_project.data.title

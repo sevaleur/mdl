@@ -13,6 +13,8 @@ html
   overflow: hidden;
   position: fixed;
 
+  background: $color-dark-jungle-green;
+  color: $color-cultured;
 
   @include media('<phone')
   {
@@ -62,9 +64,10 @@ img
 [data-animation="label"],
 [data-animation="title"]
 {
-  span
+  span, span span
   {
     display: inline-block;
     overflow: hidden;
+    line-height: 1;
   }
 }

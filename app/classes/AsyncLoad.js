@@ -25,6 +25,10 @@ export default class AsyncLoad extends Component
               this.element.classList.add('loaded')
             }
           }
+          else
+          {
+            this.element.classList.add('loaded')
+          }
         }
       })
     })

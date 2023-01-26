@@ -18,7 +18,7 @@
       grid-area: 1 / 1 / -1 / 2;
       align-self: center;
       padding: 10rem 12.7rem;
-      border-right:1px solid $color-dark-jungle-green;
+      border-right:1px solid $color-cadet-blue-crayola;
 
       &__text
       {
@@ -48,7 +48,7 @@
 
   &__background
   {
-    border-top: 1px solid $color-dark-jungle-green;
+    border-top: 1px solid $color-cadet-blue-crayola;
 
     &__gc
     {
@@ -57,6 +57,8 @@
 
       &__smdesc
       {
+        @extend %center;
+
         grid-area: 1 / 1 / -1 / 2;
         height: 100%;
         width: 100%;
@@ -64,8 +66,7 @@
         justify-self: center;
         padding: 10rem 12.7rem;
 
-
-        border-bottom: 1px solid $color-dark-jungle-green;
+        border-bottom: 1px solid $color-cadet-blue-crayola;
 
         &__text
         {
@@ -84,21 +85,22 @@
 
         &__title
         {
-          @extend %center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
           writing-mode:vertical-rl;
           transform: scale(-1, -1);
 
           height: 100%;
           width: 100%;
-          border-left: 1px solid $color-dark-jungle-green;
-          border-top: 1px solid $color-dark-jungle-green;
+          padding: 2rem 0;
+          border-left: 1px solid $color-cadet-blue-crayola;
+          border-top: 1px solid $color-cadet-blue-crayola;
 
           &__text
           {
             @extend %title-25;
-
-            line-height: 1;
           }
         }
       }
@@ -110,8 +112,8 @@
       &__frame
       {
         text-align: center;
-        padding: 2rem;
-        border-top: 1px solid $color-dark-jungle-green;
+        padding: 4rem 2rem;
+        border-top: 1px solid $color-cadet-blue-crayola;
 
         &:first-of-type
         {
@@ -120,14 +122,12 @@
 
         &:last-of-type
         {
-          border-bottom: 1px solid $color-dark-jungle-green;
+          border-bottom: 1px solid $color-cadet-blue-crayola;
         }
 
         &__text
         {
           @extend %desc-25;
-
-          font-weight: 500;
         }
       }
     }
@@ -135,13 +135,18 @@
 
   &__clients
   {
+    padding-bottom: 12.7rem;
 
     &__title
     {
 
+
       &__text
       {
+        @extend %title-70;
+        letter-spacing: 2rem;
 
+        padding: 12.7rem;
       }
     }
 
@@ -150,12 +155,16 @@
 
       &__wrapper
       {
-
+        padding: 0 40rem;
       }
 
       &__name
       {
+        @extend %desc-25;
 
+        letter-spacing: 1rem;
+        padding: 3rem;
+        border-bottom: 1px solid $color-cadet-blue-crayola;
       }
 
       &__media
@@ -163,7 +172,7 @@
 
         &__image
         {
-
+          display: none;
         }
       }
     }
@@ -171,47 +180,158 @@
 
   &__desc
   {
+    display: grid;
+    grid-template-columns: 1fr 70rem;
+    height: 100%;
+    width: 100%;
+    padding: 12.7rem;
+    padding-right: 0;
 
-    &__title
+    &__gc
     {
+      grid-area: 1 / 1 / -1 / 2;
+      height: 100%;
+      width: 100%;
+      align-self: center;
+      justify-self: center;
+      padding-left: 12.7rem;
 
-      &__text
+      display: grid;
+      grid-template-columns: 5rem 1fr;
+
+      &__title
       {
+        @extend %center;
 
+        grid-area: 1 / 1 / -1 / 2;
+        height: 100%;
+        width: 100%;
+
+        &__text
+        {
+          @extend %title-25;
+
+          writing-mode: vertical-rl;
+          transform: scale(-1, -1);
+        }
+      }
+
+      &__desc
+      {
+        grid-area: 1 / 2 / -1 / -1;
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        &__text
+        {
+          @extend %desc-25;
+
+        }
       }
     }
 
-    &__desc
-    {
-
-      &__text
-      {
-
-      }
-    }
 
     &__location
     {
+      @extend %center;
+
+      grid-area: 1 / 2 / -1 / -1;
+      width: 100%;
+      height: 100%;
+      padding: 12.7rem;
+
+      border-left: 1px solid $color-cadet-blue-crayola;
 
       &__text
       {
+        @extend %title-100;
 
+        writing-mode: vertical-lr;
+        transform: scale(1, 1);
+      }
+    }
+  }
+
+  &__contact
+  {
+    height: 100%;
+    width: 100%;
+    padding: 22.7rem;
+
+    &__title
+    {
+      @extend %center;
+
+      padding-bottom: 15rem;
+
+      &__text
+      {
+        @extend %title-100;
+
+        text-transform: uppercase;
+      }
+    }
+
+    &__details
+    {
+      @extend %center;
+
+      padding-bottom: 12.7rem;
+
+      &__text
+      {
+        @extend %link--hidden;
+        @extend %desc-40;
+
+        letter-spacing: 1rem;
+      }
+    }
+  }
+
+  &__footer
+  {
+    height: 100%;
+    width: 100%;
+    padding-bottom: 10rem;
+    display: grid;
+    grid-template-columns: 70rem 1fr;
+    border-top: 1px solid $color-cadet-blue-crayola;
+
+    &__media
+    {
+      grid-area: 1 / 1 / -1 / 2;
+      align-self: center;
+      justify-self: center;
+      height: 40rem;
+      width: 50rem;
+      position: relative;
+
+      &__image
+      {
+        @extend %cover;
+
+        object-fit: cover;
+      }
+    }
+
+    &__title
+    {
+      grid-area: 1 / 2 / -1 / -1;
+      align-self: center;
+      text-align: right;
+      padding: 10rem 12.7rem;
+      border-left: 1px solid $color-cadet-blue-crayola;
+
+      &__text
+      {
+        @extend %title-200;
+
+        letter-spacing: 2rem;
       }
     }
   }
 }
-
-/*
-
-        .about__contact
-          .about__contact__title
-            .about__contact__title__text
-          .about__contact__details
-            .about__contact__details__text
-
-        .about__footer
-          .about__footer__media
-            .about__footer__media__image
-          .about__footer__title
-            .about__footer__title__text
- */

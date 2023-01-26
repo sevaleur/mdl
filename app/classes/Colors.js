@@ -11,7 +11,7 @@ class Colors
     {
       backgroundColor,
       color,
-      duration: 1.5
+      duration: 1.5,
     })
   }
 }

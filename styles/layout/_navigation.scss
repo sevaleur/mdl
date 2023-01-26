@@ -16,40 +16,22 @@
   padding: 0 5rem;
 }
 
-.navigation__media
+.navigation__home
 {
-  height: 15rem;
-  width: 15rem;
+  height: 100%;
+  width: 100%;
 
-  position: relative
-}
-
-.navigation__media__link
-{
-  font-size: 0rem;
-}
-
-.navigation__media__link__image
-{
-  @extend %cover;
-
-  object-fit: cover;
-}
-
-.navigation__location
-{
   position: absolute;
-  left: 50%;
+  left: 4rem;
   top: 4rem;
-  transform: translateX(-50%);
 }
 
-.navigation__location__active
+.navigation__home__link
 {
-  @extend %title-25;
+  @extend %link--hidden;
+  @extend %desc-20;
 
-  text-transform: uppercase;
-  letter-spacing: 1rem;
+  font-weight: 500;
 }
 
 .navigation__list
@@ -69,9 +51,10 @@
 .navigation__list__item__link
 {
   @extend %link--hidden;
-  @extend %desc-25;
+  @extend %desc-20;
 
   font-weight: 500;
   display: block;
   line-height: 1;
+  mix-blend-mode: difference;
 }

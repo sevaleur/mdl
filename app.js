@@ -86,8 +86,6 @@ app.get('/about', async(req, res) =>
       ...defaults,
       about: about.data
     })
-
-    console.log(about)
 })
 
 app.get('/project/:uid', async(req, res) =>

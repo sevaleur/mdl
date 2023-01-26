@@ -3,35 +3,35 @@
   @extend %cover;
   @extend %center;
 
-  background: $color-pewter-blue;
-  color: $color-black-coral;
+  background: $color-dark-jungle-green;
+  color: $color-cultured;
   text-align: center;
   z-index: z('preloader');
-}
 
-.preloader__text
-{
-  @extend %title-100;
-
-  span
+  &__text
   {
-    display: inline-block;
-    overflow: hidden;
+    @extend %title-100;
+
+    span
+    {
+      display: inline-block;
+      overflow: hidden;
+    }
   }
-}
 
-.preloader__number
-{
-  @extend %desc-16;
+  &__number
+  {
+    @extend %desc-20;
 
-  position: absolute;
-  bottom: 7.3rem;
-  left: 50%;
-  transform: translateX(-50%);
-  overflow: hidden;
-}
+    position: absolute;
+    bottom: 7.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
 
-.preloader__number__text
-{
-  display: inline-block;
+    &__text
+    {
+      display: inline-block;
+    }
+  }
 }

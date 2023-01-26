@@ -2,7 +2,7 @@ import gsap from 'gsap'
 
 import Component from "classes/Component"
 
-import { COLOR_BIG_STONE, COLOR_MERCURY } from "utils/color_variables";
+import { COLOR_DARK_JUNGLE_GREEN, COLOR_CULTURED } from "utils/color_variables";
 
 export default class Navigation extends Component
 {
@@ -22,21 +22,10 @@ export default class Navigation extends Component
 
   onChange(template)
   {
-    if(template === 'project')
-    {
-      this.active_hl = document.querySelector('.project').getAttribute('data-id')
-
-      this.active = document.querySelector('.navigation__location__active')
-      this.active.innerHTML = this.active_hl
-    }
-    else
-    {
-      this.active = document.querySelector('.navigation__location__active').innerHTML = ''
-    }
-
     gsap.to(this.element,
     {
-      color: template === 'about' ? COLOR_BIG_STONE : COLOR_MERCURY,
+      opacity: 1,
+      color: template === 'about' ? COLOR_DARK_JUNGLE_GREEN : COLOR_CULTURED,
       duration: 1.5
     })
   }
