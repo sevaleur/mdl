@@ -17,11 +17,11 @@ block content
               .about__background__gc__smdesc
                 p.about__background__gc__smdesc__text(data-animation="title")=about.sm_desc
               .about__background__gc__bg__title
-                h2.about__background__gc__bg__title__text(data-animation="title")=about.background_title
+                h2.about__background__gc__bg__title__text(data-animation="vertical")=about.background_title
               .about__background__desc
                 each desc in about.background_desc
                   .about__background__desc__frame
-                    p.about__background__desc__frame__text(data-animation="paragraph")=desc.background_desc_text
+                    p.about__background__desc__frame__text(data-animation='paragraph')=desc.background_desc_text
 
         section.about__clients
           .about__clients__title
@@ -36,15 +36,15 @@ block content
         section.about__desc
           .about__desc__gc
             .about__desc__gc__title
-              h2.about__desc__gc__title__text(data-animation="title")=about.about_title
+              h2.about__desc__gc__title__text(data-animation="vertical")=about.about_title
             .about__desc__gc__desc
-              p.about__desc__gc__desc__text(data-animation="paragraph")!=about.about_desc.replace(/\n/g, '<br>')
+              p.about__desc__gc__desc__text(data-animation='paragraph')!=about.about_desc.replace(/\n/g, '<br>')
           .about__desc__location
-            p.about__desc__location__text(data-animation="label")=about.location
+            p.about__desc__location__text(data-animation="vertical")=about.location
 
         section.about__contact
           .about__contact__title
-            h2.about__contact__title__text=about.contact
+            h2.about__contact__title__text(data-animation='title')=about.contact
           .about__contact__details
             p.about__contact__details__text(data-animation="paragraph")=about.contact_desc
 
@@ -52,6 +52,6 @@ block content
           figure.about__footer__media
             img.about__footer__media__image(data-src=about.footer_image.url alt=about.footer_image.alt)
           .about__footer__title
-            p.about__footer__title__text=about.footer_title
+            p.about__footer__title__text(data-animation='title')=about.footer_title
 
 

@@ -15,7 +15,8 @@ export default class Paragraph extends Animation
     })
 
     this.elementLinesSpan = split({
-      element: this.element
+      element: this.element,
+      append: true
     })
 
   }

@@ -10,6 +10,7 @@ import Prefix from 'prefix'
 import Title from 'animations/Title'
 import Paragraph from 'animations/Paragraph'
 import Label from 'animations/Label'
+import Vertical from 'animations/Vertical'
 
 import AsyncLoad from 'classes/AsyncLoad'
 import { ColorManager } from 'classes/Colors'
@@ -24,6 +25,7 @@ export default class Page
       animationTitles: `[data-animation="title"]`,
       animationParagraphs: `[data-animation="paragraph"]`,
       animationLabel: `[data-animation="label"]`,
+      animationVertical: `[data-animation="vertical"]`,
 
       images: `[data-src]`
     }
@@ -119,6 +121,18 @@ export default class Page
     })
 
     this.animations.push(...this.animationLabel)
+
+    /*
+      Vertical text.
+    */
+    this.animationVertical = map(this.elements.animationVertical, element =>
+    {
+      return new Vertical({
+        element
+      })
+    })
+
+    this.animations.push(...this.animationVertical)
 
   }
 

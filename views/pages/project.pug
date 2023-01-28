@@ -7,10 +7,9 @@ block content
   .project(data-id=project.title)
     .project__wrapper
       .project__gallery
-        .project__gallery__wrapper
-          each image in project.gallery
-            figure.project__gallery__media
-              img.project__gallery__media__image(data-src=image.image.url alt=image.image.alt)
+        each image in project.gallery
+          figure.project__gallery__media
+            img.project__gallery__media__image(data-src=image.image.url alt=image.image.alt)
 
 
 

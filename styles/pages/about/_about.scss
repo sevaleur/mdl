@@ -18,7 +18,7 @@
       grid-area: 1 / 1 / -1 / 2;
       align-self: center;
       padding: 10rem 12.7rem;
-      border-right:1px solid $color-cadet-blue-crayola;
+      border-right: 1px solid $color-cadet-blue-crayola;
 
       &__text
       {
@@ -322,7 +322,6 @@
     {
       grid-area: 1 / 2 / -1 / -1;
       align-self: center;
-      text-align: right;
       padding: 10rem 12.7rem;
       border-left: 1px solid $color-cadet-blue-crayola;
 

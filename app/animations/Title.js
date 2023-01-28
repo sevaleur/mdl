@@ -14,15 +14,12 @@ export default class Title extends Animation
       elements
     })
 
-    split({
-      element: this.element
-    })
+    /* split({ element: this.element, append: true })
+    split({ element: this.element, append: true })
 
-    split({
-      element: this.element
-    })
+    this.elementLinesSpan = document.querySelectorAll('span span') */
 
-    this.elementLinesSpan = document.querySelectorAll('span span')
+    this.elementLinesSpan = split({ element: this.element, append: true })
   }
 
   animateIn()
@@ -39,25 +36,24 @@ export default class Title extends Animation
     each(this.elementLines, (line, index) =>
     {
       this.tl_in.fromTo(line,
-        {
-          y: '100%'
-        },
-        {
-          delay: index * 0.2,
-          duration: 1.,
-          ease: 'expo.out',
-          y: '0%'
-        }, 0)
+      {
+        y: '100%'
+      },
+      {
+        delay: index * 0.2,
+        duration: 1.,
+        ease: 'expo.out',
+        y: '0%'
+      }, 0)
     })
-
   }
 
   animateOut()
   {
     gsap.set(this.element,
-      {
-        autoAlpha: 0
-      })
+    {
+      autoAlpha: 0
+    })
   }
 
   onResize()

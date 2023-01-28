@@ -43,4 +43,9 @@ export default class Animation extends Component
   {
 
   }
+
+  onResize()
+  {
+    
+  }
 }

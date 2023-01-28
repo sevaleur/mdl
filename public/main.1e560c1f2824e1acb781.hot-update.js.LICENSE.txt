@@ -1,9 +1,0 @@
-/*! classes/Component */
-
-/*! gsap */
-
-/*! utils/color_variables */
-
-/*!**************************************!*\
-  !*** ./app/components/Navigation.js ***!
-  \**************************************/

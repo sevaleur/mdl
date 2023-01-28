@@ -15,7 +15,8 @@ export default class Label extends Animation
     })
 
     this.elementLinesSpan = split({
-      element: this.element
+      element: this.element,
+      append: true
     })
 
   }
@@ -36,7 +37,7 @@ export default class Label extends Animation
       this.tl_in.fromTo(line,
         {
           autoAlpha: 0,
-          y: '100%'
+          y: '100%',
         },
         {
           autoAlpha: 1,

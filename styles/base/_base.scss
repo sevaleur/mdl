@@ -64,10 +64,12 @@ img
 [data-animation="label"],
 [data-animation="title"]
 {
-  span, span span
+  overflow: hidden;
+
+  span
   {
     display: inline-block;
     overflow: hidden;
-    line-height: 1;
+    vertical-align: top;
   }
 }

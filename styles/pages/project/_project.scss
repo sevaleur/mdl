@@ -2,7 +2,7 @@
 {
   @extend %page;
 
-  /* &:before,
+ /*  &:before,
   &:after
   {
     content: '';
@@ -38,29 +38,19 @@
 {
   @extend %cover;
 
-}
-
-.project__gallery__wrapper
-{
-  @extend %center;
-
-  flex-wrap: wrap;
-  gap: 4rem;
-  padding:10rem;
-
+  height: 172.5rem;
+  width: 241.8rem;
+ /*  visibility: hidden; */
 }
 
 .project__gallery__media
 {
-  height: 50rem;
-  width: 50rem;
+  position: absolute;
 
-  position: relative;
+  
 }
 
 .project__gallery__media__image
 {
-  @extend %cover;
-
-  object-fit: cover;
+  opacity: 1;
 }

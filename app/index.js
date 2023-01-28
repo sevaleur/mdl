@@ -1,5 +1,6 @@
 import each from 'lodash/each'
 
+import Canvas from 'components/Canvas'
 import Preloader from 'components/Preloader'
 import Navigation from 'components/Navigation'
 
@@ -15,6 +16,7 @@ class App
 
     this.createPreloader()
     this.createNavigation()
+    this.createCanvas()
     this.createPages()
 
     this.addEventListeners()
@@ -38,6 +40,11 @@ class App
     this.navigation = new Navigation({
       template: this.template
     })
+  }
+
+  createCanvas()
+  {
+    this.canvas = new Canvas()
   }
 
   createContent()
@@ -108,6 +115,9 @@ class App
 
   onResize()
   {
+    if(this.canvas && this.canvas.onResize)
+      this.canvas.onResize()
+
     if(this.page && this.page.onResize)
       this.page.onResize()
   }
@@ -118,6 +128,9 @@ class App
 
   update()
   {
+    if(this.canvas && this.canvas.update)
+      this.canvas.update()
+
     if(this.page && this.page.update)
       this.page.update()
 
