@@ -6,12 +6,6 @@ export default class Canvas
 {
   constructor()
   {
-    this.x = {
-      start: 0,
-      distance: 0,
-      end: 0
-    }
-
     this.y = {
       start: 0,
       distance: 0,
@@ -132,7 +126,7 @@ export default class Canvas
 
     if(this.project)
     {
-      this.project.onTouchMove({
+      this.project.onTouchUp({
         y: this.y
       })
     }

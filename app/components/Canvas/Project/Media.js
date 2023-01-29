@@ -48,7 +48,8 @@ export default class Media
       fragment,
       uniforms:
       {
-        u_map: { value: this.texture }
+        u_map: { value: this.texture },
+        u_offset: { value: 0.0 }
       }
     })
   }
@@ -98,15 +99,12 @@ export default class Media
   {
     this.x = (this.bounds.left + x) / window.innerWidth
 
-    this.mesh.position.x = (-this.sizes.width / 2) + (this.mesh.scale.x / 2) + (this.x * this.sizes.width) + this.extra.x
+    this.mesh.position.x = (-this.sizes.width / 2) + (this.mesh.scale.x / 2) + (this.x * this.sizes.width)
   }
 
   updateY(y = 0)
   {
     this.y = (this.bounds.top + y) / window.innerHeight
-
-    if(this.index%2 === 0)
-      this.mesh.position.y = (this.sizes.height / 2) + (this.mesh.scale.y / 2) + (this.y * this.sizes.height)
 
     this.mesh.position.y = (this.sizes.height / 2) - (this.mesh.scale.y / 2) - (this.y * this.sizes.height)
   }

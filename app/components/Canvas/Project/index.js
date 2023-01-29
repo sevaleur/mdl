@@ -30,9 +30,6 @@ export default class Project
       y: 0
     }
 
-    this.scroll_limit = this.medias[0].mesh.scale.y * this.medias.length
-    console.log(this.scroll_limit)
-
     this.scroll = {
       current: 0,
       y: 0,
