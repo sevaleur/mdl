@@ -6,6 +6,18 @@ export default class Canvas
 {
   constructor()
   {
+    this.x = {
+      start: 0,
+      distance: 0,
+      end: 0
+    }
+
+    this.y = {
+      start: 0,
+      distance: 0,
+      end: 0
+    }
+
     this.createRenderer()
     this.createCamera()
     this.createScene()
@@ -76,12 +88,69 @@ export default class Canvas
     }
   }
 
+  onTouchDown(e)
+  {
+    this.isDown = true
+
+    this.x.start = e.touches ? e.touches[0].clientX : e.clientX
+    this.y.start = e.touches ? e.touches[0].clientY : e.clientY
+
+    if(this.project)
+    {
+      this.project.onTouchDown({
+        x: this.x,
+        y: this.y
+      })
+    }
+  }
+
+  onTouchMove(e)
+  {
+    if(!this.isDown) return
+
+    const x = e.touches ? e.touches[0].clientX : e.clientX
+    const y = e.touches ? e.touches[0].clientY : e.clientY
+
+    this.x.end = x
+    this.y.end = y
+
+    if(this.project)
+    {
+      this.project.onTouchMove({
+        x: this.x,
+        y: this.y
+      })
+    }
+  }
+
+  onTouchUp(e)
+  {
+    this.isDown = false
+
+    const x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX
+    const y = e.changedTouches ? e.changedTouches[0].clientY : e.clientY
+
+    this.x.end = x
+    this.y.end = y
+
+    if(this.project)
+    {
+      this.project.onTouchMove({
+        x: this.x,
+        y: this.y
+      })
+    }
+  }
+
   /*
     Loop.
   */
 
   update()
   {
+    if(this.project)
+      this.project.update()
+
     this.renderer.render({
       scene: this.scene,
       camera: this.camera
