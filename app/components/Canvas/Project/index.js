@@ -20,26 +20,24 @@ export default class Project
 
     this.group.setParent(scene)
 
-    this.x = {
-      current: 0,
-      target: 0,
-      lerp: 0.1
-    }
-
     this.y = {
       current: 0,
       target: 0,
-      lerp: 0.1
+      lerp: 0.1,
     }
 
     this.scroll_current = {
-      x: 0,
       y: 0
     }
 
+    this.scroll_limit = this.medias[0].mesh.scale.y * this.medias.length
+    console.log(this.scroll_limit)
+
     this.scroll = {
-      x: 0,
-      y: 0
+      current: 0,
+      y: 0,
+      target: 0,
+      limit: 0
     }
   }
 
@@ -69,27 +67,31 @@ export default class Project
 
   onResize(event)
   {
+    this.sizes = event.sizes
+
     map(this.medias, media => media.onResize(event) )
   }
 
-  onTouchDown({ x, y })
+  onTouchDown({ y })
   {
-    this.scroll_current.x = this.scroll.x
     this.scroll_current.y = this.scroll.y
   }
 
-  onTouchMove({ x, y })
+  onTouchMove({ y })
   {
-    const x_dist = x.start - x.end
     const y_dist = y.start - y.end
 
-    this.x.target = this.scroll_current.x - x_dist
     this.y.target = this.scroll_current.y - y_dist
   }
 
-  onTouchUp({ x, y })
+  onTouchUp({ y })
   {
 
+  }
+
+  onWheel({ pixelY })
+  {
+    this.y.target -= pixelY
   }
 
   /*
@@ -98,12 +100,43 @@ export default class Project
 
   update()
   {
-    this.x.current = gsap.utils.interpolate(this.x.current, this.x.target, this.x.lerp)
     this.y.current = gsap.utils.interpolate(this.y.current, this.y.target, this.y.lerp)
 
-    this.scroll.x = this.x.current
+    if(this.scroll.y < this.y.current)
+    {
+      this.y.direction = 'top'
+    }
+    else if(this.scroll.y > this.y.current)
+    {
+      this.y.direction = 'bottom'
+    }
+
     this.scroll.y = this.y.current
 
-    map(this.medias, media => media.update(this.scroll))
+    map(this.medias, (media, index) =>
+    {
+      const scale_y = media.mesh.scale.y / 2
+
+      if(this.y.direction === 'top')
+      {
+        const y = media.mesh.position.y + scale_y
+
+        if(y > -this.sizes.height / 2)
+        {
+          this.y.target = gsap.utils.clamp(0, 1, this.y.target)
+        }
+      }
+      else if(this.y.direction === 'bottom')
+      {
+        const y = media.mesh.position.y - scale_y
+
+        if(y < this.sizes.height / 2)
+        {
+
+        }
+      }
+
+      media.update(this.scroll)
+    })
   }
 }

@@ -17,6 +17,12 @@ export default class Media
     this.createTexture()
     this.createProgram()
     this.createMesh()
+
+    this.extra =
+    {
+      x: 0,
+      y: 0
+    }
   }
 
   /*
@@ -92,12 +98,15 @@ export default class Media
   {
     this.x = (this.bounds.left + x) / window.innerWidth
 
-    this.mesh.position.x = (-this.sizes.width / 2) + (this.mesh.scale.x / 2) + (this.x * this.sizes.width)
+    this.mesh.position.x = (-this.sizes.width / 2) + (this.mesh.scale.x / 2) + (this.x * this.sizes.width) + this.extra.x
   }
 
   updateY(y = 0)
   {
     this.y = (this.bounds.top + y) / window.innerHeight
+
+    if(this.index%2 === 0)
+      this.mesh.position.y = (this.sizes.height / 2) + (this.mesh.scale.y / 2) + (this.y * this.sizes.height)
 
     this.mesh.position.y = (this.sizes.height / 2) - (this.mesh.scale.y / 2) - (this.y * this.sizes.height)
   }
@@ -105,7 +114,7 @@ export default class Media
   update(scroll)
   {
     if(!this.bounds) return
-    
+
     this.updateX(scroll.x)
     this.updateY(scroll.y)
   }

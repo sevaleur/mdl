@@ -16,16 +16,12 @@
 {
   @extend %cover;
 
-  height: 172.5rem;
-  width: 241.8rem;
-  padding: 2rem;
-  transform: translateX(-10rem);
   visibility: hidden;
-  
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem
 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 2rem;
 }
 
 .project__gallery__media

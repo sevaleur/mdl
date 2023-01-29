@@ -1,4 +1,5 @@
 import each from 'lodash/each'
+import normalizeWheel from 'normalize-wheel'
 
 import Canvas from 'components/Canvas'
 import Preloader from 'components/Preloader'
@@ -115,11 +116,14 @@ class App
 
   onResize()
   {
-    if(this.canvas && this.canvas.onResize)
-      this.canvas.onResize()
-
     if(this.page && this.page.onResize)
       this.page.onResize()
+
+    window.requestAnimationFrame(() =>
+    {
+      if(this.canvas && this.canvas.onResize)
+        this.canvas.onResize()
+    })
   }
 
   onTouchDown(e)
@@ -138,6 +142,17 @@ class App
   {
     if(this.canvas && this.canvas.onTouchUp)
       this.canvas.onTouchUp(e)
+  }
+
+  onWheel(e)
+  {
+    const norm_wheel = normalizeWheel(e)
+
+    if(this.canvas && this.canvas.onWheel)
+      this.canvas.onWheel(norm_wheel)
+
+    if(this.page && this.page.onWheel)
+      this.page.onWheel(norm_wheel)
   }
 
   /*
@@ -161,6 +176,8 @@ class App
 
   addEventListeners()
   {
+    window.addEventListener('mousewheel', this.onWheel.bind(this))
+
     window.addEventListener('mousedown', this.onTouchDown.bind(this))
     window.addEventListener('mousemove', this.onTouchMove.bind(this))
     window.addEventListener('mouseup', this.onTouchUp.bind(this))

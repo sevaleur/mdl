@@ -32,7 +32,11 @@ export default class Canvas
 
   createRenderer()
   {
-    this.renderer = new Renderer()
+    this.renderer = new Renderer({
+      alpha: true,
+      antialias: true
+    })
+
     this.gl = this.renderer.gl
 
     document.body.appendChild(this.gl.canvas)
@@ -92,13 +96,11 @@ export default class Canvas
   {
     this.isDown = true
 
-    this.x.start = e.touches ? e.touches[0].clientX : e.clientX
     this.y.start = e.touches ? e.touches[0].clientY : e.clientY
 
     if(this.project)
     {
       this.project.onTouchDown({
-        x: this.x,
         y: this.y
       })
     }
@@ -108,16 +110,13 @@ export default class Canvas
   {
     if(!this.isDown) return
 
-    const x = e.touches ? e.touches[0].clientX : e.clientX
     const y = e.touches ? e.touches[0].clientY : e.clientY
 
-    this.x.end = x
     this.y.end = y
 
     if(this.project)
     {
       this.project.onTouchMove({
-        x: this.x,
         y: this.y
       })
     }
@@ -127,19 +126,22 @@ export default class Canvas
   {
     this.isDown = false
 
-    const x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX
     const y = e.changedTouches ? e.changedTouches[0].clientY : e.clientY
 
-    this.x.end = x
     this.y.end = y
 
     if(this.project)
     {
       this.project.onTouchMove({
-        x: this.x,
         y: this.y
       })
     }
+  }
+
+  onWheel(e)
+  {
+    if(this.project)
+      this.project.onWheel(e)
   }
 
   /*
