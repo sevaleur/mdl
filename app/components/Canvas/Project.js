@@ -5,12 +5,13 @@ import Media from './Media'
 
 export default class Project
 {
-  constructor({ gl, scene })
+  constructor({ gl, scene, sizes })
   {
     this.gl = gl
+    this.sizes = sizes
     this.group = new Transform()
 
-    this.medias = document.querySelectorAll('.project__gallery__media__image')
+    this.mediaElements = document.querySelectorAll('.project__gallery__media__image')
 
     this.createGeometry()
     this.createGallery()
@@ -25,15 +26,21 @@ export default class Project
 
   createGallery()
   {
-    map(this.medias, (element, index) =>
+    this.medias = map(this.mediaElements, (element, index) =>
     {
       return new Media({
         element,
         geometry: this.geo,
         index,
         gl: this.gl,
-        scene: this.group
+        scene: this.group,
+        sizes: this.sizes
       })
     })
+  }
+
+  onResize(event)
+  {
+    map(this.medias, media => media.onResize(event) )
   }
 }
