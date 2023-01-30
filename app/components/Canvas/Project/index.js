@@ -13,7 +13,8 @@ export default class Project
     this.sizes = sizes
     this.group = new Transform()
 
-    this.mediaElements = document.querySelectorAll('.project__gallery__media__image')
+    this.mediaLeftElements = document.querySelectorAll('.project__gallery__left__media__image')
+    this.mediaRightElements = document.querySelectorAll('.project__gallery__right__media__image')
 
     this.createGeometry()
     this.createGallery()
@@ -45,7 +46,19 @@ export default class Project
 
   createGallery()
   {
-    this.medias = map(this.mediaElements, (element, index) =>
+    this.mediasLeft = map(this.mediaLeftElements, (element, index) =>
+    {
+      return new Media({
+        element,
+        geometry: this.geo,
+        index,
+        gl: this.gl,
+        scene: this.group,
+        sizes: this.sizes
+      })
+    })
+
+    this.mediasRight = map(this.mediaRightElements, (element, index) =>
     {
       return new Media({
         element,
@@ -66,7 +79,8 @@ export default class Project
   {
     this.sizes = event.sizes
 
-    map(this.medias, media => media.onResize(event) )
+    map(this.mediasLeft, media => media.onResize(event) )
+    map(this.mediasRight, media => media.onResize(event) )
   }
 
   onTouchDown({ y })
@@ -110,7 +124,7 @@ export default class Project
 
     this.scroll.y = this.y.current
 
-    map(this.medias, (media, index) =>
+    map(this.mediasLeft, (media, index) =>
     {
       const scale_y = media.mesh.scale.y / 2
 
@@ -120,7 +134,7 @@ export default class Project
 
         if(y > -this.sizes.height / 2)
         {
-          this.y.target = gsap.utils.clamp(0, 1, this.y.target)
+
         }
       }
       else if(this.y.direction === 'bottom')
@@ -133,7 +147,33 @@ export default class Project
         }
       }
 
-      media.update(this.scroll)
+      media.update(this.scroll, this.y)
+    })
+
+    map(this.mediasRight, (media, index) =>
+    {
+      const scale_y = media.mesh.scale.y / 2
+
+      if(this.y.direction === 'top')
+      {
+        const y = media.mesh.position.y + scale_y
+
+        if(y > -this.sizes.height / 2)
+        {
+
+        }
+      }
+      else if(this.y.direction === 'bottom')
+      {
+        const y = media.mesh.position.y - scale_y
+
+        if(y < this.sizes.height / 2)
+        {
+
+        }
+      }
+
+      media.update(this.scroll, this.y)
     })
   }
 }

@@ -1,7 +1,6 @@
 .project
 {
   @extend %page;
-
 }
 
 .project__wrapper
@@ -16,27 +15,60 @@
 {
   @extend %cover;
 
-  visibility: hidden;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
-  gap: 2rem;
+  align-items: center;
+
+  visibility: hidden;
 }
 
-.project__gallery__media
+.project__gallery__left
+{
+  grid-area: 1 / 1 / -1 / 2;
+}
+
+.project__gallery__right
+{
+  grid-area: 1 / 2 / -1 / -1;
+}
+
+.project__gallery__left__media,
+.project__gallery__right__media
 {
   /* position: absolute; */
 
   width: 40rem;
   height: 60rem;
+  margin: 8rem;
 
   position: relative;
 }
 
-.project__gallery__media__image
+.project__gallery__left__media__image,
+.project__gallery__right__media__image
 {
   @extend %cover;
 
   object-fit: cover;
+}
+
+.project__title
+{
+  @extend %center;
+  @extend %title-100;
+
+  height: 100%;
+  width: 100%;
+
+  text-align: center;
+}
+
+.project__title__text
+{
+  @extend %title-100;
+
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  text-transform: uppercase;
 }
