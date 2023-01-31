@@ -45,7 +45,7 @@ export default class Media
       {
         tMap: { value: this.texture },
         u_imageSize: { value: [this.image.naturalWidth, this.image.naturalHeight] },
-        u_planeSizes: { value: [0, 0] },
+        u_planeSize: { value: [0, 0] },
         u_offset: { value: 0 }
       }
     })
@@ -94,7 +94,8 @@ export default class Media
     this.targetScaleX = 0.83;
     this.targetScaleY = 1.3;
 
-    this.program.uniforms.u_planeSizes.value = [this.mesh.scale.x, this.mesh.scale.y];
+    this.program.uniforms.u_planeSize.value = [this.mesh.scale.x, this.mesh.scale.y]
+    this.program.uniforms.u_imageSize.value = [this.image.naturalWidth, this.image.naturalHeight]
   }
 
   updateX(x = 0)

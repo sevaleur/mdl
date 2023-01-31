@@ -31,6 +31,7 @@
 .project__gallery__right
 {
   grid-area: 1 / 2 / -1 / -1;
+  transform: rotateZ(180deg);
 }
 
 .project__gallery__left__media,
@@ -38,9 +39,9 @@
 {
   /* position: absolute; */
 
-  width: 40rem;
-  height: 60rem;
-  margin: 8rem;
+  width: 50rem;
+  height: 70rem;
+  margin: 10rem;
 
   position: relative;
 }
@@ -66,8 +67,7 @@
 
 .project__title__text
 {
-  @extend %title-100;
+  @extend %title-150;
 
-  writing-mode: vertical-lr;
   text-transform: uppercase;
 }

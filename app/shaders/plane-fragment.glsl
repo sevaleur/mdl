@@ -1,7 +1,7 @@
 precision highp float;
 
-uniform vec2 u_imageSizes;
-uniform vec2 u_planeSizes;
+uniform vec2 u_imageSize;
+uniform vec2 u_planeSize;
 uniform float u_offset;
 uniform sampler2D tMap;
 
@@ -10,8 +10,8 @@ varying vec2 v_uv;
 void main()
 {
   vec2 ratio = vec2(
-    min((u_planeSizes.x / u_planeSizes.y) / (u_imageSizes.x / u_imageSizes.y), 1.0),
-    min((u_planeSizes.y / u_planeSizes.x) / (u_imageSizes.y / u_imageSizes.x), 1.0)
+    min((u_planeSize.x / u_planeSize.y) / (u_imageSize.x / u_imageSize.y), 1.0),
+    min((u_planeSize.y / u_planeSize.x) / (u_imageSize.y / u_imageSize.x), 1.0)
   );
 
   vec2 uv = vec2(
