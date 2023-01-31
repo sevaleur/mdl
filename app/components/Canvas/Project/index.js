@@ -173,7 +173,7 @@ export default class Project
         }
       }
 
-      media.update(this.scroll, this.y)
+      media.update(this.scroll)
     })
   }
 }

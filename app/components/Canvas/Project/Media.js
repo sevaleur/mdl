@@ -104,12 +104,12 @@ export default class Media
     this.mesh.position.x = (-this.sizes.width / 2) + (this.mesh.scale.x / 2) + (this.x * this.sizes.width)
   }
 
-  updateY(y = 0, current)
+  updateY(y = 0)
   {
     this.y = (this.bounds.top + y) / window.innerHeight
 
-    const positionInViewport = this.mesh.position.y - current / 100
-    this.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -0.35, 0.35, positionInViewport)
+    const pos_viewport = this.mesh.position.y - this.y / 100
+    this.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -0.35, 0.35, pos_viewport)
 
     this.mesh.position.y = (this.sizes.height / 2) - (this.mesh.scale.y / 2) - (this.y * this.sizes.height)
   }
@@ -119,6 +119,6 @@ export default class Media
     if(!this.bounds) return
 
     this.updateX(scroll.x)
-    this.updateY(scroll.y, y.current)
+    this.updateY(scroll.y)
   }
 }
