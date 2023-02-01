@@ -63,6 +63,7 @@ export default class Media
     })
 
     this.plane.setParent(this.scene)
+
   }
 
   createBounds()
@@ -161,11 +162,11 @@ export default class Media
 
     if(current > 0)
     {
-      this.plane.program.uniforms.u_strength.value = ((current - last) / this.screen.width) * 20
+      this.plane.program.uniforms.u_strength.value = ((current - last) / this.screen.width) * 15
     }
     else
     {
-      this.plane.program.uniforms.u_strength.value = -((current + last) / this.screen.width) * 20
+      this.plane.program.uniforms.u_strength.value = -((current + last) / this.screen.width) * 15
     }
   }
 }

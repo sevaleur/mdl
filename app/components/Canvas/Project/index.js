@@ -28,7 +28,6 @@ export default class Project
 
     this.createMedias()
 
-
     this.group.setParent(scene)
   }
 
@@ -59,7 +58,7 @@ export default class Project
         height: this.galleryHeight,
         scene: this.group,
         screen: this.screen,
-        viewport: this.viewport,
+        viewport: this.viewport
       })
     })
 
@@ -73,7 +72,7 @@ export default class Project
         height: this.galleryHeight,
         scene: this.group,
         screen: this.screen,
-        viewport: this.viewport,
+        viewport: this.viewport
       })
     })
   }
