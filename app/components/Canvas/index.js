@@ -53,7 +53,8 @@ export default class Canvas
     this.project = new Project({
       gl: this.gl,
       scene: this.scene,
-      sizes: this.sizes
+      screen: this.screen,
+      viewport: this.viewport
     })
   }
 
@@ -63,17 +64,22 @@ export default class Canvas
 
   onResize()
   {
-    this.renderer.setSize(window.innerWidth, window.innerHeight)
+    this.screen = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    }
+
+    this.renderer.setSize(this.screen.width, this.screen.height)
 
     this.camera.perspective({
-      aspect: window.innerWidth / window.innerHeight
+      aspect: this.screen.width / this.screen.height
     })
 
     const fov = this.camera.fov * (Math.PI / 180)
     const height = 2 * Math.tan(fov / 2) * this.camera.position.z
     const width = height * this.camera.aspect
 
-    this.sizes = {
+    this.viewport = {
       height,
       width
     }
@@ -81,7 +87,8 @@ export default class Canvas
     if(this.project)
     {
       this.project.onResize({
-        sizes: this.sizes
+        screen: this.screen,
+        viewport: this.viewport
       })
     }
   }
@@ -119,10 +126,6 @@ export default class Canvas
   onTouchUp(e)
   {
     this.isDown = false
-
-    const y = e.changedTouches ? e.changedTouches[0].clientY : e.clientY
-
-    this.y.end = y
 
     if(this.project)
     {
