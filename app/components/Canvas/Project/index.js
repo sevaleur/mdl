@@ -43,13 +43,13 @@ export default class Project
   createGallery()
   {
     this.gallery = document.querySelector('.project__gallery__left')
-    this.mediaLeftElements = document.querySelectorAll('img.project__gallery__left__media__image')
-    this.mediaRightElements = document.querySelectorAll('img.project__gallery__right__media__image')
+    this.leftElements = document.querySelectorAll('img.project__gallery__left__media__image')
+    this.rightElements = document.querySelectorAll('img.project__gallery__right__media__image')
   }
 
   createMedias()
   {
-    this.mediasLeft = map(this.mediaLeftElements, (element, index) =>
+    this.leftColumn = map(this.leftElements, (element, index) =>
     {
       return new Media({
         element,
@@ -63,7 +63,7 @@ export default class Project
       })
     })
 
-    this.mediasRight = map(this.mediaRightElements, (element, index) =>
+    this.rightColumn = map(this.rightElements, (element, index) =>
     {
       return new Media({
         element,
@@ -87,18 +87,18 @@ export default class Project
     this.galleryBounds = this.gallery.getBoundingClientRect()
     this.galleryHeight = this.viewport.height * this.galleryBounds.height / this.screen.height
 
-    if(this.mediasLeft)
+    if(this.leftColumn)
     {
-      map(this.mediasLeft, media => media.onResize({
+      map(this.leftColumn, media => media.onResize({
         height: this.galleryHeight,
         screen: this.screen,
         viewport: this.viewport
       }))
     }
 
-    if(this.mediasRight)
+    if(this.rightColumn)
     {
-      map(this.mediasRight, media => media.onResize({
+      map(this.rightColumn, media => media.onResize({
         height: this.galleryHeight,
         screen: this.screen,
         viewport: this.viewport
@@ -150,14 +150,14 @@ export default class Project
 
     const { current, last } = this.scroll
 
-    if(this.mediasLeft)
+    if(this.leftColumn)
     {
-      map(this.mediasLeft, media => media.update(current, last, this.direction))
+      map(this.leftColumn, media => media.update(current, last, this.direction))
     }
 
-    if(this.mediasRight)
+    if(this.rightColumn)
     {
-      map(this.mediasRight, media => media.update(-current, last, this.direction))
+      map(this.rightColumn, media => media.update(-current, last, this.direction))
     }
 
     this.scroll.last = this.scroll.current
