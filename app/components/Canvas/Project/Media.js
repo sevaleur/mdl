@@ -6,13 +6,13 @@ import fragment from 'shaders/plane-fragment.glsl'
 
 export default class Media
 {
-  constructor({ element, index, geometry, gl, height, scene, screen, viewport })
+  constructor({ element, index, geometry, gl, length, scene, screen, viewport })
   {
     this.element = element
     this.index = index
     this.geo = geometry
     this.gl = gl
-    this.height = height
+    this.length = length
     this.scene = scene
     this.screen = screen
     this.viewport = viewport
@@ -71,7 +71,7 @@ export default class Media
 
     this.margin = 0.5 * this.index
 
-    this.length = this.height * (this.plane.scale.y + this.margin)
+    this.wholeheight = this.length * (this.plane.scale.y + this.margin)
   }
 
   createBounds()
@@ -152,7 +152,7 @@ export default class Media
 
       if(y < -this.viewport.height / 2)
       {
-        //this.extra += this.length
+        //this.extra += this.wholeheight
       }
     }
 
@@ -162,7 +162,7 @@ export default class Media
 
       if(y > this.viewport.height / 2)
       {
-        //this.extra -= this.length
+        //this.extra -= this.wholeheight
       }
     }
 
