@@ -66,10 +66,10 @@ export default class Media
 
     this.scale = {
       x: this.plane.scale.x / 2,
-      y: this.plane.scale.y / 2
+      y: this.plane.scale.y
     }
 
-    this.margin = 0.537
+    this.margin = 0.5365
     this.wholeheight = this.length * (this.plane.scale.y + this.margin)
   }
 
