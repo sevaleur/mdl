@@ -41,9 +41,11 @@ export default class Project
 
   createGallery()
   {
-    this.gallery = document.querySelector('.project__gallery')
+    this.gallery = document.querySelector('.project__gallery__left')
     this.leftElements = document.querySelectorAll('img.project__gallery__left__media__image')
     this.rightElements = document.querySelectorAll('img.project__gallery__right__media__image')
+
+    this.length = this.leftElements.length
   }
 
   createMedias()
@@ -55,7 +57,7 @@ export default class Project
         index,
         geometry: this.geo,
         gl: this.gl,
-        length: this.gallery_length,
+        height: this.length,
         scene: this.group,
         screen: this.screen,
         viewport: this.viewport
@@ -69,7 +71,7 @@ export default class Project
         index,
         geometry: this.geo,
         gl: this.gl,
-        length: this.gallery_length,
+        height: this.length,
         scene: this.group,
         screen: this.screen,
         viewport: this.viewport
@@ -84,12 +86,12 @@ export default class Project
   onResize()
   {
     this.galleryBounds = this.gallery.getBoundingClientRect()
-    this.gallery_length = this.leftElements.length
+    this.galleryHeight = this.galleryBounds.height / this.screen.height * this.viewport.height
 
     if(this.leftColumn)
     {
       map(this.leftColumn, media => media.onResize({
-        length: this.gallery_length,
+        height: this.length,
         screen: this.screen,
         viewport: this.viewport,
       }))
@@ -98,7 +100,7 @@ export default class Project
     if(this.rightColumn)
     {
       map(this.rightColumn, media => media.onResize({
-        length: this.gallery_length,
+        height: this.length,
         screen: this.screen,
         viewport: this.viewport
       }))
@@ -133,6 +135,8 @@ export default class Project
 
   update()
   {
+    if(!this.galleryBounds) return
+
     this.scroll.target += this.scroll.speed
     this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
 
@@ -141,7 +145,7 @@ export default class Project
       this.direction = 'up'
       this.scroll.speed = -0.1
     }
-    else if(this.scroll.current > this.scroll.last)
+    else
     {
       this.direction = 'down'
       this.scroll.speed = 0.1
