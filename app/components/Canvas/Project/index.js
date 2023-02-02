@@ -90,7 +90,8 @@ export default class Project
 
     if(this.leftColumn)
     {
-      map(this.leftColumn, media => media.onResize({
+      map(this.leftColumn, (media, index) => media.onResize({
+        index: this.index,
         length: this.length,
         screen: this.screen,
         viewport: this.viewport,

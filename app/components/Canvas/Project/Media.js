@@ -69,8 +69,7 @@ export default class Media
       y: this.plane.scale.y / 2
     }
 
-    this.margin = 0.5 * this.index
-
+    this.margin = 0.537
     this.wholeheight = this.length * (this.plane.scale.y + this.margin)
   }
 
@@ -95,8 +94,9 @@ export default class Media
 
     if(sizes)
     {
-      const { height, screen, viewport } = sizes
+      const { index, height, screen, viewport } = sizes
 
+      if(index) this.index = index
       if(height) this.height = height
       if(screen) this.screen = screen
       if(viewport) {
@@ -135,7 +135,7 @@ export default class Media
 
     this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -0.35, 0.35, pos_viewport)
 
-    this.plane.position.y = (this.viewport.height / 2) - this.scale.y - (this.y * this.viewport.height) + this.extra
+    this.plane.position.y = (this.viewport.height / 2) - this.scale.y - (this.y * this.viewport.height) - this.margin - this.extra
   }
 
   update(current, last, direction)
@@ -146,29 +146,53 @@ export default class Media
     this.updateX()
     this.updateY(current)
 
-    if(direction === 'up')
+    if(current > 0)
     {
-      const y = this.plane.position.y + this.scale.y
-
-      if(y < -this.viewport.height / 2)
-      {
-        //this.extra += this.wholeheight
-      }
-    }
-
-    if(direction === 'down')
-    {
-      const y = this.plane.position.y - this.scale.y
-
-      if(y > this.viewport.height / 2)
-      {
-        //this.extra -= this.wholeheight
-      }
-    }
-
-    current > 0 ?
       this.plane.program.uniforms.u_strength.value = ((current - last) / this.screen.height) * 15
-      :
+
+      if(direction === 'up')
+      {
+        const y = this.plane.position.y + this.scale.y
+
+        if(y < -this.viewport.height / 2)
+        {
+          this.extra -= this.wholeheight
+        }
+      }
+
+      if(direction === 'down')
+      {
+        const y = this.plane.position.y - this.scale.y
+
+        if(y > this.viewport.height / 2)
+        {
+          this.extra += this.wholeheight
+        }
+      }
+    }
+    else
+    {
       this.plane.program.uniforms.u_strength.value = -((current + last) / this.screen.height) * 15
+
+      if(direction === 'up')
+      {
+        const y = this.plane.position.y - this.scale.y
+
+        if(y > this.viewport.height / 2)
+        {
+          this.extra += this.wholeheight
+        }
+      }
+
+      if(direction === 'down')
+      {
+        const y = this.plane.position.y + this.scale.y
+
+        if(y < -this.viewport.height / 2)
+        {
+          this.extra -= this.wholeheight
+        }
+      }
+    }
   }
 }
