@@ -15,8 +15,8 @@ void main()
   );
 
   vec2 uv = vec2(
-    v_uv.x * ratio.x + (1.0 - ratio.x) * 0.5,
-    v_uv.y * ratio.y + (1.0 - ratio.y) * 0.5 + u_offset
+    v_uv.x * ratio.x + (1. - ratio.x) * .5,
+    v_uv.y * ratio.y + (1. - ratio.y) * .5 + u_offset
   );
 
   vec4 texture = texture2D(tMap, uv);

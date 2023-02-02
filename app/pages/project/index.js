@@ -8,7 +8,7 @@ export default class Project extends Page
       id: 'project',
       element: '.project',
       elements: {
-
+        title: '.project__title__text'
       }
     })
 

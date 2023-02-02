@@ -21,6 +21,7 @@
     &__left
     {
       height: 100%;
+      width: 100%;
     }
 
     &__right
@@ -35,20 +36,18 @@
     @extend %title-100;
 
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     width: 100%;
-    padding: 0 0 10rem 20rem;
 
     &__text
     {
-      @extend %title-150;
+      @extend %title-200;
 
+      z-index: -5;
       text-transform: uppercase;
-      writing-mode:vertical-lr;
       letter-spacing: 2rem;
-      transform: scale(-1, -1);
     }
   }
 }
@@ -59,10 +58,9 @@
 {
   /* position: absolute; */
 
-  width: 50rem;
-  height: 70rem;
-  margin: 10rem;
-
+  width: 33rem;
+  height: 50rem;
+  margin: 20rem;
   position: relative;
 
   &__image

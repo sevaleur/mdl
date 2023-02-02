@@ -41,7 +41,7 @@ export default class Project
 
   createGallery()
   {
-    this.gallery = document.querySelector('.project__gallery__left')
+    this.gallery = document.querySelector('.project__gallery')
     this.leftElements = document.querySelectorAll('img.project__gallery__left__media__image')
     this.rightElements = document.querySelectorAll('img.project__gallery__right__media__image')
   }
@@ -55,7 +55,7 @@ export default class Project
         index,
         geometry: this.geo,
         gl: this.gl,
-        height: this.galleryHeight,
+        length: this.gallery_length,
         scene: this.group,
         screen: this.screen,
         viewport: this.viewport
@@ -69,7 +69,7 @@ export default class Project
         index,
         geometry: this.geo,
         gl: this.gl,
-        height: this.galleryHeight,
+        length: this.gallery_length,
         scene: this.group,
         screen: this.screen,
         viewport: this.viewport
@@ -84,21 +84,21 @@ export default class Project
   onResize()
   {
     this.galleryBounds = this.gallery.getBoundingClientRect()
-    this.galleryHeight = this.viewport.height * this.galleryBounds.height / this.screen.height
+    this.gallery_length = this.leftElements.length
 
     if(this.leftColumn)
     {
       map(this.leftColumn, media => media.onResize({
-        height: this.galleryHeight,
+        length: this.gallery_length,
         screen: this.screen,
-        viewport: this.viewport
+        viewport: this.viewport,
       }))
     }
 
     if(this.rightColumn)
     {
       map(this.rightColumn, media => media.onResize({
-        height: this.galleryHeight,
+        length: this.gallery_length,
         screen: this.screen,
         viewport: this.viewport
       }))

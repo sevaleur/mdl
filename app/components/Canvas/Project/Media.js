@@ -4,15 +4,17 @@ import gsap from 'gsap'
 import vertex from 'shaders/plane-vertex.glsl'
 import fragment from 'shaders/plane-fragment.glsl'
 
+import { calc_pos } from 'utils/math'
+
 export default class Media
 {
-  constructor({ element, index, geometry, gl, height, scene, screen, viewport })
+  constructor({ element, index, geometry, gl, length, scene, screen, viewport })
   {
     this.element = element
     this.index = index
     this.geo = geometry
     this.gl = gl
-    this.height = height
+    this.length = length
     this.scene = scene
     this.screen = screen
     this.viewport = viewport
@@ -63,7 +65,6 @@ export default class Media
     })
 
     this.plane.setParent(this.scene)
-
   }
 
   createBounds()
@@ -87,9 +88,9 @@ export default class Media
 
     if(sizes)
     {
-      const { height, screen, viewport } = sizes
+      const { length, screen, viewport } = sizes
 
-      if(height) this.height = height
+      if(length) this.length = length
       if(screen) this.screen = screen
       if(viewport) {
         this.viewport = viewport
@@ -145,28 +146,24 @@ export default class Media
     this.isAfter = this.plane.position.y - planeOffset > viewportOffset
 
     if (direction === 'up' && this.isBefore)
-    {
-      this.extra -= this.height
+      {
+        this.extra -= this.wholeheight
 
-      this.isBefore = false
-      this.isAfter = false
-    }
+        this.isBefore = false
+        this.isAfter = false
+      }
 
     if (direction === 'down' && this.isAfter)
     {
-      this.extra += this.height
+      this.extra += this.wholeheight
 
       this.isBefore = false
       this.isAfter = false
     }
 
-    if(current > 0)
-    {
-      this.plane.program.uniforms.u_strength.value = ((current - last) / this.screen.width) * 15
-    }
-    else
-    {
-      this.plane.program.uniforms.u_strength.value = -((current + last) / this.screen.width) * 15
-    }
+    current > 0 ?
+      this.plane.program.uniforms.u_strength.value = ((current - last) / this.screen.height) * 15
+      :
+      this.plane.program.uniforms.u_strength.value = -((current + last) / this.screen.height) * 15
   }
 }
