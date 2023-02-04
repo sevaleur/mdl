@@ -17,7 +17,16 @@ export default class Media
     this.screen = screen
     this.viewport = viewport
 
-    this.extra = 0
+    this.extra = {
+      pos: 0,
+      index: this.length
+    }
+
+    this.pos = {
+      x: 0,
+      y: 0,
+      index: 0
+    }
 
     this.createMesh()
     this.createBounds()
@@ -51,7 +60,7 @@ export default class Media
 
     image.crossOrigin = 'anonymous'
     image.src = this.element.getAttribute('data-src')
-    image.onload = _ =>
+    image.onload = () =>
     {
       program.uniforms.u_imageSize.value = [image.naturalWidth, image.naturalHeight]
       texture.image = image
@@ -69,8 +78,14 @@ export default class Media
       y: this.plane.scale.y
     }
 
-    this.margin = 0.5365
+    this.margin = 1.5365
     this.wholeheight = this.length * (this.plane.scale.y + this.margin)
+
+    this.pos.y = this.index <= this.length ?
+      this.plane.position.y = this.index * this.margin
+      : this.plane.position.y = this.extra.index * this.margin
+
+    this.pos.index = this.index <= this.length ? this.index : this.extra.index
   }
 
   createBounds()
@@ -90,13 +105,12 @@ export default class Media
 
   onResize(sizes)
   {
-    this.extra = 0
+    this.extra.pos = 0
 
     if(sizes)
     {
-      const { index, height, screen, viewport } = sizes
+      const { height, screen, viewport } = sizes
 
-      if(index) this.index = index
       if(height) this.height = height
       if(screen) this.screen = screen
       if(viewport) {
@@ -125,7 +139,7 @@ export default class Media
   {
     this.x = this.bounds.left / this.screen.width
 
-    this.plane.position.x = (-this.viewport.width / 2) + this.scale.x + (this.x * this.viewport.width)
+    this.plane.position.x = (-this.viewport.width / 2) + this.scale.x + (this.x * this.viewport.width) + (Math.sin(this.pos.index) * this.margin)
   }
 
   updateY(current=0)
@@ -135,7 +149,7 @@ export default class Media
 
     this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -0.35, 0.35, pos_viewport)
 
-    this.plane.position.y = (this.viewport.height / 2) - this.scale.y - (this.y * this.viewport.height) - this.margin - this.extra
+    this.plane.position.y = (this.viewport.height / 2) - (this.scale.y / 2) - (this.y * this.viewport.height) - this.pos.y - this.extra.pos
   }
 
   update(current, last, direction)
@@ -156,7 +170,8 @@ export default class Media
 
         if(y < -this.viewport.height / 2)
         {
-          this.extra -= this.wholeheight
+          this.extra.index++
+          this.extra.pos -= this.wholeheight
         }
       }
 
@@ -166,7 +181,8 @@ export default class Media
 
         if(y > this.viewport.height / 2)
         {
-          this.extra += this.wholeheight
+          this.extra.index++
+          this.extra.pos += this.wholeheight
         }
       }
     }
@@ -180,7 +196,8 @@ export default class Media
 
         if(y > this.viewport.height / 2)
         {
-          this.extra += this.wholeheight
+          this.extra.index++
+          this.extra.pos += this.wholeheight
         }
       }
 
@@ -190,7 +207,8 @@ export default class Media
 
         if(y < -this.viewport.height / 2)
         {
-          this.extra -= this.wholeheight
+          this.extra.index++
+          this.extra.pos -= this.wholeheight
         }
       }
     }
