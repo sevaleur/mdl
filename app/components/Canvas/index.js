@@ -80,8 +80,8 @@ export default class Canvas
     const width = height * this.camera.aspect
 
     this.viewport = {
-      height,
-      width
+      width,
+      height
     }
 
     if(this.project)

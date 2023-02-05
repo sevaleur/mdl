@@ -2,9 +2,9 @@ import { Plane, Transform } from 'ogl'
 import gsap from 'gsap'
 import map from 'lodash/map'
 
-import GalleryElement from './GalleryElement'
+import Media from './Media'
 
-export default class Project
+export default class About
 {
   constructor({ gl, scene, screen, viewport })
   {
@@ -17,16 +17,15 @@ export default class Project
       current: 0,
       target: 0,
       last: 0,
-      speed: 0.1,
       ease: 0.05
     }
 
     this.createGeometry()
-    this.getElements()
+    this.createGallery()
 
     this.onResize()
 
-    this.createGallery()
+    this.createMedias()
 
     this.group.setParent(scene)
   }
@@ -39,22 +38,20 @@ export default class Project
     })
   }
 
-  getElements()
+  create()
   {
-    this.elements = document.querySelectorAll('img.project__gallery__media__image')
-    this.length = this.elements.length
+    this.elements = document.querySelectorAll('img')
   }
 
-  createGallery()
+  createMedias()
   {
-    this.gallery_elements = map(this.elements, (element, index) =>
+    this.media_elements = map(this.elements, (element, index) =>
     {
-      return new GalleryElement({
+      return new Media({
         element,
         index,
         geometry: this.geo,
         gl: this.gl,
-        length: this.length,
         scene: this.group,
         screen: this.screen,
         viewport: this.viewport
@@ -68,7 +65,7 @@ export default class Project
 
   onResize()
   {
-    map(this.gallery_elements, element => element.onResize({
+    map(this.media_elements, media => media.onResize({
       screen: this.screen,
       viewport: this.viewport,
     }))
@@ -118,7 +115,7 @@ export default class Project
 
     const { current, last } = this.scroll
 
-    map(this.gallery_elements, element => element.update(current, last, this.direction))
+    map(this.media_elements, media => media.update(current, last, this.direction))
 
     this.scroll.last = this.scroll.current
   }

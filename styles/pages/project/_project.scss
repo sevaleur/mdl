@@ -51,6 +51,8 @@
       @extend %title-200;
 
       text-transform: uppercase;
+      mix-blend-mode: difference;
+      z-index: -5;
       letter-spacing: 2rem;
     }
   }
