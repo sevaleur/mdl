@@ -7,7 +7,7 @@ import Navigation from 'components/Navigation'
 
 import Home from 'pages/home'
 import About from 'pages/about'
-import Project from 'pages/project'
+import Gallery from 'pages/gallery'
 
 class App
 {
@@ -45,7 +45,9 @@ class App
 
   createCanvas()
   {
-    this.canvas = new Canvas()
+    this.canvas = new Canvas({
+      template: this.template
+    })
   }
 
   createContent()
@@ -59,7 +61,7 @@ class App
     this.pages = {
       home: new Home(),
       about: new About(),
-      project: new Project()
+      gallery: new Gallery()
     }
 
     this.page = this.pages[this.template]

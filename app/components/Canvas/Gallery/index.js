@@ -4,7 +4,7 @@ import map from 'lodash/map'
 
 import GalleryElement from './GalleryElement'
 
-export default class Project
+export default class Gallery
 {
   constructor({ gl, scene, screen, viewport })
   {
@@ -41,7 +41,7 @@ export default class Project
 
   getElements()
   {
-    this.elements = document.querySelectorAll('img.project__gallery__media__image')
+    this.elements = document.querySelectorAll('img.gallery__media__images__image')
     this.length = this.elements.length
   }
 

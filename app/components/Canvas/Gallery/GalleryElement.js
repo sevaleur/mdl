@@ -1,8 +1,8 @@
 import { Mesh, Program, Texture } from 'ogl'
 import gsap from 'gsap'
 
-import vertex from 'shaders/project/vertex.glsl'
-import fragment from 'shaders/project/fragment.glsl'
+import vertex from 'shaders/gallery/vertex.glsl'
+import fragment from 'shaders/gallery/fragment.glsl'
 
 export default class GalleryElement
 {

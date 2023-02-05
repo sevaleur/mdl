@@ -1,0 +1,18 @@
+extends ../base.pug
+
+block variables
+    - var template = 'gallery'
+
+block content
+  .gallery(data-background=gallery.background_color data-text=gallery.text_color)
+    .gallery__wrapper
+      .gallery__media
+        each img in gallery.gallery_images
+          figure.gallery__media__images
+            img.gallery__media__images__image(data-src=img.image.url alt=img.image.alt)
+
+      .gallery__title
+        h1.gallery__title__text(data-animation='title')=gallery.gallery_title
+
+
+

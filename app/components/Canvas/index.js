@@ -1,11 +1,15 @@
 import { Camera, Renderer, Transform } from 'ogl'
 
-import Project from './Project'
+import Gallery from './Gallery'
+import About from './About'
 
 export default class Canvas
 {
-  constructor()
+  constructor({ template })
   {
+
+    this.template = template
+
     this.y = {
       start: 0,
       distance: 0,
@@ -17,7 +21,7 @@ export default class Canvas
     this.createScene()
 
     this.onResize()
-    this.createProject()
+    this.onRoute(this.template)
   }
 
   /*
@@ -48,9 +52,29 @@ export default class Canvas
     this.scene = new Transform()
   }
 
-  createProject()
+  createHome()
   {
-    this.project = new Project({
+    this.home = new Home({
+      gl: this.gl,
+      scene: this.scene,
+      screen: this.screen,
+      viewport: this.viewport
+    })
+  }
+
+  createGallery()
+  {
+    this.gallery = new Gallery({
+      gl: this.gl,
+      scene: this.scene,
+      screen: this.screen,
+      viewport: this.viewport
+    })
+  }
+
+  createAbout()
+  {
+    this.about = new About({
       gl: this.gl,
       scene: this.scene,
       screen: this.screen,
@@ -61,6 +85,39 @@ export default class Canvas
   /*
     Events.
   */
+
+  onRoute(template)
+  {
+    if(template === 'home')
+    {
+      //this.createHome()
+    }
+    else if(this.home)
+    {
+      this.home.destroy()
+      this.home = null
+    }
+
+    if(template === 'about')
+    {
+      this.createAbout()
+    }
+    else if(this.about)
+    {
+      this.about.destroy()
+      this.about = null
+    }
+
+    if(template === 'gallery')
+    {
+      this.createGallery()
+    }
+    else if(this.gallery)
+    {
+      this.gallery.destroy()
+      this.gallery = null
+    }
+  }
 
   onResize()
   {
@@ -84,9 +141,9 @@ export default class Canvas
       height
     }
 
-    if(this.project)
+    if(this.gallery)
     {
-      this.project.onResize({
+      this.gallery.onResize({
         screen: this.screen,
         viewport: this.viewport
       })
@@ -99,9 +156,9 @@ export default class Canvas
 
     this.y.start = e.touches ? e.touches[0].clientY : e.clientY
 
-    if(this.project)
+    if(this.gallery)
     {
-      this.project.onTouchDown({
+      this.gallery.onTouchDown({
         y: this.y
       })
     }
@@ -115,9 +172,9 @@ export default class Canvas
 
     this.y.end = y
 
-    if(this.project)
+    if(this.gallery)
     {
-      this.project.onTouchMove({
+      this.gallery.onTouchMove({
         y: this.y
       })
     }
@@ -127,9 +184,9 @@ export default class Canvas
   {
     this.isDown = false
 
-    if(this.project)
+    if(this.gallery)
     {
-      this.project.onTouchUp({
+      this.gallery.onTouchUp({
         y: this.y
       })
     }
@@ -137,8 +194,8 @@ export default class Canvas
 
   onWheel(e)
   {
-    if(this.project)
-      this.project.onWheel(e)
+    if(this.gallery)
+      this.gallery.onWheel(e)
   }
 
   /*
@@ -147,8 +204,8 @@ export default class Canvas
 
   update()
   {
-    if(this.project)
-      this.project.update()
+    if(this.gallery)
+      this.gallery.update()
 
     this.renderer.render({
       scene: this.scene,

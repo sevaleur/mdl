@@ -23,9 +23,9 @@ const initApi = req =>
 
 const linkResolver = doc =>
 {
-    if(doc.type === 'project')
+    if(doc.type === 'gallery')
     {
-      return `/project/${doc.slug}`
+      return `/gallery/${doc.slug}`
     }
 
     if(doc.type === 'about')
@@ -65,8 +65,8 @@ app.get('/', async(req, res) =>
     const defaults = await handleReq(api)
     const home = await api.getSingle('home', {
       fetchLinks: [
-        'project.project_home_image',
-        'project.title'
+        'gallery.gallery_link_image',
+        'gallery.gallery_title'
       ]
     })
 
@@ -88,17 +88,17 @@ app.get('/about', async(req, res) =>
     })
 })
 
-app.get('/project/:uid', async(req, res) =>
+app.get('/gallery/:uid', async(req, res) =>
 {
     try
     {
       const api = initApi(req)
       const defaults = await handleReq(api)
-      const project = await api.getByUID('project', req.params.uid)
+      const gallery = await api.getByUID('gallery', req.params.uid)
 
-      res.render('pages/project', {
+      res.render('pages/gallery', {
         ...defaults,
-        project: project.data
+        gallery: gallery.data
       })
     }
     catch (error)

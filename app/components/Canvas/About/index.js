@@ -105,12 +105,10 @@ export default class About
     if(this.scroll.current < this.scroll.last)
     {
       this.direction = 'up'
-      this.scroll.speed = -0.1
     }
     else
     {
       this.direction = 'down'
-      this.scroll.speed = 0.1
     }
 
     const { current, last } = this.scroll

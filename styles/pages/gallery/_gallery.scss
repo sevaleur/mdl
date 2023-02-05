@@ -1,4 +1,4 @@
-.project
+.gallery
 {
   @extend %page;
 
@@ -9,7 +9,7 @@
 
   }
 
-  &__gallery
+  &__media
   {
     @extend %cover;
 
@@ -20,7 +20,7 @@
     width: 100%;
     visibility: hidden;
 
-    &__media
+    &__images
     {
       width: 33rem;
       height: 50rem;
