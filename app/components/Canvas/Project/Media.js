@@ -17,16 +17,7 @@ export default class Media
     this.screen = screen
     this.viewport = viewport
 
-    this.extra = {
-      pos: 0,
-      index: this.length
-    }
-
-    this.pos = {
-      x: 0,
-      y: 0,
-      index: 0
-    }
+    this.new_pos = 0
 
     this.createMesh()
     this.createBounds()
@@ -72,20 +63,8 @@ export default class Media
     })
 
     this.plane.setParent(this.scene)
-
-    this.scale = {
-      x: this.plane.scale.x / 2,
-      y: this.plane.scale.y
-    }
-
-    this.margin = 1.5365
-    this.wholeheight = this.length * (this.plane.scale.y + this.margin)
-
-    this.pos.y = this.index <= this.length ?
-      this.plane.position.y = this.index * this.margin
-      : this.plane.position.y = this.extra.index * this.margin
-
-    this.pos.index = this.index <= this.length ? this.index : this.extra.index
+    this.margin = this.plane.scale.x
+    console.log(this.viewport.width)
   }
 
   createBounds()
@@ -97,6 +76,9 @@ export default class Media
     this.updateY()
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
+
+    this.gallery_height = this.length * this.bounds.height
+    this.full_height = ((this.gallery_height / this.screen.height) * this.viewport.height)
   }
 
   /*
@@ -105,13 +87,12 @@ export default class Media
 
   onResize(sizes)
   {
-    this.extra.pos = 0
+    this.new_pos = 0
 
     if(sizes)
     {
       const { height, screen, viewport } = sizes
 
-      if(height) this.height = height
       if(screen) this.screen = screen
       if(viewport) {
         this.viewport = viewport
@@ -139,7 +120,7 @@ export default class Media
   {
     this.x = this.bounds.left / this.screen.width
 
-    this.plane.position.x = (-this.viewport.width / 2) + this.scale.x + (this.x * this.viewport.width) + (Math.sin(this.pos.index) * this.margin)
+    this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width) + (Math.sin(this.index) * (this.viewport.width / 2))
   }
 
   updateY(current=0)
@@ -149,7 +130,7 @@ export default class Media
 
     this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -0.35, 0.35, pos_viewport)
 
-    this.plane.position.y = (this.viewport.height / 2) - (this.scale.y / 2) - (this.y * this.viewport.height) - this.pos.y - this.extra.pos
+    this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height) + this.new_pos
   }
 
   update(current, last, direction)
@@ -160,56 +141,26 @@ export default class Media
     this.updateX()
     this.updateY(current)
 
-    if(current > 0)
+
+    this.plane.program.uniforms.u_strength.value = ((current - last) / this.screen.height) * 15
+
+    if(direction === 'up')
     {
-      this.plane.program.uniforms.u_strength.value = ((current - last) / this.screen.height) * 15
+      const y = this.plane.position.y + this.plane.scale.y
 
-      if(direction === 'up')
+      if(y < -this.viewport.height / 2)
       {
-        const y = this.plane.position.y + this.scale.y
-
-        if(y < -this.viewport.height / 2)
-        {
-          this.extra.index++
-          this.extra.pos -= this.wholeheight
-        }
-      }
-
-      if(direction === 'down')
-      {
-        const y = this.plane.position.y - this.scale.y
-
-        if(y > this.viewport.height / 2)
-        {
-          this.extra.index++
-          this.extra.pos += this.wholeheight
-        }
+        this.new_pos += this.full_height
       }
     }
-    else
+
+    if(direction === 'down')
     {
-      this.plane.program.uniforms.u_strength.value = -((current + last) / this.screen.height) * 15
+      const y = this.plane.position.y - this.plane.scale.y
 
-      if(direction === 'up')
+      if(y > this.viewport.height / 2)
       {
-        const y = this.plane.position.y - this.scale.y
-
-        if(y > this.viewport.height / 2)
-        {
-          this.extra.index++
-          this.extra.pos += this.wholeheight
-        }
-      }
-
-      if(direction === 'down')
-      {
-        const y = this.plane.position.y + this.scale.y
-
-        if(y < -this.viewport.height / 2)
-        {
-          this.extra.index++
-          this.extra.pos -= this.wholeheight
-        }
+        this.new_pos -= this.full_height
       }
     }
   }

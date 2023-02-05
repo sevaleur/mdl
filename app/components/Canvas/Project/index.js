@@ -18,7 +18,7 @@ export default class Project
       target: 0,
       last: 0,
       speed: 0.1,
-      ease: 0.05,
+      ease: 0.05
     }
 
     this.createGeometry()
@@ -41,30 +41,14 @@ export default class Project
 
   createGallery()
   {
-    this.gallery = document.querySelector('.project__gallery')
-    this.leftElements = document.querySelectorAll('img.project__gallery__left__media__image')
-    this.rightElements = document.querySelectorAll('img.project__gallery__right__media__image')
+    this.elements = document.querySelectorAll('img.project__gallery__media__image')
 
-    this.length = this.leftElements.length
+    this.length = this.elements.length
   }
 
   createMedias()
   {
-    this.leftColumn = map(this.leftElements, (element, index) =>
-    {
-      return new Media({
-        element,
-        index,
-        geometry: this.geo,
-        gl: this.gl,
-        length: this.length,
-        scene: this.group,
-        screen: this.screen,
-        viewport: this.viewport
-      })
-    })
-
-    this.rightColumn = map(this.rightElements, (element, index) =>
+    this.media_elements = map(this.elements, (element, index) =>
     {
       return new Media({
         element,
@@ -85,26 +69,10 @@ export default class Project
 
   onResize()
   {
-    this.galleryBounds = this.gallery.getBoundingClientRect()
-    this.galleryHeight = this.galleryBounds.height / this.screen.height * this.viewport.height
-
-    if(this.leftColumn)
-    {
-      map(this.leftColumn, media => media.onResize({
-        length: this.length,
-        screen: this.screen,
-        viewport: this.viewport,
-      }))
-    }
-
-    if(this.rightColumn)
-    {
-      map(this.rightColumn, media => media.onResize({
-        length: this.length,
-        screen: this.screen,
-        viewport: this.viewport
-      }))
-    }
+    map(this.media_elements, media => media.onResize({
+      screen: this.screen,
+      viewport: this.viewport,
+    }))
   }
 
   onTouchDown({ y })
@@ -135,8 +103,6 @@ export default class Project
 
   update()
   {
-    if(!this.galleryBounds) return
-
     this.scroll.target += this.scroll.speed
     this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
 
@@ -153,15 +119,7 @@ export default class Project
 
     const { current, last } = this.scroll
 
-    if(this.leftColumn)
-    {
-      map(this.leftColumn, media => media.update(current, last, this.direction))
-    }
-
-    if(this.rightColumn)
-    {
-      map(this.rightColumn, media => media.update(-current, last, this.direction))
-    }
+    map(this.media_elements, media => media.update(current, last, this.direction))
 
     this.scroll.last = this.scroll.current
   }

@@ -7,15 +7,9 @@ block content
   .project(data-background=project.background_color)
     .project__wrapper
       .project__gallery
-          .project__gallery__left
-            each image in project.gallery
-              figure.project__gallery__left__media
-                img.project__gallery__left__media__image(data-src=image.image.url alt=image.image.alt)
-
-          //.project__gallery__right
-            each image in project.gallery
-              figure.project__gallery__right__media
-                img.project__gallery__right__media__image(data-src=image.image.url alt=image.image.alt)
+        each image in project.gallery
+          figure.project__gallery__media
+            img.project__gallery__media__image(data-src=image.image.url alt=image.image.alt)
 
       .project__title
         h1.project__title__text(data-animation='title')=project.title

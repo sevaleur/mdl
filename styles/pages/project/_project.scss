@@ -7,27 +7,29 @@
   {
     @extend %cover;
 
-    display: flex;
-    align-items: center;
   }
 
   &__gallery
   {
     @extend %cover;
 
-    padding: 0 30rem;
+    height: 100%;
+    width: 100%;
     visibility: hidden;
 
-    &__left
+    &__media
     {
-      height: 100%;
-      width: 100%;
-    }
+      width: 33rem;
+      height: 50rem;
 
-    &__right
-    {
-      height: 100%;
-      transform: rotateZ(180deg) translateY(0%);
+      position: relative;
+
+      &__image
+      {
+        @extend %cover;
+
+        object-fit: cover;
+      }
     }
   }
 
@@ -45,28 +47,8 @@
     {
       @extend %title-200;
 
-      //z-index: -5;
       text-transform: uppercase;
       letter-spacing: 2rem;
     }
-  }
-}
-
-
-.project__gallery__left__media,
-.project__gallery__right__media
-{
-  /* position: absolute; */
-
-  width: 33rem;
-  height: 50rem;
-
-  position: relative;
-
-  &__image
-  {
-    @extend %cover;
-
-    object-fit: cover;
   }
 }
