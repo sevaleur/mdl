@@ -63,8 +63,6 @@ export default class Media
     })
 
     this.plane.setParent(this.scene)
-    this.margin = this.plane.scale.x
-    console.log(this.viewport.width)
   }
 
   createBounds()
@@ -79,6 +77,8 @@ export default class Media
 
     this.gallery_height = this.length * this.bounds.height
     this.full_height = ((this.gallery_height / this.screen.height) * this.viewport.height)
+
+    this.pos_x = Math.cos(this.index) * ((this.screen.width / 2) / this.bounds.height)
   }
 
   /*
@@ -120,7 +120,7 @@ export default class Media
   {
     this.x = this.bounds.left / this.screen.width
 
-    this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width) + (Math.sin(this.index) * (this.viewport.width / 2))
+    this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width) + this.pos_x
   }
 
   updateY(current=0)
