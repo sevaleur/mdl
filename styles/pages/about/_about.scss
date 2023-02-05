@@ -37,6 +37,8 @@
       width: 50rem;
       position: relative;
 
+      visibility: hidden;
+
       &__image
       {
         @extend %cover;
@@ -306,16 +308,23 @@
       grid-area: 1 / 1 / -1 / 2;
       align-self: center;
       justify-self: center;
-      height: 40rem;
-      width: 50rem;
-      position: relative;
 
-      &__image
+      visibility: hidden;
+
+      &__figure
       {
-        @extend %cover;
+        height: 40rem;
+        width: 50rem;
+        position: relative;
 
-        object-fit: cover;
+        &__image
+        {
+          @extend %cover;
+
+          object-fit: cover;
+        }
       }
+
     }
 
     &__title

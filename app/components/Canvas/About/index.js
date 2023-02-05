@@ -21,7 +21,7 @@ export default class About
     }
 
     this.createGeometry()
-    this.createGallery()
+    this.getElements()
 
     this.onResize()
 
@@ -38,7 +38,7 @@ export default class About
     })
   }
 
-  create()
+  getElements()
   {
     this.elements = document.querySelectorAll('img')
   }
@@ -113,8 +113,17 @@ export default class About
 
     const { current, last } = this.scroll
 
-    map(this.media_elements, media => media.update(current, last, this.direction))
+    map(this.media_elements, media => media.update(current))
 
     this.scroll.last = this.scroll.current
+  }
+
+  /*
+    Destroy.
+  */
+
+  destroy()
+  {
+    //this.scene.remove(this.group)
   }
 }

@@ -9,8 +9,9 @@ block content
         section.about__header
           .about__header__title
             h1.about__header__title__text(data-animation="title")!=about.title.replace(/\n/g, '<br>')
-          figure.about__header__media
-            img.about__header__media__image(data-src=about.title_image.url alt=about.title_image.alt)
+          .about__header__media
+            figure.about__header__media__figure
+              img.about__header__media__figure__image(data-src=about.title_image.url alt=about.title_image.alt)
 
         section.about__background
             .about__background__gc

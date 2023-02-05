@@ -137,32 +137,12 @@ export default class Media
     this.plane.position.y = this.half._viewport.height - this.half._scale.y - (this.y * this.viewport.height)
   }
 
-  update(current, last, direction)
+  update(current)
   {
     if(!this.bounds) return
 
     this.updateScale()
     this.updateX()
     this.updateY(current)
-
-    if(direction === 'up')
-    {
-      const y = this.plane.position.y + this.plane.scale.y
-
-      if(y < -this.half._viewport.height)
-      {
-        this.new_pos += this.full_height
-      }
-    }
-
-    if(direction === 'down')
-    {
-      const y = this.plane.position.y - this.plane.scale.y
-
-      if(y > this.half._viewport.height)
-      {
-        this.new_pos -= this.full_height
-      }
-    }
   }
 }

@@ -83,40 +83,42 @@ export default class Canvas
   }
 
   /*
+    Destroy.
+  */
+
+  destroyHome()
+  {
+    if(!this.home) return
+
+    this.home.destroy()
+    this.home = null
+  }
+
+  destroyGallery()
+  {
+    if(!this.gallery) return
+
+    this.gallery.destroy()
+    this.gallery = null
+  }
+
+  destroyAbout()
+  {
+    if(!this.about) return
+
+    this.about.destroy()
+    this.about = null
+  }
+
+  /*
     Events.
   */
 
   onRoute(template)
   {
-    if(template === 'home')
-    {
-      //this.createHome()
-    }
-    else if(this.home)
-    {
-      this.home.destroy()
-      this.home = null
-    }
-
-    if(template === 'about')
-    {
-      this.createAbout()
-    }
-    else if(this.about)
-    {
-      this.about.destroy()
-      this.about = null
-    }
-
-    if(template === 'gallery')
-    {
-      this.createGallery()
-    }
-    else if(this.gallery)
-    {
-      this.gallery.destroy()
-      this.gallery = null
-    }
+    // template === 'home' ? this.createHome() : this.destroyHome()
+    template === 'about' ? this.createAbout() : this.destroyAbout()
+    template === 'gallery' ? this.createGallery() : this.destroyGallery()
   }
 
   onResize()
@@ -148,6 +150,14 @@ export default class Canvas
         viewport: this.viewport
       })
     }
+
+    if(this.about)
+    {
+      this.about.onResize({
+        screen: this.screen,
+        viewport: this.viewport
+      })
+    }
   }
 
   onTouchDown(e)
@@ -159,6 +169,13 @@ export default class Canvas
     if(this.gallery)
     {
       this.gallery.onTouchDown({
+        y: this.y
+      })
+    }
+
+    if(this.about)
+    {
+      this.about.onTouchDown({
         y: this.y
       })
     }
@@ -178,6 +195,13 @@ export default class Canvas
         y: this.y
       })
     }
+
+    if(this.about)
+    {
+      this.about.onTouchMove({
+        y: this.y
+      })
+    }
   }
 
   onTouchUp(e)
@@ -190,12 +214,22 @@ export default class Canvas
         y: this.y
       })
     }
+
+    if(this.about)
+    {
+      this.about.onTouchUp({
+        y: this.y
+      })
+    }
   }
 
   onWheel(e)
   {
     if(this.gallery)
       this.gallery.onWheel(e)
+
+    if(this.about)
+      this.about.onWheel(e)
   }
 
   /*
@@ -206,6 +240,9 @@ export default class Canvas
   {
     if(this.gallery)
       this.gallery.update()
+
+    if(this.about)
+      this.about.update()
 
     this.renderer.render({
       scene: this.scene,

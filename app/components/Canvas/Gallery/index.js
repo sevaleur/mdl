@@ -122,4 +122,14 @@ export default class Gallery
 
     this.scroll.last = this.scroll.current
   }
+
+  /*
+    Destroy.
+  */
+
+  destroy()
+  {
+    //this.scene.remove(this.group)
+  }
 }
+
