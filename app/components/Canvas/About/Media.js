@@ -1,5 +1,4 @@
 import { Mesh, Program, Texture } from 'ogl'
-import gsap from 'gsap'
 
 import vertex from 'shaders/about/vertex.glsl'
 import fragment from 'shaders/about/fragment.glsl'
@@ -15,8 +14,6 @@ export default class Media
     this.scene = scene
     this.screen = screen
     this.viewport = viewport
-
-    this.new_pos = 0
 
     this.createMesh()
 
@@ -81,6 +78,7 @@ export default class Media
   createBounds()
   {
     this.bounds = this.element.getBoundingClientRect()
+    console.log(this.bounds)
 
     this.updateScale()
     this.updateX()
@@ -95,8 +93,6 @@ export default class Media
 
   onResize(sizes)
   {
-    this.new_pos = 0
-
     if(sizes)
     {
       const { screen, viewport } = sizes
@@ -118,8 +114,8 @@ export default class Media
 
   updateScale()
   {
-    this.plane.scale.x = this.viewport.width * this.bounds.width / this.screen.width
-    this.plane.scale.y = this.viewport.height * this.bounds.height / this.screen.height
+    this.plane.scale.x = (this.viewport.width * this.bounds.width) / this.screen.width
+    this.plane.scale.y = (this.viewport.height * this.bounds.height) / this.screen.height
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
   }
@@ -128,7 +124,7 @@ export default class Media
   {
     this.x = this.bounds.left / this.screen.width
 
-    this.plane.position.x = (-this.half._viewport.width) + (this.half._scale.x) + (this.x * this.viewport.width)
+    this.plane.position.x = -this.half._viewport.width + this.half._scale.x + (this.x * this.viewport.width)
   }
 
   updateY(current=0)
@@ -143,6 +139,6 @@ export default class Media
 
     this.updateScale()
     this.updateX()
-    this.updateY(current)
+    this.updateY(0)
   }
 }

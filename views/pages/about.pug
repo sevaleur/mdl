@@ -10,8 +10,8 @@ block content
           .about__header__title
             h1.about__header__title__text(data-animation="title")!=about.title.replace(/\n/g, '<br>')
           .about__header__media
-            figure.about__header__media__figure
-              img.about__header__media__figure__image(data-src=about.title_image.url alt=about.title_image.alt)
+            figure.about__media__figure
+              img.about__media__figure__image(data-src=about.title_image.url alt=about.title_image.alt)
 
         section.about__background
             .about__background__gc
@@ -50,8 +50,9 @@ block content
             p.about__contact__details__text(data-animation="paragraph")=about.contact_desc
 
         section.about__footer
-          figure.about__footer__media
-            img.about__footer__media__image(data-src=about.footer_image.url alt=about.footer_image.alt)
+          .about__footer__media
+            figure.about__media__figure
+              img.about__media__figure__image(data-src=about.footer_image.url alt=about.footer_image.alt)
           .about__footer__title
             p.about__footer__title__text(data-animation='title')=about.footer_title
 

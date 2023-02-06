@@ -2,6 +2,21 @@
 {
   @extend %page;
 
+  &__media__figure
+  {
+    height: 40rem;
+    width: 50rem;
+    position: relative;
+
+    &__image
+    {
+      @extend %cover;
+
+      object-fit: cover;
+    }
+  }
+
+
   &__wrapper
   {
 
@@ -33,18 +48,8 @@
       grid-area: 1 / 2 / -1 / -1;
       align-self: center;
       justify-self: center;
-      height: 40rem;
-      width: 50rem;
-      position: relative;
 
       visibility: hidden;
-
-      &__image
-      {
-        @extend %cover;
-
-        object-fit: cover;
-      }
     }
   }
 
@@ -310,21 +315,6 @@
       justify-self: center;
 
       visibility: hidden;
-
-      &__figure
-      {
-        height: 40rem;
-        width: 50rem;
-        position: relative;
-
-        &__image
-        {
-          @extend %cover;
-
-          object-fit: cover;
-        }
-      }
-
     }
 
     &__title
