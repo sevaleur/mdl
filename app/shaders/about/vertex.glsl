@@ -1,3 +1,7 @@
+precision highp float;
+
+#define PI 3.1415926535897932384626433832795
+
 attribute vec2 uv;
 attribute vec3 position;
 
@@ -11,12 +15,12 @@ varying float v_ele;
 
 void main()
 {
-  vec4 new_pos = modelViewMatrix * vec4(position, 1.0);
+  vec3 new_pos = position;
 
-  float ele = sin(new_pos.x * .3 + u_time) * .1 + sin(new_pos.y * .2 - u_time) * .1;
+  float ele = sin((new_pos.x - u_time / 30. + new_pos.y / 4.) * PI * 3.) * .1;
   new_pos.z += ele;
 
-  gl_Position = projectionMatrix * new_pos;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(new_pos, 1.0);
 
   v_uv = uv;
   v_ele = ele;

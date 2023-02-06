@@ -165,23 +165,37 @@
         padding: 0 40rem;
       }
 
-      &__name
+      &__client
       {
-        @extend %desc-25;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-        letter-spacing: 1rem;
-        padding: 3rem;
         border-bottom: 1px solid $color-cadet-blue-crayola;
-      }
 
-      &__media
-      {
-
-        &__image
+        &__name
         {
-          display: none;
+          @extend %desc-25;
+
+          letter-spacing: 1rem;
+          padding: 3rem;
+        }
+
+        &__media
+        {
+          height: 10rem;
+          width: 20rem;
+          position: relative;
+
+          &__image
+          {
+            @extend %cover;
+
+            object-fit: contain;
+          }
         }
       }
+
     }
   }
 

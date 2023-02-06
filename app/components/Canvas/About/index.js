@@ -44,7 +44,7 @@ export default class About
 
   getElements()
   {
-    this.elements = document.querySelectorAll('img')
+    this.elements = document.querySelectorAll('.about__media__figure__image')
   }
 
   createMedias()

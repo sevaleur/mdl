@@ -30,9 +30,10 @@ block content
           .about__clients__gallery
             .about__clients__gallery__wrapper
               each client in about.client_logos
-                p.about__clients__gallery__name(data-animation='label')=client.client_name
-                figure.about__clients__gallery__media
-                  img.about__clients__gallery__media__image(data-src=client.client_logo.url alt=client.client_logo.alt)
+                .about__clients__gallery__client
+                  p.about__clients__gallery__client__name(data-animation='label')=client.client_name
+                  figure.about__clients__gallery__client__media
+                    img.about__clients__gallery__client__media__image(data-src=client.client_logo.url alt=client.client_logo.alt)
 
         section.about__desc
           .about__desc__gc
