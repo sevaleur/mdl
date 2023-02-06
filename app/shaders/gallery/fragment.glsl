@@ -3,6 +3,7 @@ precision highp float;
 uniform vec2 u_imageSize;
 uniform vec2 u_planeSize;
 uniform float u_offset;
+uniform float u_alpha;
 uniform sampler2D tMap;
 
 varying vec2 v_uv;
@@ -22,4 +23,5 @@ void main()
   vec4 texture = texture2D(tMap, uv);
 
   gl_FragColor = texture;
+  gl_FragColor.a = u_alpha;
 }

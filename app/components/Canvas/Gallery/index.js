@@ -9,6 +9,7 @@ export default class Gallery
   constructor({ gl, scene, screen, viewport })
   {
     this.gl = gl
+    this.scene = scene
     this.screen = screen
     this.viewport = viewport
     this.group = new Transform()
@@ -28,7 +29,9 @@ export default class Gallery
 
     this.createGallery()
 
-    this.group.setParent(scene)
+    this.group.setParent(this.scene)
+
+    this.show()
   }
 
   createGeometry()
@@ -60,6 +63,20 @@ export default class Gallery
         viewport: this.viewport
       })
     })
+  }
+
+  /*
+    Animations.
+  */
+
+  show()
+  {
+    map(this.gallery_elements, element => element.show())
+  }
+
+  hide()
+  {
+    map(this.gallery_elements, element => element.hide())
   }
 
   /*
@@ -129,7 +146,7 @@ export default class Gallery
 
   destroy()
   {
-    //this.scene.remove(this.group)
+    this.scene.removeChild(this.group)
   }
 }
 

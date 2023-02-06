@@ -21,7 +21,7 @@ export default class Canvas
     this.createScene()
 
     this.onResize()
-    this.onRoute(this.template)
+    this.onChange(this.template)
   }
 
   /*
@@ -114,7 +114,19 @@ export default class Canvas
     Events.
   */
 
-  onRoute(template)
+  onChangeStart()
+  {
+    /* if(this.home)
+      this.home.hide() */
+
+    if(this.about)
+      this.about.hide()
+
+    if(this.gallery)
+      this.gallery.hide()
+  }
+
+  onChange(template)
   {
     // template === 'home' ? this.createHome() : this.destroyHome()
     template === 'about' ? this.createAbout() : this.destroyAbout()
@@ -236,13 +248,13 @@ export default class Canvas
     Loop.
   */
 
-  update()
+  update(scroll)
   {
     if(this.gallery)
       this.gallery.update()
 
     if(this.about)
-      this.about.update()
+      this.about.update(scroll)
 
     this.renderer.render({
       scene: this.scene,

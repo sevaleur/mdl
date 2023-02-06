@@ -1,3 +1,4 @@
+import gsap from 'gsap'
 import { Mesh, Program, Texture } from 'ogl'
 
 import vertex from 'shaders/about/vertex.glsl'
@@ -14,6 +15,8 @@ export default class Media
     this.scene = scene
     this.screen = screen
     this.viewport = viewport
+
+    this.time = 0
 
     this.createMesh()
 
@@ -46,13 +49,15 @@ export default class Media
       generateMipmaps: false
     })
 
-    const program = new Program(this.gl,
+    this.program = new Program(this.gl,
     {
       vertex,
       fragment,
       uniforms:
       {
         tMap: { value: texture },
+        u_alpha: { value: 0.0 },
+        u_time: { value: 0.0 },
         u_imageSize: { value: [0, 0] },
         u_planeSize: { value: [0, 0] },
         u_viewportSize: { value: [this.viewport.width, this.viewport.height] }
@@ -63,13 +68,13 @@ export default class Media
     image.src = this.element.getAttribute('data-src')
     image.onload = () =>
     {
-      program.uniforms.u_imageSize.value = [image.naturalWidth, image.naturalHeight]
+      this.program.uniforms.u_imageSize.value = [image.naturalWidth, image.naturalHeight]
       texture.image = image
     }
 
     this.plane = new Mesh(this.gl, {
       geometry: this.geo,
-      program: program
+      program: this.program
     })
 
     this.plane.setParent(this.scene)
@@ -78,13 +83,38 @@ export default class Media
   createBounds()
   {
     this.bounds = this.element.getBoundingClientRect()
-    console.log(this.bounds)
 
     this.updateScale()
     this.updateX()
     this.updateY()
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
+  }
+
+  /*
+    Animations.
+  */
+
+  show()
+  {
+    gsap.fromTo(this.program.uniforms.u_alpha,
+    {
+      value: 0.0,
+      duration: 1
+    },
+    {
+      value: 1.0,
+      duration: 1
+    })
+  }
+
+  hide()
+  {
+    gsap.to(this.program.uniforms.u_alpha,
+    {
+      value: 0.0,
+      duration: 1
+    })
   }
 
   /*
@@ -127,18 +157,22 @@ export default class Media
     this.plane.position.x = -this.half._viewport.width + this.half._scale.x + (this.x * this.viewport.width)
   }
 
-  updateY(current=0)
+  updateY()
   {
-    this.y = (this.bounds.top - current) / this.screen.height
+    this.y = this.bounds.top / this.screen.height
     this.plane.position.y = this.half._viewport.height - this.half._scale.y - (this.y * this.viewport.height)
   }
 
-  update(current)
+  update()
   {
     if(!this.bounds) return
 
+    this.time += 0.05
+
+    this.program.uniforms.u_time.value = this.time
+
     this.updateScale()
     this.updateX()
-    this.updateY(0)
+    this.updateY()
   }
 }

@@ -9,6 +9,7 @@ export default class About
   constructor({ gl, scene, screen, viewport })
   {
     this.gl = gl
+    this.scene = scene
     this.screen = screen
     this.viewport = viewport
     this.group = new Transform()
@@ -27,14 +28,17 @@ export default class About
 
     this.createMedias()
 
-    this.group.setParent(scene)
+    this.group.setParent(this.scene)
+
+    this.show()
   }
 
   createGeometry()
   {
     this.geo = new Plane(this.gl,
     {
-      heightSegments: 10
+      heightSegments: 100,
+      widthSegments: 200
     })
   }
 
@@ -60,6 +64,20 @@ export default class About
   }
 
   /*
+    Animations.
+  */
+
+  show()
+  {
+    map(this.media_elements, media => media.show())
+  }
+
+  hide()
+  {
+    map(this.media_elements, media => media.hide())
+  }
+
+  /*
     Events.
   */
 
@@ -73,14 +91,12 @@ export default class About
 
   onTouchDown({ y })
   {
-    this.scroll.position = this.scroll.current
+
   }
 
   onTouchMove({ y })
   {
-    const y_dist = (y.start - y.end) * 2
 
-    this.scroll.target = this.scroll.position + y_dist
   }
 
   onTouchUp({ y })
@@ -90,32 +106,20 @@ export default class About
 
   onWheel({ pixelY })
   {
-    this.scroll.target += pixelY * 0.5
+
   }
 
   /*
     Update.
   */
 
-  update()
+  update(scroll)
   {
-    this.scroll.target += this.scroll.speed
-    this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
+    const current = (scroll.current / this.screen.height) * this.viewport.height
 
-    if(this.scroll.current < this.scroll.last)
-    {
-      this.direction = 'up'
-    }
-    else
-    {
-      this.direction = 'down'
-    }
+    this.group.position.y = current
 
-    const { current, last } = this.scroll
-
-    map(this.media_elements, media => media.update(current))
-
-    this.scroll.last = this.scroll.current
+    map(this.media_elements, media => media.update())
   }
 
   /*
@@ -124,6 +128,6 @@ export default class About
 
   destroy()
   {
-    //this.scene.remove(this.group)
+    this.scene.removeChild(this.group)
   }
 }

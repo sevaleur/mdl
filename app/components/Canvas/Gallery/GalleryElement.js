@@ -50,7 +50,7 @@ export default class GalleryElement
       generateMipmaps: false
     })
 
-    const program = new Program(this.gl,
+    this.program = new Program(this.gl,
     {
       vertex,
       fragment,
@@ -59,6 +59,7 @@ export default class GalleryElement
         tMap: { value: texture },
         u_imageSize: { value: [0, 0] },
         u_planeSize: { value: [0, 0] },
+        u_alpha: { value: 0.0 },
         u_offset: { value: 0 },
         u_strength: { value: 0 },
         u_viewportSize: { value: [this.viewport.width, this.viewport.height] }
@@ -69,13 +70,13 @@ export default class GalleryElement
     image.src = this.element.getAttribute('data-src')
     image.onload = () =>
     {
-      program.uniforms.u_imageSize.value = [image.naturalWidth, image.naturalHeight]
+      this.program.uniforms.u_imageSize.value = [image.naturalWidth, image.naturalHeight]
       texture.image = image
     }
 
     this.plane = new Mesh(this.gl, {
       geometry: this.geo,
-      program: program
+      program: this.program
     })
 
     this.plane.setParent(this.scene)
@@ -95,6 +96,32 @@ export default class GalleryElement
     this.full_height = ((this.gallery_height / this.screen.height) * this.viewport.height)
 
     this.pos_x = Math.cos(this.index) * (this.half._screen.width / this.bounds.height)
+  }
+
+  /*
+    Animations.
+  */
+
+  show()
+  {
+    gsap.fromTo(this.program.uniforms.u_alpha,
+    {
+      value: 0.0,
+      duration: 1
+    },
+    {
+      value: 1.0,
+      duration: 1
+    })
+  }
+
+  hide()
+  {
+    gsap.to(this.program.uniforms.u_alpha,
+    {
+      value: 0.0,
+      duration: 1
+    })
   }
 
   /*
