@@ -21,21 +21,6 @@ export default class GalleryElement
 
     this.createMesh()
 
-    this.half = {
-      _scale: {
-        x: this.plane.scale.x / 2,
-        y: this.plane.scale.y / 2
-      },
-      _viewport: {
-        width: this.viewport.width / 2,
-        height: this.viewport.height / 2
-      },
-      _screen: {
-        width: this.screen.width / 2,
-        height: this.screen.height / 2
-      }
-    }
-
     this.createBounds()
   }
 
@@ -95,7 +80,7 @@ export default class GalleryElement
     this.gallery_height = this.length * this.bounds.height
     this.full_height = ((this.gallery_height / this.screen.height) * this.viewport.height)
 
-    this.pos_x = Math.cos(this.index) * (this.half._screen.width / this.bounds.height)
+    this.pos_x = Math.cos(this.index) * ((this.screen.width / 2) / this.bounds.height)
   }
 
   /*
@@ -163,7 +148,7 @@ export default class GalleryElement
   {
     this.x = this.bounds.left / this.screen.width
 
-    this.plane.position.x = -this.half._viewport.width + this.half._scale.x + (this.x * this.viewport.width) + this.pos_x
+    this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width) + this.pos_x
   }
 
   updateY(current=0)
@@ -173,7 +158,7 @@ export default class GalleryElement
 
     this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -.35, .35, pos_viewport)
 
-    this.plane.position.y = this.half._viewport.height - this.half._scale.y - (this.y * this.viewport.height) + this.new_pos
+    this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height) + this.new_pos
   }
 
   update(current, last, direction)
@@ -190,7 +175,7 @@ export default class GalleryElement
     {
       const y = this.plane.position.y + this.plane.scale.y
 
-      if(y < -this.half._viewport.height)
+      if(y < -this.viewport.height / 2)
       {
         this.new_pos += this.full_height
       }
@@ -200,7 +185,7 @@ export default class GalleryElement
     {
       const y = this.plane.position.y - this.plane.scale.y
 
-      if(y > this.half._viewport.height)
+      if(y > this.viewport.height / 2)
       {
         this.new_pos -= this.full_height
       }

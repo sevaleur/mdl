@@ -20,21 +20,6 @@ export default class Media
 
     this.createMesh()
 
-    this.half = {
-      _scale: {
-        x: this.plane.scale.x / 2,
-        y: this.plane.scale.y / 2
-      },
-      _viewport: {
-        width: this.viewport.width / 2,
-        height: this.viewport.height / 2
-      },
-      _screen: {
-        width: this.screen.width / 2,
-        height: this.screen.height / 2
-      }
-    }
-
     this.createBounds()
   }
 
@@ -154,13 +139,13 @@ export default class Media
   {
     this.x = this.bounds.left / this.screen.width
 
-    this.plane.position.x = -this.half._viewport.width + this.half._scale.x + (this.x * this.viewport.width)
+    this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width)
   }
 
-  updateY()
+  updateY(current)
   {
     this.y = this.bounds.top / this.screen.height
-    this.plane.position.y = this.half._viewport.height - this.half._scale.y - (this.y * this.viewport.height)
+    this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height)
   }
 
   update()
