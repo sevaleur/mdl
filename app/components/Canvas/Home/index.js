@@ -119,19 +119,9 @@ export default class Gallery
 
   update()
   {
-    this.scroll.target += this.scroll.speed
     this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
 
-    if(this.scroll.current < this.scroll.last)
-    {
-      this.direction = 'up'
-      this.scroll.speed = -0.1
-    }
-    else
-    {
-      this.direction = 'down'
-      this.scroll.speed = 0.1
-    }
+    this.scroll.current < this.scroll.last ? this.direction = 'up' : this.direction = 'down'
 
     map(this.menu_elements, element => element.update(this.scroll, this.direction))
 

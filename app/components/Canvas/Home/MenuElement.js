@@ -142,6 +142,13 @@ export default class MenuElement
     this.plane.scale.y = this.viewport.height * this.bounds.height / this.screen.height
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
+
+   /*  //////////// an idea for gallery selection ////////////
+
+   const scale = gsap.utils.mapRange(0, this.viewport.width / 2, 0, -.5, Math.abs(this.plane.position.x))
+
+    this.plane.scale.x += scale
+    this.plane.scale.y += scale */
   }
 
   updateX(current=0)
@@ -159,7 +166,7 @@ export default class MenuElement
     this.y = this.bounds.top / this.screen.height
 
     this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height)
-    this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI * 0.1) * 75 - 75;
+    this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI * 0.1) * 50 - 50;
   }
 
   update(scroll, direction)
