@@ -1,5 +1,6 @@
 import { Camera, Renderer, Transform } from 'ogl'
 
+import Home from './Home'
 import Gallery from './Gallery'
 import About from './About'
 
@@ -116,8 +117,8 @@ export default class Canvas
 
   onChangeStart()
   {
-    /* if(this.home)
-      this.home.hide() */
+    if(this.home)
+      this.home.hide()
 
     if(this.about)
       this.about.hide()
@@ -128,7 +129,7 @@ export default class Canvas
 
   onChange(template)
   {
-    // template === 'home' ? this.createHome() : this.destroyHome()
+    template === 'home' ? this.createHome() : this.destroyHome()
     template === 'about' ? this.createAbout() : this.destroyAbout()
     template === 'gallery' ? this.createGallery() : this.destroyGallery()
   }
@@ -155,6 +156,14 @@ export default class Canvas
       height
     }
 
+    if(this.home)
+    {
+      this.home.onResize({
+        screen: this.screen,
+        viewport: this.viewport
+      })
+    }
+
     if(this.gallery)
     {
       this.gallery.onResize({
@@ -177,6 +186,13 @@ export default class Canvas
     this.isDown = true
 
     this.y.start = e.touches ? e.touches[0].clientY : e.clientY
+
+    if(this.home)
+    {
+      this.home.onTouchDown({
+        y: this.y
+      })
+    }
 
     if(this.gallery)
     {
@@ -201,6 +217,13 @@ export default class Canvas
 
     this.y.end = y
 
+    if(this.home)
+    {
+      this.home.onTouchMove({
+        y: this.y
+      })
+    }
+
     if(this.gallery)
     {
       this.gallery.onTouchMove({
@@ -220,6 +243,13 @@ export default class Canvas
   {
     this.isDown = false
 
+    if(this.home)
+    {
+      this.home.onTouchUp({
+        y: this.y
+      })
+    }
+
     if(this.gallery)
     {
       this.gallery.onTouchUp({
@@ -237,6 +267,9 @@ export default class Canvas
 
   onWheel(e)
   {
+    if(this.home)
+      this.home.onWheel(e)
+
     if(this.gallery)
       this.gallery.onWheel(e)
 
@@ -250,6 +283,9 @@ export default class Canvas
 
   update(scroll)
   {
+    if(this.home)
+      this.home.update()
+
     if(this.gallery)
       this.gallery.update()
 

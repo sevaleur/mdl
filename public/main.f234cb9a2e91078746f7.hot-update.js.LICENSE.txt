@@ -1,0 +1,11 @@
+/*! gsap */
+
+/*! ogl */
+
+/*! shaders/gallery/fragment.glsl */
+
+/*! shaders/gallery/vertex.glsl */
+
+/*!***************************************************!*\
+  !*** ./app/components/Canvas/Home/MenuElement.js ***!
+  \***************************************************/
