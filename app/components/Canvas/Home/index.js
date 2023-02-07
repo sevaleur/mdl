@@ -91,19 +91,19 @@ export default class Gallery
     }))
   }
 
-  onTouchDown({ y })
+  onTouchDown({ y, x })
   {
     this.scroll.position = this.scroll.current
   }
 
-  onTouchMove({ y })
+  onTouchMove({ y, x })
   {
-    const y_dist = (y.start - y.end) * 2
+    const x_dist = x.start - x.end
 
-    this.scroll.target = this.scroll.position + y_dist
+    this.scroll.target = this.scroll.position - x_dist
   }
 
-  onTouchUp({ y })
+  onTouchUp({ y, x })
   {
 
   }
@@ -133,9 +133,7 @@ export default class Gallery
       this.scroll.speed = 0.1
     }
 
-    const { current, last } = this.scroll
-
-    map(this.menu_elements, element => element.update(current, last, this.direction))
+    map(this.menu_elements, element => element.update(this.scroll, this.direction))
 
     this.scroll.last = this.scroll.current
   }

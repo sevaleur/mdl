@@ -11,10 +11,17 @@ export default class Canvas
 
     this.template = template
 
-    this.y = {
-      start: 0,
-      distance: 0,
-      end: 0
+    this.drag = {
+      y: {
+        start: 0,
+        distance: 0,
+        end: 0
+      },
+      x: {
+        start: 0,
+        distance: 0,
+        end: 0
+      }
     }
 
     this.createRenderer()
@@ -185,12 +192,14 @@ export default class Canvas
   {
     this.isDown = true
 
-    this.y.start = e.touches ? e.touches[0].clientY : e.clientY
+    this.drag.x.start = e.touches ? e.touches[0].clientX : e.clientX
+    this.drag.y.start = e.touches ? e.touches[0].clientY : e.clientY
 
     if(this.home)
     {
       this.home.onTouchDown({
-        y: this.y
+        y: this.drag.y,
+        x: this.drag.x
       })
     }
 
@@ -213,14 +222,17 @@ export default class Canvas
   {
     if(!this.isDown) return
 
+    const x = e.touches ? e.touches[0].clientX : e.clientX
     const y = e.touches ? e.touches[0].clientY : e.clientY
 
-    this.y.end = y
+    this.drag.y.end = y
+    this.drag.x.end = x
 
     if(this.home)
     {
       this.home.onTouchMove({
-        y: this.y
+        y: this.drag.y,
+        x: this.drag.x
       })
     }
 
@@ -246,7 +258,8 @@ export default class Canvas
     if(this.home)
     {
       this.home.onTouchUp({
-        y: this.y
+        y: this.drag.y,
+        x: this.drag.x
       })
     }
 
