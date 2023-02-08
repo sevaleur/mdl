@@ -2,11 +2,11 @@ import { Plane, Transform } from 'ogl'
 import gsap from 'gsap'
 import map from 'lodash/map'
 
-import MenuElement from './MenuElement'
+import MenuElement from './menu/MenuElement'
 
 export default class Gallery
 {
-  constructor({ gl, scene, screen, viewport })
+  constructor({ gl, scene, screen, viewport, renderer })
   {
     this.gl = gl
     this.scene = scene
@@ -27,7 +27,7 @@ export default class Gallery
 
     this.onResize()
 
-    this.createMenu()
+    this.createMenu(renderer)
 
     this.group.setParent(this.scene)
 
@@ -45,16 +45,19 @@ export default class Gallery
   getElements()
   {
     this.elements = document.querySelectorAll('img.home__gallery__media__image')
+    this.text_elements = document.querySelectorAll('.home__gallery__title__text')
     this.length = this.elements.length
   }
 
-  createMenu()
+  createMenu(renderer)
   {
     this.menu_elements = map(this.elements, (element, index) =>
     {
       return new MenuElement({
         element,
         index,
+        renderer,
+        text: this.text_elements[index],
         geometry: this.geo,
         gl: this.gl,
         length: this.length,

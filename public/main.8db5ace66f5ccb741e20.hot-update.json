@@ -1,0 +1,1 @@
+{"c":["main"],"r":[],"m":["./app/shaders/home/text/fragment.glsl","./app/shaders/home/text/vertex.glsl","./fonts/forma.json","./fonts/forma.png","./node_modules/ogl/src/extras/Text.js","./node_modules/ogl/src/math/Color.js","./node_modules/ogl/src/math/functions/ColorFunc.js"]}

@@ -1,15 +1,18 @@
 import { Mesh, Program, Texture } from 'ogl'
 import gsap from 'gsap'
 
-import vertex from 'shaders/home/vertex.glsl'
-import fragment from 'shaders/home/fragment.glsl'
+import vertex from 'shaders/home/element/vertex.glsl'
+import fragment from 'shaders/home/element/fragment.glsl'
+
+import Title from './Title'
 
 export default class MenuElement
 {
-  constructor({ element, index, geometry, gl, length, scene, screen, viewport })
+  constructor({ element, index, renderer, text, geometry, gl, length, scene, screen, viewport })
   {
     this.element = element
     this.index = index
+    this.text = text
     this.geo = geometry
     this.gl = gl
     this.length = length
@@ -20,7 +23,7 @@ export default class MenuElement
     this.new_pos = 0
 
     this.createMesh()
-
+    this.createTitle(renderer)
     this.createBounds()
   }
 
@@ -46,7 +49,7 @@ export default class MenuElement
         u_planeSize: { value: [0, 0] },
         u_alpha: { value: 0.0 },
         u_offset: { value: 0 },
-        u_strength: { value: 0 },
+        u_scroll: { value: 0 },
         u_viewportSize: { value: [this.viewport.width, this.viewport.height] }
       }
     })
@@ -65,6 +68,18 @@ export default class MenuElement
     })
 
     this.plane.setParent(this.scene)
+  }
+
+  createTitle (renderer) {
+    this.title = new Title({
+      renderer,
+      gl: this.gl,
+      plane: this.plane,
+      text: this.text,
+      viewport: this.viewport
+    })
+
+    console.log(this.title)
   }
 
   createBounds()
@@ -126,6 +141,7 @@ export default class MenuElement
         this.viewport = viewport
 
         this.plane.program.uniforms.u_viewportSize.value = [this.viewport.width, this.viewport.height]
+        this.title.program.uniforms.u_viewportSize.value = [this.viewport.width, this.viewport.height]
       }
     }
 
@@ -143,12 +159,12 @@ export default class MenuElement
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
 
-   /*  //////////// an idea for gallery selection ////////////
+    //////////// an idea for gallery selection ////////////
 
-   const scale = gsap.utils.mapRange(0, this.viewport.width / 2, 0, -.5, Math.abs(this.plane.position.x))
+   const scale = gsap.utils.mapRange(0, this.viewport.width / 2, 0, -.3, Math.abs(this.plane.position.x))
 
     this.plane.scale.x += scale
-    this.plane.scale.y += scale */
+    this.plane.scale.y += scale
   }
 
   updateX(current=0)
@@ -166,7 +182,7 @@ export default class MenuElement
     this.y = this.bounds.top / this.screen.height
 
     this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height)
-    this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI * 0.1) * 50 - 50;
+    this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI) * 1.25 - 1.25;
   }
 
   update(scroll, direction)
@@ -177,7 +193,8 @@ export default class MenuElement
     this.updateX(scroll.current)
     this.updateY()
 
-    this.plane.program.uniforms.u_strength.value = ((scroll.current - scroll.last) / this.screen.width) * 30
+    this.plane.program.uniforms.u_scroll.value = ((scroll.current - scroll.last) / this.screen.width) * 30
+    this.title.program.uniforms.u_scroll.value = ((scroll.current - scroll.last) / this.screen.width) * 30
 
     if(direction === 'up')
     {

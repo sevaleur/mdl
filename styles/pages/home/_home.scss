@@ -20,9 +20,7 @@
         display: flex;
         align-items: center;
         position: absolute;
-        top:50%;
-        /* left: 50%; */
-        //transform: translate(-44.7rem * 0.5, -50%);
+        top: 50%;
         transform: translateY(-50%);
 
         visibility: hidden;
@@ -74,11 +72,7 @@
   bottom: 15%;
   transform: translate(-50%, -15%);
   opacity: 0;
-
-  &--active
-  {
-    opacity: 1;
-  }
+  z-index: 100;
 }
 
 .home__gallery__title__text
