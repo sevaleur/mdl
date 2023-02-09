@@ -99,23 +99,8 @@ export default class MenuElement
     {
       value: 1.0,
       duration: 1,
-      delay: 3
+      delay: 3.
     })
-
-   /*  gsap.fromTo(
-      this.plane.position,
-      {
-        x: 0,
-        z: -this.index * 0.3
-      },
-      {
-        x: this.plane.position.x,
-        delay: 4.,
-        z: 0,
-        duration: 1.5,
-        ease: "power4.inOut",
-        stagger: 0.1
-      }) */
   }
 
   hide()
