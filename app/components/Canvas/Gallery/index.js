@@ -2,11 +2,12 @@ import { Plane, Transform } from 'ogl'
 import gsap from 'gsap'
 import map from 'lodash/map'
 
-import GalleryElement from './GalleryElement'
+import GalleryElement from './objects/GalleryElement'
+import Title from './objects/Title'
 
 export default class Gallery
 {
-  constructor({ gl, scene, screen, viewport })
+  constructor({ gl, scene, screen, viewport, renderer })
   {
     this.gl = gl
     this.scene = scene
@@ -28,6 +29,7 @@ export default class Gallery
     this.onResize()
 
     this.createGallery()
+    this.createTitle(renderer)
 
     this.group.setParent(this.scene)
 
@@ -45,6 +47,7 @@ export default class Gallery
   getElements()
   {
     this.elements = document.querySelectorAll('img.gallery__media__images__image')
+    this.title_element = document.querySelector('.gallery__title__text')
     this.length = this.elements.length
   }
 
@@ -62,6 +65,18 @@ export default class Gallery
         screen: this.screen,
         viewport: this.viewport
       })
+    })
+  }
+
+  createTitle(renderer)
+  {
+    this.title = new Title({
+      renderer,
+      gl: this.gl,
+      scene: this.group,
+      text: this.title_element,
+      viewport: this.viewport,
+      screen: this.screen
     })
   }
 
@@ -136,6 +151,7 @@ export default class Gallery
     const { current, last } = this.scroll
 
     map(this.gallery_elements, element => element.update(current, last, this.direction))
+    this.title.update(current, last)
 
     this.scroll.last = this.scroll.current
   }

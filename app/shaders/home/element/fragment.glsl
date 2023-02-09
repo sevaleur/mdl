@@ -4,6 +4,8 @@ uniform vec2 u_imageSize;
 uniform vec2 u_planeSize;
 uniform float u_offset;
 uniform float u_alpha;
+uniform float u_progress;
+
 uniform sampler2D tMap;
 
 varying vec2 v_uv;
@@ -22,6 +24,9 @@ void main()
 
 
   vec4 texture = texture2D(tMap, uv);
+
+  /* float lum = (texture.r + texture.g + texture.b) / 3.0;
+  vec3 grey = vec3(lum); */
 
   gl_FragColor = texture;
   gl_FragColor.a = u_alpha;

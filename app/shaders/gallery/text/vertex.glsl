@@ -13,11 +13,12 @@ varying vec2 v_uv;
 
 void main()
 {
-  vec4 new_pos = modelViewMatrix * vec4(position, 1.0);
+  vec3 new_pos = position;
 
-  new_pos.x += sin(new_pos.y / u_viewportSize.y * PI + PI / 2.0) * (u_scroll);
+  float x_ease = -new_pos.x * 1.5;
+  new_pos.y -= sin((new_pos.x / u_viewportSize.x) * (PI + PI / 2.0)) * (u_scroll) * x_ease;
 
-  gl_Position = projectionMatrix * new_pos;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(new_pos, 1.0);
 
   v_uv = uv;
 }

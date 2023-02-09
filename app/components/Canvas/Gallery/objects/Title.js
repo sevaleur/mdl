@@ -1,20 +1,22 @@
+import gsap from 'gsap'
 import { Color, Text, Geometry, Mesh, Program, Texture } from 'ogl'
 
-import font from '/fonts/forma.json'
-import src from '/fonts/forma.png'
+import font from '/fonts/Exo-Medium-msdf.json'
+import src from '/fonts/Exo-Medium.png'
 
-import vertex from 'shaders/home/text/vertex.glsl'
-import fragment from 'shaders/home/text/fragment.glsl'
+import vertex from 'shaders/gallery/text/vertex.glsl'
+import fragment from 'shaders/gallery/text/fragment.glsl'
 
 export default class Title
 {
-  constructor({ renderer, gl, plane, text, viewport })
+  constructor({ renderer, gl, scene, text, viewport, screen })
   {
     this.gl = gl
-    this.plane = plane
     this.renderer = renderer
+    this.scene = scene
     this.text = text
     this.viewport = viewport
+    this.screen = screen
 
     this.createShader()
     this.createMesh()
@@ -63,8 +65,8 @@ export default class Title
 
     this.program = new Program(this.gl, {
       cullFace: null,
-      depthTest: false,
-      depthWrite: false,
+      depthTest: true,
+      depthWrite: true,
       transparent: true,
       fragment: fShader,
       vertex: vShader,
@@ -72,6 +74,7 @@ export default class Title
         u_color: { value: new Color('#EEF1EF') },
         u_scroll: { value: 0.0 },
         u_viewportSize: { value: [this.viewport.width, this.viewport.height] },
+        u_alpha: { value: 0.0 },
         tMap: { value: texture },
       }
     })
@@ -82,8 +85,8 @@ export default class Title
     const text = new Text({
       align: 'center',
       font,
-      letterSpacing: -0.05,
-      size: 0.1,
+      letterSpacing: 0.05,
+      size: .3,
       text: this.text.innerHTML,
       wordSpacing: 0
     })
@@ -98,8 +101,38 @@ export default class Title
     geo.computeBoundingBox()
 
     this.mesh = new Mesh(this.gl, {geometry: geo, program: this.program})
-    this.mesh.position.x = -this.plane.scale.x * 0.5 - 0.15
-    this.mesh.rotation.z = Math.PI * 0.5
-    this.mesh.setParent(this.plane)
+    this.mesh.position.y = text.height * 0.5
+    this.mesh.setParent(this.scene)
+  }
+
+  /*
+    Animations.
+  */
+
+  show()
+  {
+    gsap.fromTo(this.program.uniforms.u_alpha,
+    {
+      value: 0.0,
+      duration: 1
+    },
+    {
+      value: 1.0,
+      duration: 1
+    })
+  }
+
+  hide()
+  {
+    gsap.to(this.program.uniforms.u_alpha,
+    {
+      value: 0.0,
+      duration: 1
+    })
+  }
+
+  update(current, last)
+  {
+    this.program.uniforms.u_scroll.value = ((current - last) / this.screen.height) * 5
   }
 }

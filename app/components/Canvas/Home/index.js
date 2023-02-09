@@ -6,7 +6,7 @@ import MenuElement from './menu/MenuElement'
 
 export default class Gallery
 {
-  constructor({ gl, scene, screen, viewport, renderer })
+  constructor({ gl, scene, screen, viewport })
   {
     this.gl = gl
     this.scene = scene
@@ -27,7 +27,7 @@ export default class Gallery
 
     this.onResize()
 
-    this.createMenu(renderer)
+    this.createMenu()
 
     this.group.setParent(this.scene)
 
@@ -49,14 +49,13 @@ export default class Gallery
     this.length = this.elements.length
   }
 
-  createMenu(renderer)
+  createMenu()
   {
     this.menu_elements = map(this.elements, (element, index) =>
     {
       return new MenuElement({
         element,
         index,
-        renderer,
         text: this.text_elements[index],
         geometry: this.geo,
         gl: this.gl,

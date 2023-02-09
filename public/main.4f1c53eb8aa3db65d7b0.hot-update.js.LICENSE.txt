@@ -2,7 +2,9 @@
 
 /*! ogl */
 
-/*! shaders/home/vertex.glsl */
+/*! shaders/home/element/fragment.glsl */
+
+/*! shaders/home/element/vertex.glsl */
 
 /*!********************************************************!*\
   !*** ./app/components/Canvas/Home/menu/MenuElement.js ***!

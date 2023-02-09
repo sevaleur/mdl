@@ -46,6 +46,8 @@
     height: 100%;
     width: 100%;
 
+    visibility: hidden;
+
     &__text
     {
       @extend %title-200;
