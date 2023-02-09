@@ -240,14 +240,14 @@ export default class Canvas
     if(this.gallery)
     {
       this.gallery.onTouchMove({
-        y: this.y
+        y: this.drag.y
       })
     }
 
     if(this.about)
     {
       this.about.onTouchMove({
-        y: this.y
+        y: this.drag.y
       })
     }
   }

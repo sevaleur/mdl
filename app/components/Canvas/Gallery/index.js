@@ -87,11 +87,13 @@ export default class Gallery
   show()
   {
     map(this.gallery_elements, element => element.show())
+    this.title.show()
   }
 
   hide()
   {
     map(this.gallery_elements, element => element.hide())
+    this.title.hide()
   }
 
   /*

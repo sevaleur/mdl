@@ -3,14 +3,14 @@
   @extend %cover;
   @extend %center;
 
-  background: $color-dark-jungle-green;
+  background: #030303;
   color: $color-cultured;
   text-align: center;
   z-index: z('preloader');
 
   &__text
   {
-    @extend %title-100;
+    @extend %title-50;
 
     span
     {
@@ -25,7 +25,7 @@
 
     position: absolute;
     bottom: 7.4rem;
-    left: 50%;
+    left:50%;
     transform: translateX(-50%);
     overflow: hidden;
 

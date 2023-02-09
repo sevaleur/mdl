@@ -1,8 +1,11 @@
 import gsap from 'gsap'
 import { Color, Text, Geometry, Mesh, Program, Texture } from 'ogl'
 
-import font from '/fonts/Exo-Medium-msdf.json'
-import src from '/fonts/Exo-Medium.png'
+import font from '/fonts/amatic.json'
+import src from '/fonts/amatic.png'
+
+/* import font from '/fonts/unbounded.json'
+import src from '/fonts/unbounded.png' */
 
 import vertex from 'shaders/gallery/text/vertex.glsl'
 import fragment from 'shaders/gallery/text/fragment.glsl'
@@ -102,6 +105,7 @@ export default class Title
 
     this.mesh = new Mesh(this.gl, {geometry: geo, program: this.program})
     this.mesh.position.y = text.height * 0.5
+    this.mesh.position.z = -2
     this.mesh.setParent(this.scene)
   }
 
@@ -113,11 +117,11 @@ export default class Title
   {
     gsap.fromTo(this.program.uniforms.u_alpha,
     {
-      value: 0.0,
+      value: 1.0,
       duration: 1
     },
     {
-      value: 1.0,
+      value: .5,
       duration: 1
     })
   }
@@ -126,7 +130,7 @@ export default class Title
   {
     gsap.to(this.program.uniforms.u_alpha,
     {
-      value: 0.0,
+      value: 1.0,
       duration: 1
     })
   }

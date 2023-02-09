@@ -90,20 +90,38 @@ export default class MenuElement
 
   show()
   {
-    gsap.fromTo(this.program.uniforms.u_alpha,
+    gsap.fromTo(
+      this.program.uniforms.u_alpha,
     {
       value: 0.0,
       duration: 1
     },
     {
       value: 1.0,
-      duration: 1
+      duration: 1,
+      delay: 3
     })
+
+   /*  gsap.fromTo(
+      this.plane.position,
+      {
+        x: 0,
+        z: -this.index * 0.3
+      },
+      {
+        x: this.plane.position.x,
+        delay: 4.,
+        z: 0,
+        duration: 1.5,
+        ease: "power4.inOut",
+        stagger: 0.1
+      }) */
   }
 
   hide()
   {
-    gsap.to(this.program.uniforms.u_alpha,
+    gsap.to(
+      this.program.uniforms.u_alpha,
     {
       value: 0.0,
       duration: 1

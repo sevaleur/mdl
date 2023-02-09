@@ -46,7 +46,7 @@ export default class GalleryElement
         u_planeSize: { value: [0, 0] },
         u_alpha: { value: 0.0 },
         u_offset: { value: 0 },
-        u_strength: { value: 0 },
+        u_scroll: { value: 0 },
         u_viewportSize: { value: [this.viewport.width, this.viewport.height] }
       }
     })
@@ -169,7 +169,7 @@ export default class GalleryElement
     this.updateX()
     this.updateY(current)
 
-    this.plane.program.uniforms.u_strength.value = ((current - last) / this.screen.height) * 15
+    this.plane.program.uniforms.u_scroll.value = ((current - last) / this.screen.height) * 15
 
     if(direction === 'up')
     {
