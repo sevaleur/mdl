@@ -1,17 +1,22 @@
 import { Plane, Transform } from 'ogl'
 import gsap from 'gsap'
+
 import map from 'lodash/map'
 
 import MenuElement from './menu/MenuElement'
 
+import Raycasting from '../utils/Raycast'
+
 export default class Gallery
 {
-  constructor({ gl, scene, screen, viewport })
+  constructor({ gl, scene, screen, viewport, camera })
   {
     this.gl = gl
     this.scene = scene
     this.screen = screen
     this.viewport = viewport
+    this.camera = camera
+
     this.group = new Transform()
 
     this.scroll = {
@@ -24,10 +29,9 @@ export default class Gallery
 
     this.createGeometry()
     this.getElements()
-
     this.onResize()
-
     this.createMenu()
+    this.createRaycasting()
 
     this.group.setParent(this.scene)
 
@@ -45,6 +49,7 @@ export default class Gallery
   getElements()
   {
     this.elements = document.querySelectorAll('img.home__gallery__media__image')
+    this.link = document.querySelectorAll('.home__gallery__link')
     this.text_elements = document.querySelectorAll('.home__gallery__title__text')
     this.length = this.elements.length
   }
@@ -56,6 +61,7 @@ export default class Gallery
       return new MenuElement({
         element,
         index,
+        link: this.link[index],
         text: this.text_elements[index],
         geometry: this.geo,
         gl: this.gl,
@@ -64,6 +70,16 @@ export default class Gallery
         screen: this.screen,
         viewport: this.viewport
       })
+    })
+  }
+
+  createRaycasting()
+  {
+    this.raycast = new Raycasting({
+      gl: this.gl,
+      camera: this.camera,
+      screen: this.screen,
+      objects: this.menu_elements
     })
   }
 

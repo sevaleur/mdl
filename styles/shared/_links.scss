@@ -18,12 +18,12 @@
 
 %link__line--visible {
   transform: scaleX(1);
-  transform-origin: left center;
+  transform-origin: center center;
 }
 
 %link__line--hidden {
   transform: scaleX(0);
-  transform-origin: right center;
+  transform-origin: center center;
 }
 
 %link {

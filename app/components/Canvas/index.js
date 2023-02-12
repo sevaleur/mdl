@@ -67,6 +67,7 @@ export default class Canvas
       scene: this.scene,
       screen: this.screen,
       viewport: this.viewport,
+      camera: this.camera
     })
   }
 
@@ -77,7 +78,8 @@ export default class Canvas
       scene: this.scene,
       screen: this.screen,
       viewport: this.viewport,
-      renderer: this.renderer
+      renderer: this.renderer,
+      camera: this.camera
     })
   }
 

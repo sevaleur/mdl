@@ -6,10 +6,11 @@ import fragment from 'shaders/home/element/fragment.glsl'
 
 export default class MenuElement
 {
-  constructor({ element, index, text, geometry, gl, length, scene, screen, viewport })
+  constructor({ element, index, link, text, geometry, gl, length, scene, screen, viewport })
   {
     this.element = element
     this.index = index
+    this.link = link
     this.text = text
     this.geo = geometry
     this.gl = gl
@@ -99,7 +100,7 @@ export default class MenuElement
     {
       value: 1.0,
       duration: 1,
-      delay: 3.
+      delay: 2.
     })
   }
 
@@ -136,6 +137,11 @@ export default class MenuElement
     this.createBounds()
   }
 
+  handleClick()
+  {
+    console.log(this.link)
+  }
+
   /*
     Update.
   */
@@ -163,7 +169,7 @@ export default class MenuElement
     this.y = this.bounds.top / this.screen.height
 
     this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height)
-    this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI) * 0.5 - 0.5;
+    this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI) * .4 - .4;
   }
 
   update(scroll, direction)

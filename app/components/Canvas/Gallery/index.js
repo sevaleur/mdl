@@ -5,14 +5,18 @@ import map from 'lodash/map'
 import GalleryElement from './objects/GalleryElement'
 import Title from './objects/Title'
 
+import Raycast from '../utils/Raycast'
+import Raycasting from '../utils/Raycast'
+
 export default class Gallery
 {
-  constructor({ gl, scene, screen, viewport, renderer })
+  constructor({ gl, scene, screen, viewport, renderer, camera })
   {
     this.gl = gl
     this.scene = scene
     this.screen = screen
     this.viewport = viewport
+    this.camera = camera
     this.group = new Transform()
 
     this.scroll = {
@@ -25,9 +29,7 @@ export default class Gallery
 
     this.createGeometry()
     this.getElements()
-
     this.onResize()
-
     this.createGallery()
     this.createTitle(renderer)
 
@@ -78,6 +80,11 @@ export default class Gallery
       viewport: this.viewport,
       screen: this.screen
     })
+  }
+
+  createRaycasting()
+  {
+    this.raycast = new Raycasting(this.gl, this.camera, this.gallery_elements)
   }
 
   /*
