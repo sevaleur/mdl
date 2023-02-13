@@ -3,19 +3,17 @@ import gsap from 'gsap'
 
 import map from 'lodash/map'
 
+import App from '/'
 import MenuElement from './menu/MenuElement'
-
-import Raycasting from '../utils/Raycast'
 
 export default class Gallery
 {
-  constructor({ gl, scene, screen, viewport, camera })
+  constructor({ gl, scene, screen, viewport })
   {
     this.gl = gl
     this.scene = scene
     this.screen = screen
     this.viewport = viewport
-    this.camera = camera
 
     this.group = new Transform()
 
@@ -31,7 +29,6 @@ export default class Gallery
     this.getElements()
     this.onResize()
     this.createMenu()
-    this.createRaycasting()
 
     this.group.setParent(this.scene)
 
@@ -70,16 +67,6 @@ export default class Gallery
         screen: this.screen,
         viewport: this.viewport
       })
-    })
-  }
-
-  createRaycasting()
-  {
-    this.raycast = new Raycasting({
-      gl: this.gl,
-      camera: this.camera,
-      screen: this.screen,
-      objects: this.menu_elements
     })
   }
 
@@ -128,7 +115,7 @@ export default class Gallery
 
   onWheel({ pixelY })
   {
-    this.scroll.target += pixelY * 0.5
+    this.scroll.target -= pixelY * 0.5
   }
 
   /*

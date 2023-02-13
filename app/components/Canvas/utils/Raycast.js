@@ -1,18 +1,23 @@
 import { Vec2, Raycast } from 'ogl'
 
-export default class Raycasting
+import App from '/app/index'
+
+export default class Ray
 {
   constructor({ gl, camera, screen, objects })
   {
+    this.app = new App()
+
     this.gl = gl
     this.camera = camera
     this.screen = screen
     this.obj = objects
 
+    this.link = null
+
     this.hit_img = []
 
     this.init()
-    this.initArr()
   }
 
   init()
@@ -20,17 +25,14 @@ export default class Raycasting
     this.raycast = new Raycast()
     this.mouse = new Vec2()
 
-    this.addEventListeners()
-  }
-
-  initArr()
-  {
     this.r_o = []
 
     this.obj.forEach(o =>
     {
       this.r_o.push(o.plane)
     })
+
+    this.addEventListeners()
   }
 
   addEventListeners()
@@ -62,9 +64,12 @@ export default class Raycasting
   handleClick(e)
   {
     this.casting(e)
-    if(this.hit_img != null)
+    if(this.hit_img)
     {
-      this.hit_img && this.obj[this.hit_img.id].handleClick()
+      this.link = this.obj[this.hit_img.id].onClick()
+
+      this.app.onChange(this.link)
+      console.log(this.link)
     }
   }
 

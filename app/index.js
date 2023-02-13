@@ -9,10 +9,17 @@ import Home from 'pages/home'
 import About from 'pages/about'
 import Gallery from 'pages/gallery'
 
-class App
+export default class App
 {
+  static instance
+
   constructor()
   {
+    if(App.instance)
+      return App.instance
+
+    App.instance = this
+
     this.createContent()
 
     this.createPreloader()
@@ -209,7 +216,6 @@ class App
       }
     })
   }
-
 }
 
 new App()

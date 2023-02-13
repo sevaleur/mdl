@@ -137,9 +137,9 @@ export default class MenuElement
     this.createBounds()
   }
 
-  handleClick()
+  onClick()
   {
-    console.log(this.link)
+    return this.link.href
   }
 
   /*
@@ -156,12 +156,12 @@ export default class MenuElement
 
   updateX(current=0)
   {
-    this.x = (this.bounds.left - current) / this.screen.width
+    this.x = (this.bounds.left + current) / this.screen.width
     const pos_viewport = this.plane.position.x - this.x / 100
 
     this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -.35, .35, pos_viewport)
 
-    this.plane.position.x = (this.viewport.width / 2) - (this.plane.scale.x / 2) - (this.x * this.viewport.width) + this.new_pos
+    this.plane.position.x = (this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width) + this.new_pos
   }
 
   updateY()
@@ -169,7 +169,7 @@ export default class MenuElement
     this.y = this.bounds.top / this.screen.height
 
     this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height)
-    this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI) * .4 - .4;
+    //this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI) * .4 - .4;
   }
 
   update(scroll, direction)

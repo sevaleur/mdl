@@ -21,7 +21,10 @@
         align-items: center;
         position: absolute;
         bottom: 10%;
-        transform: translateY(-10%);
+        left: 50%;
+        transform: translate(-50%, 10%);
+        //transform: translateY(-10%);
+        z-index: 1000;
 
         visibility: hidden;
       }
@@ -29,13 +32,13 @@
       &__link
       {
         display: block;
-        margin: 0 0;
+        margin: 0 1.325rem;
       }
 
       &__media
       {
         height: 50rem;
-        width: 33rem;
+        width: 32rem;
         position: relative;
 
         &__image
