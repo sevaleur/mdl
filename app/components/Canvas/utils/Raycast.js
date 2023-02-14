@@ -1,21 +1,13 @@
 import { Vec2, Raycast } from 'ogl'
 
-import App from '/app/index'
-
 export default class Ray
 {
   constructor({ gl, camera, screen, objects })
   {
-    this.app = new App()
-
     this.gl = gl
     this.camera = camera
     this.screen = screen
     this.obj = objects
-
-    this.link = null
-
-    this.hit_img = []
 
     this.init()
   }
@@ -26,6 +18,7 @@ export default class Ray
     this.mouse = new Vec2()
 
     this.r_o = []
+    this.hit_img = []
 
     this.obj.forEach(o =>
     {
@@ -64,13 +57,6 @@ export default class Ray
   handleClick(e)
   {
     this.casting(e)
-    if(this.hit_img)
-    {
-      this.link = this.obj[this.hit_img.id].onClick()
-
-      this.app.onChange(this.link)
-      console.log(this.link)
-    }
   }
 
   casting(e)
@@ -82,16 +68,16 @@ export default class Ray
 
     this.obj.forEach( o => o.isHit = false )
 
-    const hits = this.raycast.intersectBounds(this.r_o)
+    this.hits = this.raycast.intersectBounds(this.r_o)
 
-    hits.forEach(obj =>
+    this.hits.forEach(obj =>
     {
       obj.isHit = true
     })
 
-    if(hits.length)
+    if(this.hits.length)
     {
-      this.hit_img = hits[0]
+      this.hit_img = this.hits[0]
     }
     else
     {

@@ -2,18 +2,19 @@ import { Plane, Transform } from 'ogl'
 import gsap from 'gsap'
 
 import map from 'lodash/map'
+import Prefix from 'prefix'
 
-import App from '/'
 import MenuElement from './menu/MenuElement'
 
 export default class Gallery
 {
-  constructor({ gl, scene, screen, viewport })
+  constructor({ gl, scene, screen, viewport, camera })
   {
     this.gl = gl
     this.scene = scene
     this.screen = screen
     this.viewport = viewport
+    this.camera = camera
 
     this.group = new Transform()
 
@@ -25,10 +26,13 @@ export default class Gallery
       ease: 0.05
     }
 
+    this.t_prefix = Prefix('transform')
+
     this.createGeometry()
     this.getElements()
-    this.onResize()
     this.createMenu()
+
+    this.onResize()
 
     this.group.setParent(this.scene)
 
@@ -45,6 +49,9 @@ export default class Gallery
 
   getElements()
   {
+    this.gallery_element = document.querySelector('.home__gallery')
+    this.gallery_wrapper = document.querySelector('.home__gallery__wrapper')
+
     this.elements = document.querySelectorAll('img.home__gallery__media__image')
     this.link = document.querySelectorAll('.home__gallery__link')
     this.text_elements = document.querySelectorAll('.home__gallery__title__text')
@@ -90,10 +97,14 @@ export default class Gallery
 
   onResize()
   {
+    this.bounds = this.gallery_wrapper.getBoundingClientRect()
+
     map(this.menu_elements, element => element.onResize({
       screen: this.screen,
       viewport: this.viewport,
     }))
+
+    this.scroll.limit = this.bounds.width - this.menu_elements[0].element.clientWidth
   }
 
   onTouchDown({ y, x })
@@ -125,10 +136,11 @@ export default class Gallery
   update()
   {
     this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
+    this.scroll.target = gsap.utils.clamp(-this.scroll.limit, 0, this.scroll.target)
 
-    this.scroll.current < this.scroll.last ? this.direction = 'up' : this.direction = 'down'
+    this.gallery_element.style[this.t_prefix] = `translateX(${this.scroll.current}px)`
 
-    map(this.menu_elements, element => element.update(this.scroll, this.direction))
+    map(this.menu_elements, element => element.update(this.scroll))
 
     this.scroll.last = this.scroll.current
   }

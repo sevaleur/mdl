@@ -4,8 +4,6 @@ import Home from './Home'
 import Gallery from './Gallery'
 import About from './About'
 
-import Ray from './utils/Raycast'
-
 export default class Canvas
 {
   constructor({ template })
@@ -71,13 +69,6 @@ export default class Canvas
       viewport: this.viewport,
       camera: this.camera
     })
-
-    this.ray = new Ray({
-      gl: this.gl,
-      camera: this.camera,
-      screen: this.screen,
-      objects: this.home.menu_elements
-    })
   }
 
   createGallery()
@@ -89,13 +80,6 @@ export default class Canvas
       viewport: this.viewport,
       renderer: this.renderer,
       camera: this.camera
-    })
-
-    this.ray = new Ray({
-      gl: this.gl,
-      camera: this.camera,
-      screen: this.screen,
-      objects: this.gallery.gallery_elements
     })
   }
 
@@ -119,7 +103,6 @@ export default class Canvas
 
     this.home.destroy()
     this.home = null
-    this.ray = null
   }
 
   destroyGallery()
@@ -128,7 +111,6 @@ export default class Canvas
 
     this.gallery.destroy()
     this.gallery = null
-    this.ray = null
   }
 
   destroyAbout()

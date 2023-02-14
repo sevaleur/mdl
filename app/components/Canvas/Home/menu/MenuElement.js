@@ -19,8 +19,6 @@ export default class MenuElement
     this.screen = screen
     this.viewport = viewport
 
-    this.new_pos = 0
-
     this.createMesh()
     this.createBounds()
   }
@@ -73,16 +71,11 @@ export default class MenuElement
   {
     this.bounds = this.element.getBoundingClientRect()
 
-    this.wrap = document.querySelector('.home__gallery__wrapper')
-    this.wrap_bounds = this.wrap.getBoundingClientRect()
-
     this.updateScale()
     this.updateX()
     this.updateY()
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
-
-    this.full_width = ((this.wrap_bounds.width / this.screen.width) * this.viewport.width)
   }
 
   /*
@@ -120,8 +113,6 @@ export default class MenuElement
 
   onResize(sizes)
   {
-    this.new_pos = 0
-
     if(sizes)
     {
       const { screen, viewport } = sizes
@@ -137,18 +128,13 @@ export default class MenuElement
     this.createBounds()
   }
 
-  onClick()
-  {
-    return this.link.href
-  }
-
   /*
     Update.
   */
 
   updateScale()
   {
-    this.plane.scale.x = (this.viewport.width * this.bounds.width / this.screen.width) / 2
+    this.plane.scale.x = (this.viewport.width * this.bounds.width / this.screen.width) / 1.5
     this.plane.scale.y = this.viewport.height * this.bounds.height / this.screen.height
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
@@ -161,7 +147,7 @@ export default class MenuElement
 
     this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -.35, .35, pos_viewport)
 
-    this.plane.position.x = (this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width) + this.new_pos
+    this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width)
   }
 
   updateY()
@@ -169,10 +155,10 @@ export default class MenuElement
     this.y = this.bounds.top / this.screen.height
 
     this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height)
-    //this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI) * .4 - .4;
+    //this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI) * .5 - .5;
   }
 
-  update(scroll, direction)
+  update(scroll)
   {
     if(!this.bounds) return
 
@@ -181,25 +167,5 @@ export default class MenuElement
     this.updateY()
 
     this.plane.program.uniforms.u_scroll.value = ((scroll.current - scroll.last) / this.screen.width) * 30
-
-    if(direction === 'up')
-    {
-      const x = this.plane.position.x + this.plane.scale.x
-
-      if(x < -this.viewport.width / 2)
-      {
-        this.new_pos += this.full_width
-      }
-    }
-
-    if(direction === 'down')
-    {
-      const x = this.plane.position.x - this.plane.scale.x
-
-      if(x > this.viewport.width / 2)
-      {
-        this.new_pos -= this.full_width
-      }
-    }
   }
 }

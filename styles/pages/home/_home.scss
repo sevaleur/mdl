@@ -20,11 +20,9 @@
         display: flex;
         align-items: center;
         position: absolute;
-        bottom: 10%;
+        top: 50%;
         left: 50%;
-        transform: translate(-50%, 10%);
-        //transform: translateY(-10%);
-        z-index: 1000;
+        transform: translate(-32rem * 0.5, -50%);
 
         visibility: hidden;
       }
@@ -33,11 +31,21 @@
       {
         display: block;
         margin: 0 1.325rem;
+
+        &:first-child
+        {
+          margin-left: 0;
+        }
+
+        &:last-child
+        {
+          margin-right: 0;
+        }
       }
 
       &__media
       {
-        height: 50rem;
+        height: 55rem;
         width: 32rem;
         position: relative;
 
