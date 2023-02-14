@@ -2,7 +2,7 @@
 {
   @extend %page;
 
-  opacity: 0;
+  z-index: 0;
 
   &__wrapper
   {
@@ -15,6 +15,8 @@
   {
     @extend %cover;
 
+    z-index: 1;
+
       &__wrapper
       {
         display: flex;
@@ -23,8 +25,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-32rem * 0.5, -50%);
-
-        visibility: hidden;
       }
 
       &__link
@@ -48,6 +48,8 @@
         height: 55rem;
         width: 32rem;
         position: relative;
+
+        visibility: hidden;
 
         &__image
         {
