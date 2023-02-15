@@ -10,10 +10,10 @@ block content
       .home__gallery
         .home__gallery__wrapper
           each obj in home.work_gallery
+            .home__gallery__content
+              .home__gallery__content__title
+                h2.home__gallery__content__title__text=obj.work_gallery_images.data.gallery_title
             a.home__gallery__link(href=Link=(`${obj.work_gallery_images.type}/${obj.work_gallery_images.uid}`))
-              .home__gallery__content
-                .home__gallery__content__title
-                  h2.home__gallery__content__title__text=obj.work_gallery_images.data.gallery_title
               figure.home__gallery__media
                 img.home__gallery__media__image(alt=obj.work_gallery_images.data.gallery_link_image.alt data-src=obj.work_gallery_images.data.gallery_link_image.url)
 

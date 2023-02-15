@@ -29,6 +29,8 @@
 
       &__content
       {
+        display: flex;
+        justify-content: center;
 
         &__title
         {
@@ -37,10 +39,10 @@
 
           &__text
           {
-            @extend %title-15;
+            @extend %title-25;
 
-            /* writing-mode: vertical-lr;
-            transform: scale(-1, -1); */
+            writing-mode: vertical-lr;
+            transform: scale(-1, -1);
           }
         }
       }
