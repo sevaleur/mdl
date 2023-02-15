@@ -6,12 +6,10 @@ import fragment from 'shaders/home/element/fragment.glsl'
 
 export default class MenuElement
 {
-  constructor({ element, index, link, text, geometry, gl, length, scene, screen, viewport })
+  constructor({ element, index, geometry, gl, length, scene, screen, viewport })
   {
     this.element = element
     this.index = index
-    this.link = link
-    this.text = text
     this.geo = geometry
     this.gl = gl
     this.length = length
@@ -134,7 +132,7 @@ export default class MenuElement
 
   updateScale()
   {
-    this.plane.scale.x = (this.viewport.width * this.bounds.width / this.screen.width) / 1.5
+    this.plane.scale.x = (this.viewport.width * this.bounds.width / this.screen.width)
     this.plane.scale.y = this.viewport.height * this.bounds.height / this.screen.height
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]

@@ -53,8 +53,6 @@ export default class Gallery
     this.gallery_wrapper = document.querySelector('.home__gallery__wrapper')
 
     this.elements = document.querySelectorAll('img.home__gallery__media__image')
-    this.link = document.querySelectorAll('.home__gallery__link')
-    this.text_elements = document.querySelectorAll('.home__gallery__title__text')
     this.length = this.elements.length
   }
 
@@ -65,8 +63,6 @@ export default class Gallery
       return new MenuElement({
         element,
         index,
-        link: this.link[index],
-        text: this.text_elements[index],
         geometry: this.geo,
         gl: this.gl,
         length: this.length,

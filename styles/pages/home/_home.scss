@@ -27,6 +27,24 @@
         transform: translate(-32rem * 0.5, -50%);
       }
 
+      &__content
+      {
+
+        &__title
+        {
+          text-align: center;
+          padding: 1rem;
+
+          &__text
+          {
+            @extend %title-15;
+
+            /* writing-mode: vertical-lr;
+            transform: scale(-1, -1); */
+          }
+        }
+      }
+
       &__link
       {
         display: block;
@@ -46,7 +64,7 @@
       &__media
       {
         height: 55rem;
-        width: 32rem;
+        width: 24rem;
         position: relative;
 
         visibility: hidden;
