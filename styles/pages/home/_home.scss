@@ -41,8 +41,13 @@
           {
             @extend %title-25;
 
-            writing-mode: vertical-lr;
-            transform: scale(-1, -1);
+            span
+            {
+              span
+              {
+                opacity: 0;
+              }
+            }
           }
         }
       }

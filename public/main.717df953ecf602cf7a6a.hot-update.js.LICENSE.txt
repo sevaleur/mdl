@@ -1,0 +1,15 @@
+/*! gsap */
+
+/*! splitting */
+
+/*! splitting/dist/splitting-cells.css */
+
+/*! splitting/dist/splitting.css */
+
+/*!**********************************!*\
+  !*** ./app/animations/Select.js ***!
+  \**********************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/splitting/dist/splitting-cells.css ***!
+  \*********************************************************/
