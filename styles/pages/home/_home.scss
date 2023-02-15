@@ -27,31 +27,6 @@
         transform: translate(-32rem * 0.5, -50%);
       }
 
-      &__content
-      {
-        display: flex;
-        justify-content: center;
-
-        &__title
-        {
-          text-align: center;
-          padding: 1rem;
-
-          &__text
-          {
-            @extend %title-25;
-
-            span
-            {
-              span
-              {
-                opacity: 0;
-              }
-            }
-          }
-        }
-      }
-
       &__link
       {
         display: block;
@@ -85,4 +60,30 @@
       }
 
   }
+
+  &__content
+      {
+
+        &__title
+        {
+          position: absolute;
+          bottom: 10%;
+          left: 20%;
+          text-align: center;
+          padding: 1rem;
+
+          &__text
+          {
+            @extend %title-100;
+
+            span
+            {
+              span
+              {
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
 }

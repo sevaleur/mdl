@@ -38,12 +38,12 @@ export default class Home extends Page
     {
       element.addEventListener('mouseover', () =>
       {
-        this.select.onHover(index)
+        this.select.init(index)
       })
 
       element.addEventListener('mouseleave', () =>
       {
-        this.select.onLeave()
+        this.select.reset()
       })
     })
   }

@@ -2,8 +2,6 @@
 
 /*! splitting */
 
-/*! splitting/dist/splitting.css */
-
 /*!**********************************!*\
   !*** ./app/animations/Select.js ***!
   \**********************************/

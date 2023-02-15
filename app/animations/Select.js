@@ -1,7 +1,4 @@
-
-
 import Splitting from 'splitting'
-
 import gsap from 'gsap'
 
 export default class Select
@@ -10,18 +7,13 @@ export default class Select
   {
     this.elements = elements
 
-    this.init()
-  }
-
-  init()
-  {
     Splitting({
       target: this.elements,
       by: 'chars'
     })
   }
 
-  onHover(index)
+  init(index)
   {
     this.target = this.elements[index]
     this.chars = this.target.querySelectorAll('.char')
@@ -29,7 +21,7 @@ export default class Select
     this.animate_in()
   }
 
-  onLeave()
+  reset()
   {
     this.animate_out()
   }
