@@ -1,0 +1,13 @@
+/*! ./objects/GalleryElement */
+
+/*! ./objects/Title */
+
+/*! gsap */
+
+/*! lodash/map */
+
+/*! ogl */
+
+/*!************************************************!*\
+  !*** ./app/components/Canvas/Gallery/index.js ***!
+  \************************************************/

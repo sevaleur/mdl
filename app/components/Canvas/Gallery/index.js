@@ -6,7 +6,6 @@ import GalleryElement from './objects/GalleryElement'
 import Title from './objects/Title'
 
 import Raycast from '../utils/Raycast'
-import Raycasting from '../utils/Raycast'
 
 export default class Gallery
 {
@@ -32,6 +31,7 @@ export default class Gallery
     this.onResize()
     this.createGallery()
     this.createTitle(renderer)
+    this.createRay()
 
     this.group.setParent(this.scene)
 
@@ -82,9 +82,14 @@ export default class Gallery
     })
   }
 
-  createRaycasting()
+  createRay()
   {
-    this.raycast = new Raycasting(this.gl, this.camera, this.gallery_elements)
+    this.ray = new Raycast({
+      gl: this.gl,
+      camera: this.camera,
+      screen: this.screen,
+      objects: this.gallery_elements
+    })
   }
 
   /*

@@ -57,6 +57,9 @@ export default class Ray
   handleClick(e)
   {
     this.casting(e)
+
+    if(this.hit_img)
+      console.log(this.hit_img.index)
   }
 
   casting(e)

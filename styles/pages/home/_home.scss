@@ -46,7 +46,7 @@
       &__media
       {
         height: 55rem;
-        width: 20rem;
+        width: 15rem;
         position: relative;
 
         visibility: hidden;
@@ -115,7 +115,7 @@
 
       &__text
       {
-        @extend %desc-16;
+        @extend %desc-20;
 
         font-weight: 300;
         display: block;

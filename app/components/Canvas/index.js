@@ -62,6 +62,8 @@ export default class Canvas
 
   createHome()
   {
+    if(this.home) this.destroyHome()
+
     this.home = new Home({
       gl: this.gl,
       scene: this.scene,
@@ -73,6 +75,8 @@ export default class Canvas
 
   createGallery()
   {
+    if(this.gallery) this.destroyGallery()
+
     this.gallery = new Gallery({
       gl: this.gl,
       scene: this.scene,
@@ -85,6 +89,8 @@ export default class Canvas
 
   createAbout()
   {
+    if(this.about) this.destroyAbout()
+
     this.about = new About({
       gl: this.gl,
       scene: this.scene,

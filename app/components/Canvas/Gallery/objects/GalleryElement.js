@@ -64,6 +64,8 @@ export default class GalleryElement
       program: this.program
     })
 
+    this.plane.index = this.index
+
     this.plane.setParent(this.scene)
   }
 
