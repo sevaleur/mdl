@@ -19,3 +19,9 @@ block content
           .home__content__title
             h2.home__content__title__text(data-splitting)=obj.work_gallery_images.data.gallery_title
 
+      .home__links
+        each obj in home.home_links
+          .home__links__title
+            p.home__links__title__text=obj.link_name
+              a.home__links__title__text__link(href=(obj.link.url))
+

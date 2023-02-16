@@ -215,6 +215,16 @@ export default class App
         this.onChange(href)
       }
     })
+
+    const outside_links = document.querySelectorAll('.home__links__title__text')
+
+    each(outside_links, link =>
+    {
+      link.onclick = event =>
+      {
+        window.open(link.children[0].href, '_blank')
+      }
+    })
   }
 }
 

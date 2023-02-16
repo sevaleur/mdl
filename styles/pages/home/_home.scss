@@ -62,31 +62,71 @@
   }
 
   &__content
+  {
+
+    &__title
+    {
+      position: absolute;
+      bottom: 4rem;
+      left: 4rem;
+      text-align: center;
+      padding: 1rem;
+
+      &__text
       {
+        @extend %title-100;
 
-        &__title
+        padding: 1rem;
+        overflow: hidden;
+
+        span
         {
-          position: absolute;
-          bottom: 10%;
-          left: 10%;
-          text-align: center;
-          padding: 1rem;
-
-          &__text
+          span
           {
-            @extend %title-100;
-
-            padding: 1rem;
-            overflow: hidden;
-
-            span
-            {
-              span
-              {
-                opacity: 0;
-              }
-            }
+            opacity: 0;
           }
         }
       }
+    }
+  }
+
+  &__links
+  {
+    position: absolute;
+    bottom: 4rem;
+    right: 4rem;
+    z-index: 1;
+
+    &__title
+    {
+      text-align: right;
+
+      margin: 0.8rem;
+
+      &:first-child
+      {
+        margin-top: 0;
+      }
+
+      &:last-child
+      {
+        margin-bottom: 0;
+      }
+
+      &__text
+      {
+        @extend %desc-16;
+
+        font-weight: 300;
+        display: block;
+        line-height: 1;
+        cursor: pointer;
+
+        &__link
+        {
+          visibility: hidden;
+        }
+      }
+    }
+  }
 }
