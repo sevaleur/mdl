@@ -151,8 +151,8 @@
       &__text
       {
         @extend %title-70;
-        letter-spacing: 2rem;
 
+        letter-spacing: 2rem;
         padding: 12.7rem;
       }
     }
@@ -162,7 +162,7 @@
 
       &__wrapper
       {
-        padding: 0 40rem;
+        padding: 0 35rem;
       }
 
       &__client
@@ -179,21 +179,6 @@
 
           letter-spacing: 1rem;
           padding: 3rem;
-        }
-
-        &__media
-        {
-          visibility: hidden;
-          height: 10rem;
-          width: 20rem;
-          position: relative;
-
-          &__image
-          {
-            @extend %cover;
-
-            object-fit: contain;
-          }
         }
       }
 
@@ -275,6 +260,54 @@
         writing-mode: vertical-lr;
         transform: scale(1, 1);
       }
+    }
+  }
+
+  &__press
+  {
+    padding-bottom: 12.7rem;
+
+    &__title
+    {
+
+      &__text
+      {
+        @extend %title-70;
+
+        text-transform: uppercase;
+        letter-spacing: 1rem;
+        padding: 12.7rem;
+        padding-top: 0;
+      }
+    }
+
+    &__content
+    {
+      padding: 0 35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      &__div
+      {
+        width: 100%;
+        padding: 3rem;
+        border-bottom: 1px solid $color-cadet-blue-crayola;
+
+        &__title
+        {
+          @extend %desc-25;
+          cursor: pointer;
+          letter-spacing: 0.5rem;
+
+          &__link
+          {
+            visibility: hidden;
+          }
+        }
+      }
+
     }
   }
 

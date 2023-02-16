@@ -216,7 +216,7 @@ export default class App
       }
     })
 
-    const outside_links = document.querySelectorAll('.home__links__title__text')
+    const outside_links = document.querySelectorAll('.outside__link')
 
     each(outside_links, link =>
     {

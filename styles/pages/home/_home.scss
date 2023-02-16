@@ -67,7 +67,7 @@
     &__title
     {
       position: absolute;
-      bottom: 4rem;
+      bottom: 6rem;
       left: 4rem;
       text-align: center;
       padding: 1rem;
@@ -93,7 +93,7 @@
   &__links
   {
     position: absolute;
-    bottom: 4rem;
+    bottom: 6rem;
     right: 4rem;
     z-index: 1;
 
@@ -101,7 +101,7 @@
     {
       text-align: right;
 
-      margin: 0.8rem;
+      margin: 0.6rem;
 
       &:first-child
       {

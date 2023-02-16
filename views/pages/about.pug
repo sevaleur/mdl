@@ -32,8 +32,6 @@ block content
               each client in about.client_logos
                 .about__clients__gallery__client
                   p.about__clients__gallery__client__name(data-animation='label')=client.client_name
-                  figure.about__clients__gallery__client__media
-                    img.about__clients__gallery__client__media__image(data-src=client.client_logo.url alt=client.client_logo.alt)
 
         section.about__desc
           .about__desc__gc
@@ -43,6 +41,15 @@ block content
               p.about__desc__gc__desc__text(data-animation='paragraph')!=about.about_desc.replace(/\n/g, '<br>')
           .about__desc__location
             p.about__desc__location__text(data-animation="vertical")=about.location
+
+        section.about__press
+          .about__press__title
+            h2.about__press__title__text=about.about_press_title
+          .about__press__content
+            each obj in about.about_press
+              .about__press__content__div
+                p.about__press__content__div__title.outside__link=obj.about_press_link_title
+                  a.about__press__content__div__title__link(href=(obj.about_press_link_link.url))
 
         section.about__contact
           .about__contact__title
