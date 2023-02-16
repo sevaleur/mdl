@@ -12,15 +12,13 @@ export default class Home extends Page
 
       }
     })
-
-    this.init()
-    this.onHover()
   }
 
   create()
   {
     super.create()
 
+    this.init()
   }
 
   init()
@@ -29,7 +27,8 @@ export default class Home extends Page
     this.titles = document.querySelectorAll('[data-splitting]')
 
     this.select = new Select(this.titles)
-    console.log(this.titles)
+
+    this.onHover()
   }
 
   onHover()

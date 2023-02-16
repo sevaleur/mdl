@@ -46,7 +46,7 @@
       &__media
       {
         height: 55rem;
-        width: 24rem;
+        width: 20rem;
         position: relative;
 
         visibility: hidden;
@@ -68,13 +68,16 @@
         {
           position: absolute;
           bottom: 10%;
-          left: 20%;
+          left: 10%;
           text-align: center;
           padding: 1rem;
 
           &__text
           {
             @extend %title-100;
+
+            padding: 1rem;
+            overflow: hidden;
 
             span
             {

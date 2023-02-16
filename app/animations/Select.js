@@ -59,9 +59,9 @@ export default class Select
       ease: 'back.inOut(2)',
 
       opacity: 0,
-      yPercent: 120,
-      scaleY: 2.3,
-      scaleX: 0.7,
+      yPercent: -120,
+      scaleY: 0,
+      scaleX: 0,
       stagger: 0.03,
     })
   }
