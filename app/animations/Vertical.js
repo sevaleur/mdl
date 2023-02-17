@@ -1,4 +1,5 @@
 import gsap from 'gsap'
+import Splitting from 'splitting'
 
 import Animation from 'classes/Animation'
 
@@ -10,6 +11,20 @@ export default class Vertical extends Animation
       element,
       elements
     })
+
+    this.element = element
+
+    Splitting({
+      target: this.element,
+      by: 'chars'
+    })
+
+    this.init()
+  }
+
+  init()
+  {
+    this.words = this.element.querySelectorAll('.char')
   }
 
   animateIn()
@@ -18,24 +33,29 @@ export default class Vertical extends Animation
       delay: 0.5
     })
 
-    this.tl_in.fromTo(this.element,
+    this.tl_in.set(this.words,
     {
-      autoAlpha: 0,
-      scale: 1.2
+      'will-change': 'opacity',
+      opacity: 0
+    })
+
+    this.tl_in.fromTo(this.words,
+    {
+      opacity: 0
     },
     {
-      autoAlpha: 1,
-      scale: 1,
+      opacity: 1,
       ease: 'expo.out',
       duration: 1.5,
+      stagger: 0.03
     })
   }
 
   animateOut()
   {
-    gsap.set(this.element,
+    gsap.set(this.words,
       {
-        autoAlpha: 0
+        opacity: 0
       })
   }
 }

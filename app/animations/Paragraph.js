@@ -1,9 +1,7 @@
 import gsap from 'gsap'
-import each from 'lodash/each'
+import Splitting from 'splitting'
 
 import Animation from 'classes/Animation'
-
-import { calculate, split } from 'utils/text'
 
 export default class Paragraph extends Animation
 {
@@ -14,11 +12,19 @@ export default class Paragraph extends Animation
       elements
     })
 
-    this.elementLinesSpan = split({
-      element: this.element,
-      append: true
+    this.element = element
+
+    this.split = Splitting({
+      target: this.element,
+      by: 'lines'
     })
 
+    this.init()
+  }
+
+  init()
+  {
+    this.lines = this.split[0].lines
   }
 
   animateIn()
@@ -27,39 +33,33 @@ export default class Paragraph extends Animation
       delay: 0.5
     })
 
-    this.tl_in.set(this.element,
+    this.tl_in.set(this.lines,
     {
-      autoAlpha: 1
+      'will-change': 'opacity, transform',
+      opacity: 0,
+      y: '100%'
     })
 
-    each(this.elementLines, (line, index) =>
+    this.tl_in.fromTo(this.lines,
     {
-      this.tl_in.fromTo(line,
-        {
-          autoAlpha: 0,
-          y: '100%'
-        },
-        {
-          autoAlpha: 1,
-          delay: index * 0.2,
-          duration: 1.,
-          ease: 'expo.out',
-          y: '0%'
-        }, 0)
-    })
+      opacity: 0,
+      y: '100%'
+    },
+    {
+      opacity: 1,
+      duration: 1.,
+      ease: 'expo.out',
+      y: '0%',
+      stagger: 0.03
+    }, 0)
 
   }
 
   animateOut()
   {
-    gsap.set(this.element,
+    gsap.set(this.lines,
       {
-        autoAlpha: 0
+        opacity: 0
       })
-  }
-
-  onResize()
-  {
-    this.elementLines = calculate(this.elementLinesSpan)
   }
 }

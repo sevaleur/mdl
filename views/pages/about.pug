@@ -16,13 +16,13 @@ block content
         section.about__background
             .about__background__gc
               .about__background__gc__smdesc
-                p.about__background__gc__smdesc__text(data-animation="title")=about.sm_desc
+                p.about__background__gc__smdesc__text(data-animation="paragraph")=about.sm_desc
               .about__background__gc__bg__title
                 h2.about__background__gc__bg__title__text(data-animation="vertical")=about.background_title
               .about__background__desc
                 each desc in about.background_desc
                   .about__background__desc__frame
-                    p.about__background__desc__frame__text(data-animation='paragraph')=desc.background_desc_text
+                    p.about__background__desc__frame__text(data-animation='label')=desc.background_desc_text
 
         section.about__clients
           .about__clients__title
@@ -44,11 +44,11 @@ block content
 
         section.about__press
           .about__press__title
-            h2.about__press__title__text=about.about_press_title
+            h2.about__press__title__text(data-animation='title')=about.about_press_title
           .about__press__content
             each obj in about.about_press
               .about__press__content__div
-                p.about__press__content__div__title.outside__link=obj.about_press_link_title
+                p.about__press__content__div__title.outside__link(data-animation='label')=obj.about_press_link_title
                   a.about__press__content__div__title__link(href=(obj.about_press_link_link.url))
 
         section.about__contact

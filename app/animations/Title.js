@@ -1,9 +1,7 @@
 import gsap from 'gsap'
-import each from 'lodash/each'
+import Splitting from 'splitting'
 
 import Animation from 'classes/Animation'
-
-import { calculate, split } from 'utils/text'
 
 export default class Title extends Animation
 {
@@ -14,12 +12,19 @@ export default class Title extends Animation
       elements
     })
 
-    /* split({ element: this.element, append: true })
-    split({ element: this.element, append: true })
+    this.element = element
 
-    this.elementLinesSpan = document.querySelectorAll('span span') */
+    Splitting({
+      target: this.element,
+      by: 'chars'
+    })
 
-    this.elementLinesSpan = split({ element: this.element, append: true })
+    this.init()
+  }
+
+  init()
+  {
+    this.chars = this.element.querySelectorAll('.char')
   }
 
   animateIn()
@@ -28,36 +33,32 @@ export default class Title extends Animation
       delay: 0.5
     })
 
-    this.tl_in.set(this.element,
+    this.tl_in.set(this.chars,
     {
-      autoAlpha: 1
+      'willChange': 'opacity, transform',
+      opacity: 0,
+      y: '100%'
     })
 
-    each(this.elementLines, (line, index) =>
+    this.tl_in.fromTo(this.chars,
     {
-      this.tl_in.fromTo(line,
-      {
-        y: '100%'
-      },
-      {
-        delay: index * 0.2,
-        duration: 1.,
-        ease: 'expo.out',
-        y: '0%'
-      }, 0)
-    })
+      y: '100%'
+    },
+    {
+      opacity: 1,
+      duration: 1.,
+      ease: 'back.inOut(2)',
+      y: '0%',
+      stagger: 0.03,
+    }, 0)
   }
 
   animateOut()
   {
-    gsap.set(this.element,
+    gsap.set(this.chars,
     {
-      autoAlpha: 0
+      opacity: 0,
+      y: '100%'
     })
-  }
-
-  onResize()
-  {
-    this.elementLines = calculate(this.elementLinesSpan)
   }
 }

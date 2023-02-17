@@ -1,5 +1,5 @@
 import Page from 'classes/Page'
-import Select from 'animations/Select'
+import Hover from 'animations/Hover'
 
 export default class Home extends Page
 {
@@ -18,15 +18,15 @@ export default class Home extends Page
   {
     super.create()
 
-    this.init()
+    this.initAnimation()
   }
 
-  init()
+  initAnimation()
   {
     this.link_elements = document.querySelectorAll('.home__gallery__link')
     this.titles = document.querySelectorAll('[data-splitting]')
 
-    this.select = new Select(this.titles)
+    this.hover = new Hover(this.titles)
 
     this.onHover()
   }
@@ -37,12 +37,12 @@ export default class Home extends Page
     {
       element.addEventListener('mouseover', () =>
       {
-        this.select.init(index)
+        this.hover.init(index)
       })
 
       element.addEventListener('mouseleave', () =>
       {
-        this.select.reset()
+        this.hover.reset()
       })
     })
   }

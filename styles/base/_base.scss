@@ -69,6 +69,29 @@ img
   @extend %cover;
 }
 
+[data-animation="title"]
+{
+  .word
+  {
+    padding: 0 1rem;
+
+    .char
+    {
+      transform: translateY(100%);
+    }
+  }
+}
+
+[data-animation="paragraph"],
+[data-animation="label"]
+{
+  .word
+  {
+    overflow: hidden;
+    padding: 0 0.5rem;
+  }
+}
+
 [data-animation="paragraph"],
 [data-animation="label"],
 [data-animation="title"]
@@ -77,8 +100,8 @@ img
 
   span
   {
-    display: inline-block;
     overflow: hidden;
+    display: inline-block;
     vertical-align: top;
   }
 }

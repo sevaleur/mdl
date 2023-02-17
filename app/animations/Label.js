@@ -1,9 +1,7 @@
 import gsap from 'gsap'
-import each from 'lodash/each'
+import Splitting from 'splitting'
 
 import Animation from 'classes/Animation'
-
-import { calculate, split } from 'utils/text'
 
 export default class Label extends Animation
 {
@@ -14,11 +12,17 @@ export default class Label extends Animation
       elements
     })
 
-    this.elementLinesSpan = split({
-      element: this.element,
-      append: true
+    Splitting({
+      target: this.element,
+      by: 'words'
     })
 
+    this.init()
+  }
+
+  init()
+  {
+    this.words = this.element.querySelectorAll('.word')
   }
 
   animateIn()
@@ -27,39 +31,35 @@ export default class Label extends Animation
       delay: 0.5
     })
 
-    this.tl_in.set(this.element,
+    this.tl_in.set(this.words,
     {
-      autoAlpha: 1
+      'willChange': 'opacity, transform',
+      opacity: 0,
+      y: '100%'
     })
 
-    each(this.elementLines, (line, index) =>
+    this.words.forEach(word =>
     {
-      this.tl_in.fromTo(line,
+      this.tl_in.fromTo(word,
         {
-          autoAlpha: 0,
+          opacity: 0,
           y: '100%',
         },
         {
-          autoAlpha: 1,
-          delay: 0.5,
+          opacity: 1,
           duration: 1.,
           ease: 'expo.out',
-          y: '0%'
+          y: '0%',
+          stagger: 0.03
         }, 0)
     })
-
   }
 
   animateOut()
   {
-    gsap.set(this.element,
+    gsap.set(this.words,
       {
-        autoAlpha: 0
+        opacity: 0
       })
-  }
-
-  onResize()
-  {
-    this.elementLines = calculate(this.elementLinesSpan)
   }
 }
