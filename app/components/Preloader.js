@@ -1,9 +1,8 @@
 import each from 'lodash/each'
 import gsap from 'gsap'
+import Splitting from 'splitting'
 
 import Component from "classes/Component"
-
-import { split } from 'utils/text'
 
 export default class Preloader extends Component
 {
@@ -19,17 +18,15 @@ export default class Preloader extends Component
       }
     })
 
-    split({
-      element: this.elements.title,
-      expression: '<br>'
+    Splitting({
+      target: this.elements.title,
+      by: 'chars'
     })
 
-    split({
-      element: this.elements.title,
-      expression: '<br>'
+    Splitting({
+      target: this.elements.numberText,
+      by: 'chars'
     })
-
-    this.elements.titleSpans = document.querySelectorAll('span span')
 
     this.length = 0
 
@@ -43,6 +40,9 @@ export default class Preloader extends Component
       element.onload = _ => this.onAssetLoaded(element)
       element.src = element.getAttribute('data-src')
     })
+
+    this.title_chars = this.elements.title.querySelectorAll('.char')
+    this.number_chars = this.elements.numberText.querySelectorAll('.char')
   }
 
   onAssetLoaded(image)
@@ -67,17 +67,33 @@ export default class Preloader extends Component
           delay: 2
         })
 
-        this.animateOut.to(this.elements.titleSpans, {
+        this.animateOut.set(this.title_chars,
+        {
+          'willChange': 'opacity, transform',
+          y: '0%',
+          opacity: 1
+        })
+
+        this.animateOut.set(this.number_chars,
+        {
+          'willChange': 'opacity, transform',
+          y: '0%',
+          opacity: 1
+        })
+
+        this.animateOut.to(this.title_chars, {
           duration: 1.5,
           ease: 'expo.out',
           stagger: 0.1,
           y: '100%',
+          opacity: 0
         })
 
-        this.animateOut.to(this.elements.numberText, {
+        this.animateOut.to(this.number_chars, {
           duration: 1.5,
           ease: 'expo.out',
           stagger: 0.1,
+          opacity: 0,
           y: '100%',
         }, '-=1.4')
 
