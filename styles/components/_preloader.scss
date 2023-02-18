@@ -19,9 +19,15 @@
     }
   }
 
+  svg
+  {
+    height: 40rem;
+    width: 40rem;
+  }
+
   &__number
   {
-    @extend %desc-20;
+    @extend %title-20;
 
     position: absolute;
     bottom: 7.4rem;

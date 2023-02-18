@@ -76,7 +76,7 @@
 
         &__text
         {
-          @extend %desc-50;
+          @extend %desc-40;
 
         }
       }
@@ -254,7 +254,7 @@
 
       &__text
       {
-        @extend %title-100;
+        @extend %title-80;
 
         writing-mode: vertical-lr;
         transform: scale(1, 1);

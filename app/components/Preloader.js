@@ -12,7 +12,6 @@ export default class Preloader extends Component
       element: '.preloader',
       elements: {
         title: '.preloader__text',
-        number: '.preloader__number',
         numberText: '.preloader__number__text',
         images: document.querySelectorAll('img')
       }
@@ -29,8 +28,19 @@ export default class Preloader extends Component
     })
 
     this.length = 0
+    this.finished = false
+
+    this.tl = gsap.timeline({
+      onComplete: () => {
+        this.finished = true
+
+        if(this.percent === 1 && this.finished)
+          this.onLoaded()
+      }
+    });
 
     this.createLoader()
+    document.querySelectorAll('path').forEach(p => this.loading(p))
   }
 
   createLoader()
@@ -41,7 +51,6 @@ export default class Preloader extends Component
       element.src = element.getAttribute('data-src')
     })
 
-    this.title_chars = this.elements.title.querySelectorAll('.char')
     this.number_chars = this.elements.numberText.querySelectorAll('.char')
   }
 
@@ -49,14 +58,46 @@ export default class Preloader extends Component
   {
     this.length += 1
 
-    const percent = this.length / this.elements.images.length
+    this.percent = this.length / this.elements.images.length
 
-    this.elements.numberText.innerHTML = `${Math.round(percent * 100)}%`
+    this.elements.numberText.innerHTML = `${Math.round(this.percent * 100)}%`
 
-    if(percent === 1)
-    {
+    if(this.percent === 1 && this.finished)
       this.onLoaded()
-    }
+  }
+
+  loading(node, index)
+  {
+    const colors = ['#e97777', '#ffc777', '#fffad7'];
+
+    this.svg_path = node;
+    const delay = Math.random();
+    const length = this.svg_path.getTotalLength();
+
+    colors.forEach((color, index) => {
+      if (index !== 0)
+      {
+        this.svg_path = this.svg_path.cloneNode();
+
+        node.parentNode.appendChild(this.svg_path);
+      }
+
+      this.tl.set(this.svg_path,
+      {
+        strokeDasharray: length + 0.5,
+        strokeDashoffset: length + 0.6,
+        autoRound: false
+      }, 0);
+
+      this.tl.to(this.svg_path, {
+        strokeDashoffset: 0,
+        autoRound: false,
+        duration: 1.2,
+        ease: `power3.out`
+      }, index * 0.25 + delay);
+
+      this.svg_path.setAttribute('stroke', color);
+    })
   }
 
   onLoaded()
@@ -67,26 +108,11 @@ export default class Preloader extends Component
           delay: 2
         })
 
-        this.animateOut.set(this.title_chars,
-        {
-          'willChange': 'opacity, transform',
-          y: '0%',
-          opacity: 1
-        })
-
         this.animateOut.set(this.number_chars,
         {
           'willChange': 'opacity, transform',
           y: '0%',
           opacity: 1
-        })
-
-        this.animateOut.to(this.title_chars, {
-          duration: 1.5,
-          ease: 'expo.out',
-          stagger: 0.1,
-          y: '100%',
-          opacity: 0
         })
 
         this.animateOut.to(this.number_chars, {
@@ -96,6 +122,12 @@ export default class Preloader extends Component
           opacity: 0,
           y: '100%',
         }, '-=1.4')
+
+        this.animateOut.to(this.svg_path,
+        {
+          opacity: 0,
+          duration: 1.5
+        })
 
         this.animateOut.to(this.element,
         {

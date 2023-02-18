@@ -74,7 +74,7 @@
 
       &__text
       {
-        @extend %title-100;
+        @extend %title-80;
 
         padding: 1rem;
         overflow: hidden;
@@ -96,21 +96,24 @@
     bottom: 6rem;
     right: 4rem;
     z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
     &__title
     {
-      text-align: right;
-
-      margin: 0.6rem;
+      //text-align: right;
+      padding: 1rem;
+      margin: 0 1rem;
 
       &:first-child
       {
-        margin-top: 0;
+        margin-left: 0;
       }
 
       &:last-child
       {
-        margin-bottom: 0;
+        margin-right: 0;
       }
 
       &__text
@@ -120,6 +123,7 @@
         font-weight: 300;
         display: block;
         line-height: 1;
+        padding: 1rem;
         cursor: pointer;
 
         &__link
