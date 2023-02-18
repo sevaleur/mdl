@@ -96,15 +96,15 @@
     bottom: 6rem;
     right: 4rem;
     z-index: 1;
-    display: flex;
+   /*  display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: center; */
 
     &__title
     {
-      //text-align: right;
-      padding: 1rem;
-      margin: 0 1rem;
+      text-align: right;
+      /* padding: 1rem;
+      margin: 0 1rem; */
 
       &:first-child
       {
@@ -118,7 +118,7 @@
 
       &__text
       {
-        @extend %desc-20;
+        @extend %desc-16;
 
         font-weight: 300;
         display: block;

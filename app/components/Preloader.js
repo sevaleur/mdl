@@ -11,15 +11,11 @@ export default class Preloader extends Component
     super({
       element: '.preloader',
       elements: {
-        title: '.preloader__text',
         numberText: '.preloader__number__text',
-        images: document.querySelectorAll('img')
-      }
-    })
+        svg: 'svg',
 
-    Splitting({
-      target: this.elements.title,
-      by: 'chars'
+        images: document.querySelectorAll('img'),
+      }
     })
 
     Splitting({
@@ -68,13 +64,14 @@ export default class Preloader extends Component
 
   loading(node, index)
   {
-    const colors = ['#e97777', '#ffc777', '#fffad7'];
+    const colors = ['#e97777', '#ffc777', '#fffad7']
 
-    this.svg_path = node;
-    const delay = Math.random();
-    const length = this.svg_path.getTotalLength();
+    this.svg_path = node
+    const delay = Math.random()
+    const length = this.svg_path.getTotalLength()
 
-    colors.forEach((color, index) => {
+    colors.forEach((color, index) =>
+    {
       if (index !== 0)
       {
         this.svg_path = this.svg_path.cloneNode();
@@ -116,17 +113,17 @@ export default class Preloader extends Component
         })
 
         this.animateOut.to(this.number_chars, {
-          duration: 1.5,
+          duration: 1,
           ease: 'expo.out',
           stagger: 0.1,
           opacity: 0,
           y: '100%',
-        }, '-=1.4')
+        })
 
-        this.animateOut.to(this.svg_path,
+        this.animateOut.to(this.elements.svg,
         {
           opacity: 0,
-          duration: 1.5
+          duration: 1
         })
 
         this.animateOut.to(this.element,
