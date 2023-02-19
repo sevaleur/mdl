@@ -4,6 +4,8 @@ import Splitting from 'splitting'
 
 import Component from "classes/Component"
 
+import { COLOR_CULTURED } from '../utils/color_variables'
+
 export default class Preloader extends Component
 {
   constructor()
@@ -33,17 +35,19 @@ export default class Preloader extends Component
         if(this.percent === 1 && this.finished)
           this.onLoaded()
       }
-    });
+    })
 
     this.createLoader()
-    document.querySelectorAll('path').forEach(p => this.loading(p))
+
+    const paths = document.querySelectorAll('path')
+    each(paths, p => this.loading(p))
   }
 
   createLoader()
   {
     each(this.elements.images, element =>
     {
-      element.onload = _ => this.onAssetLoaded(element)
+      element.onload = () => this.onAssetLoaded(element)
       element.src = element.getAttribute('data-src')
     })
 
@@ -64,37 +68,28 @@ export default class Preloader extends Component
 
   loading(node, index)
   {
-    const colors = ['#e97777', '#ffc777', '#fffad7']
-
     this.svg_path = node
     const delay = Math.random()
     const length = this.svg_path.getTotalLength()
 
-    colors.forEach((color, index) =>
+    this.tl.set(this.svg_path,
     {
-      if (index !== 0)
-      {
-        this.svg_path = this.svg_path.cloneNode();
+      strokeDasharray: length + 0.5,
+      strokeDashoffset: length + 0.6,
+      fill: '#000000',
+      autoRound: false
+    }, 0)
 
-        node.parentNode.appendChild(this.svg_path);
-      }
+    this.tl.to(this.svg_path,
+    {
+      strokeDashoffset: 0,
+      autoRound: false,
+      fill: '#EEF1EF',
+      duration: 2.,
+      ease: `power3.out`
+    }, index * 0.25 + delay)
 
-      this.tl.set(this.svg_path,
-      {
-        strokeDasharray: length + 0.5,
-        strokeDashoffset: length + 0.6,
-        autoRound: false
-      }, 0);
-
-      this.tl.to(this.svg_path, {
-        strokeDashoffset: 0,
-        autoRound: false,
-        duration: 1.2,
-        ease: `power3.out`
-      }, index * 0.25 + delay);
-
-      this.svg_path.setAttribute('stroke', color);
-    })
+    this.svg_path.setAttribute('stroke', COLOR_CULTURED)
   }
 
   onLoaded()
@@ -105,33 +100,11 @@ export default class Preloader extends Component
           delay: 2
         })
 
-        this.animateOut.set(this.number_chars,
-        {
-          'willChange': 'opacity, transform',
-          y: '0%',
-          opacity: 1
-        })
-
-        this.animateOut.to(this.number_chars, {
-          duration: 1,
-          ease: 'expo.out',
-          stagger: 0.1,
-          opacity: 0,
-          y: '100%',
-        })
-
-        this.animateOut.to(this.elements.svg,
-        {
-          opacity: 0,
-          duration: 1
-        })
-
         this.animateOut.to(this.element,
         {
           duration: 1.5,
           ease: 'expo.out',
-          scaleY: 0,
-          transformOrigin: '100% 100%'
+          opacity: 0,
         }, '-=1')
 
         this.animateOut.call(_ =>

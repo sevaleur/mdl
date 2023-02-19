@@ -8,29 +8,19 @@
   text-align: center;
   z-index: z('preloader');
 
-  &__text
-  {
-    @extend %title-50;
-
-    span
-    {
-      display: inline-block;
-      overflow: hidden;
-    }
-  }
-
   svg
   {
     height: 40rem;
     width: 40rem;
+    opacity: 1;
   }
 
   &__number
   {
-    @extend %title-20;
+    @extend %desc-20;
 
     position: absolute;
-    bottom: 7.4rem;
+    bottom: 20%;
     left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
