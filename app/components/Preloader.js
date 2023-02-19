@@ -4,7 +4,7 @@ import Splitting from 'splitting'
 
 import Component from "classes/Component"
 
-import { COLOR_CULTURED } from '../utils/color_variables'
+import { COLOR_CULTURED, COLOR_CADET_BLUE_CRAYOLA, COLOR_BLACK_CORAL } from '../utils/color_variables'
 
 export default class Preloader extends Component
 {
@@ -68,28 +68,34 @@ export default class Preloader extends Component
 
   loading(node, index)
   {
+    const colors = [COLOR_CADET_BLUE_CRAYOLA, COLOR_BLACK_CORAL, COLOR_CULTURED]
+
     this.svg_path = node
     const delay = Math.random()
     const length = this.svg_path.getTotalLength()
 
-    this.tl.set(this.svg_path,
+    each(colors, (color, index) =>
     {
-      strokeDasharray: length + 0.5,
-      strokeDashoffset: length + 0.6,
-      fill: '#000000',
-      autoRound: false
-    }, 0)
+      this.tl.set(this.svg_path,
+      {
+        strokeDasharray: length + 0.5,
+        strokeDashoffset: length + 0.6,
+        fill: '#000000',
+        autoRound: false
+      }, 0)
 
-    this.tl.to(this.svg_path,
-    {
-      strokeDashoffset: 0,
-      autoRound: false,
-      fill: '#EEF1EF',
-      duration: 2.,
-      ease: `power3.out`
-    }, index * 0.25 + delay)
+      this.tl.to(this.svg_path,
+      {
+        strokeDashoffset: 0,
+        autoRound: false,
+        fill: '#EEF1EF',
+        duration: 2.,
+        ease: `power3.out`
+      }, index * 0.25 + delay)
 
-    this.svg_path.setAttribute('stroke', COLOR_CULTURED)
+      this.svg_path.setAttribute('stroke', color)
+    })
+
   }
 
   onLoaded()
@@ -104,7 +110,7 @@ export default class Preloader extends Component
         {
           duration: 1.5,
           ease: 'expo.out',
-          opacity: 0,
+          translateY: '-100%',
         }, '-=1')
 
         this.animateOut.call(_ =>
