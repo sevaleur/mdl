@@ -1,9 +1,9 @@
 nav.navigation
   .navigation__wrapper
     .navigation__home
-      a.navigation__home__link(href='/')=meta.data.title
+      a.navigation__home__link.nav_link(href='/')=meta.data.title
 
     ul.navigation__list
       each item in navigation.data.list
         li.navigation__list__item
-          a.navigation__list__item__link(href=Link(item.link))=item.text
+          a.navigation__list__item__link.nav_link(href=Link(item.link))=item.text

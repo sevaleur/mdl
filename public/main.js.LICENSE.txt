@@ -450,8 +450,6 @@
 
 /*! tapable/lib/SyncBailHook */
 
-/*! utils/color_variables */
-
 /*! webpack/hot/emitter.js */
 
 /*! webpack/hot/log.js */

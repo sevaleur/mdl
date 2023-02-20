@@ -1,11 +1,8 @@
 .navigation
 {
-  //@extend %cover;
-
   z-index: z('navigation');
   position: fixed;
   width: 100%;
-  /* pointer-events: none; */
 }
 
 .navigation__wrapper
@@ -32,6 +29,7 @@
   @extend %desc-16;
 
   font-weight: 300;
+  padding: 0.5rem 0;
 }
 
 .navigation__list
@@ -55,4 +53,5 @@
   font-weight: 300;
   display: block;
   line-height: 1;
+  padding: 0.5rem 0;
 }

@@ -340,7 +340,10 @@
         @extend %link--hidden;
         @extend %desc-40;
 
+        cursor: pointer;
+        line-height: 2;
         letter-spacing: 1rem;
+        padding: 0.5rem 0;
       }
     }
   }

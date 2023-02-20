@@ -91,7 +91,7 @@ export default class MenuElement
     {
       value: 1.0,
       duration: 1,
-      delay: 1.
+      delay: 2.
     })
   }
 

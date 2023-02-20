@@ -81,6 +81,7 @@ export default class GalleryElement
 
     this.gallery_height = this.length * this.bounds.height
     this.full_height = ((this.gallery_height / this.screen.height) * this.viewport.height)
+    this.new_pos += this.full_height
 
     this.pos_x = Math.cos(this.index) * ((this.screen.width / 2) / this.bounds.height)
   }

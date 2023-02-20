@@ -60,17 +60,17 @@ export default class Preloader extends Component
 
     this.percent = this.length / this.elements.images.length
 
-    this.elements.numberText.innerHTML = `${Math.round(this.percent * 100)}%`
+    this.elements.numberText.innerHTML = `${Math.round(this.percent * 100)}`
 
     if(this.percent === 1 && this.finished)
       this.onLoaded()
   }
 
-  loading(node, index)
+  loading(p)
   {
     const colors = [COLOR_CADET_BLUE_CRAYOLA, COLOR_BLACK_CORAL, COLOR_CULTURED]
 
-    this.svg_path = node
+    this.svg_path = p
     const delay = Math.random()
     const length = this.svg_path.getTotalLength()
 
@@ -110,7 +110,7 @@ export default class Preloader extends Component
         {
           duration: 1.5,
           ease: 'expo.out',
-          translateY: '-100%',
+          opacity: 0,
         }, '-=1')
 
         this.animateOut.call(_ =>

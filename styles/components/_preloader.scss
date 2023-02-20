@@ -17,12 +17,12 @@
 
   &__number
   {
-    @extend %desc-20;
+    @extend %desc-30;
 
     position: absolute;
-    bottom: 20%;
+    bottom: 30%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -10%);
     overflow: hidden;
 
     &__text

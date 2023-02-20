@@ -105,8 +105,6 @@ export default class App
 
       this.template = divContent.getAttribute('data-template')
 
-      this.navigation.onChange(this.template)
-
       this.content.setAttribute('data-template', this.template)
       this.content.innerHTML = divContent.innerHTML
 
