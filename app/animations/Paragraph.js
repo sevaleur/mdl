@@ -35,7 +35,7 @@ export default class Paragraph extends Animation
 
     this.tl_in.set(this.lines,
     {
-      'will-change': 'opacity, transform',
+      'will-change': 'opacity',
       opacity: 0,
       y: '100%'
     })
@@ -43,13 +43,11 @@ export default class Paragraph extends Animation
     this.tl_in.fromTo(this.lines,
     {
       opacity: 0,
-      y: '100%'
     },
     {
       opacity: 1,
       duration: 1.,
       ease: 'expo.out',
-      y: '0%',
       stagger: 0.03
     }, 0)
 

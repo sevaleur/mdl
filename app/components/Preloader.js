@@ -95,29 +95,28 @@ export default class Preloader extends Component
 
       this.svg_path.setAttribute('stroke', color)
     })
-
   }
 
   onLoaded()
   {
     return new Promise(resolve =>
-      {
-        this.animateOut = gsap.timeline({
-          delay: 2
-        })
-
-        this.animateOut.to(this.element,
-        {
-          duration: 1.5,
-          ease: 'expo.out',
-          opacity: 0,
-        }, '-=1')
-
-        this.animateOut.call(_ =>
-        {
-          this.emit('completed')
-        })
+    {
+      this.animateOut = gsap.timeline({
+        delay: 1
       })
+
+      this.animateOut.to(this.element,
+      {
+        duration: 1.5,
+        ease: 'expo.out',
+        opacity: 0,
+      }, '-=1')
+
+      this.animateOut.call(_ =>
+      {
+        this.emit('completed')
+      })
+    })
   }
 
   destroy()

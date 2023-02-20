@@ -30,6 +30,8 @@ export default class App
     this.addEventListeners()
     this.addLinkListeners()
 
+    this.onResize()
+
     this.update()
   }
 
@@ -81,8 +83,8 @@ export default class App
 
   onPreloaded()
   {
-    this.preloader.destroy()
     this.onResize()
+    this.preloader.destroy()
 
     this.page.show()
   }

@@ -5,7 +5,32 @@
   vertical-align: top;
 }
 
-%link__line {
+
+
+%link__line__top {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.7s $ease-in-out;
+}
+
+%link__line__top--visible {
+  transform: scaleX(1);
+  transform-origin: right center;
+}
+
+%link__line__top--hidden {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+
+
+%link__line__btm {
   content: '';
   position: absolute;
   bottom: 0;
@@ -16,29 +41,42 @@
   transition: transform 0.7s $ease-in-out;
 }
 
-%link__line--visible {
+%link__line__btm--visible {
   transform: scaleX(1);
-  transform-origin: center center;
+  transform-origin: left center;
 }
 
-%link__line--hidden {
+%link__line__btm--hidden {
   transform: scaleX(0);
-  transform-origin: center center;
+  transform-origin: right center;
 }
+
+
 
 %link {
   @extend %link__wrapper;
 
   display: inline-block;
 
+  &:before
+  {
+    @extend %link__line__top;
+    @extend %link__line__top--visible;
+  }
+
   &:after {
-    @extend %link__line;
-    @extend %link__line--visible;
+    @extend %link__line__btm;
+    @extend %link__line__btm--visible;
   }
 
   &:hover {
+    &:before
+    {
+      @extend %link__line__top--hidden;
+    }
+
     &:after {
-      @extend %link__line--hidden;
+      @extend %link__line__btm--hidden;
     }
   }
 }
@@ -48,14 +86,25 @@
 
   display: inline-block;
 
+  &:before
+  {
+    @extend %link__line__top;
+    @extend %link__line__top--hidden;
+  }
+
   &:after {
-    @extend %link__line;
-    @extend %link__line--hidden;
+    @extend %link__line__btm;
+    @extend %link__line__btm--hidden;
   }
 
   &:hover {
+    &:before
+    {
+      @extend %link__line__top--visible;
+    }
+
     &:after {
-      @extend %link__line--visible;
+      @extend %link__line__btm--visible;
     }
   }
 }

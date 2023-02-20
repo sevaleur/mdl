@@ -118,6 +118,7 @@
 
       &__text
       {
+        @extend %link--hidden;
         @extend %desc-16;
 
         font-weight: 300;
