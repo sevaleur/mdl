@@ -19,7 +19,6 @@ export default class Media
     this.time = 0
 
     this.createMesh()
-
     this.createBounds()
   }
 

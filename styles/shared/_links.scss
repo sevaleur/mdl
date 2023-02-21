@@ -5,13 +5,15 @@
   vertical-align: top;
 }
 
-
+/*
+  Top link line.
+*/
 
 %link__line__top {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   height: 1px;
   background: currentColor;
@@ -28,7 +30,9 @@
   transform-origin: left center;
 }
 
-
+/*
+  Bottom link line.
+*/
 
 %link__line__btm {
   content: '';
@@ -51,7 +55,9 @@
   transform-origin: right center;
 }
 
-
+/*
+  Complete link // top//btm.
+*/
 
 %link {
   @extend %link__wrapper;
@@ -108,3 +114,226 @@
     }
   }
 }
+
+
+/*
+  Top link line // reversed.
+*/
+
+%link__line__top__reversed {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.7s $ease-in-out;
+}
+
+%link__line__top__reversed--visible {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+%link__line__top__reversed--hidden {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+/*
+  Bottom link line // reversed.
+*/
+
+%link__line__btm__reversed {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.7s $ease-in-out;
+}
+
+%link__line__btm__reversed--visible {
+  transform: scaleX(1);
+  transform-origin: right center;
+}
+
+%link__line__btm__reversed--hidden {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/*
+  Complete link // reversed.
+*/
+
+%link__reversed {
+  @extend %link__wrapper;
+
+  display: inline-block;
+
+  &:before
+  {
+    @extend %link__line__top__reversed;
+    @extend %link__line__top__reversed--visible;
+  }
+
+  &:after {
+    @extend %link__line__btm__reversed;
+    @extend %link__line__btm__reversed--visible;
+  }
+
+  &:hover {
+    &:before
+    {
+      @extend %link__line__top__reversed--hidden;
+    }
+
+    &:after {
+      @extend %link__line__btm__reversed--hidden;
+    }
+  }
+}
+
+%link__reversed--hidden {
+  @extend %link__wrapper;
+
+  display: inline-block;
+
+  &:before
+  {
+    @extend %link__line__top__reversed;
+    @extend %link__line__top__reversed--hidden;
+  }
+
+  &:after {
+    @extend %link__line__btm__reversed;
+    @extend %link__line__btm__reversed--hidden;
+  }
+
+  &:hover {
+    &:before
+    {
+      @extend %link__line__top__reversed--visible;
+    }
+
+    &:after {
+      @extend %link__line__btm__reversed--visible;
+    }
+  }
+}
+
+
+/*
+  Top link line // Menu gallery.
+*/
+
+%link__line__top__menu {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: currentColor;
+  transition: transform 0.7s $ease-in-out;
+}
+
+%link__line__top__menu--visible {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+%link__line__top__menu--hidden {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+/*
+  Bottom link line // reversed.
+*/
+
+%link__line__btm__menu {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 5px;
+  background: currentColor;
+  transition: transform 0.7s $ease-in-out;
+}
+
+%link__line__btm__menu--visible {
+  transform: scaleX(1);
+  transform-origin: right center;
+}
+
+%link__line__btm__menu--hidden {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/*
+  Complete link // reversed.
+*/
+
+%link__menu {
+  @extend %link__wrapper;
+
+  display: inline-block;
+
+  &:before
+  {
+    @extend %link__line__top__menu;
+    @extend %link__line__top__menu--visible;
+  }
+
+  &:after {
+    @extend %link__line__btm__menu;
+    @extend %link__line__btm__menu--visible;
+  }
+
+  &:hover {
+    &:before
+    {
+      @extend %link__line__top__menu--hidden;
+    }
+
+    &:after {
+      @extend %link__line__btm__menu--hidden;
+    }
+  }
+}
+
+%link__menu--hidden {
+  @extend %link__wrapper;
+
+  display: inline-block;
+
+  &:before
+  {
+    @extend %link__line__top__menu;
+    @extend %link__line__top__menu--hidden;
+  }
+
+  &:after {
+    @extend %link__line__btm__menu;
+    @extend %link__line__btm__menu--hidden;
+  }
+
+  &:hover {
+    &:before
+    {
+      @extend %link__line__top__menu--visible;
+    }
+
+    &:after {
+      @extend %link__line__btm__menu--visible;
+    }
+  }
+}
+

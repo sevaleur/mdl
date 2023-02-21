@@ -131,8 +131,8 @@ export default class Gallery
 
   update()
   {
-    this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
     this.scroll.target = gsap.utils.clamp(-this.scroll.limit, 0, this.scroll.target)
+    this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
 
     this.gallery_element.style[this.t_prefix] = `translateX(${this.scroll.current}px)`
 

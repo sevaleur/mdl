@@ -29,6 +29,9 @@
 
       &__link
       {
+        @extend %link__menu--hidden;
+
+        padding: 2rem 0;
         display: block;
         margin: 0 1.325rem;
 
@@ -45,7 +48,7 @@
 
       &__media
       {
-        height: 55rem;
+        height: 65rem;
         width: 15rem;
         position: relative;
 
@@ -96,35 +99,31 @@
     bottom: 6rem;
     right: 4rem;
     z-index: 1;
-   /*  display: flex;
-    justify-content: space-around;
-    align-items: center; */
 
     &__title
     {
       text-align: right;
-      /* padding: 1rem; */
-      margin: 0.4rem 0;
+      margin: 0 1rem;
+      padding: 0 0.5rem;
 
-      &:first-child
+      &:nth-child(even)
       {
-        margin-top: 0;
+        @extend %link__reversed--hidden;
       }
 
-      &:last-child
+      &:nth-child(odd)
       {
-        margin-bottom: 0;
+        @extend %link--hidden;
       }
 
       &__text
       {
-        @extend %link--hidden;
         @extend %desc-16;
 
         font-weight: 300;
         display: block;
         line-height: 1;
-        padding: 0.5rem;
+        padding: 1rem 0;
         cursor: pointer;
 
         &__link
