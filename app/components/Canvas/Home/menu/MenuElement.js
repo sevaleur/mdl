@@ -1,4 +1,4 @@
-import { Mesh, Program, Texture } from 'ogl'
+import { Mesh, Program } from 'ogl'
 import gsap from 'gsap'
 
 import vertex from 'shaders/home/element/vertex.glsl'
@@ -27,10 +27,7 @@ export default class MenuElement
 
   createMesh()
   {
-    const image = new Image()
-    const texture = new Texture(this.gl, {
-      generateMipmaps: false
-    })
+    this.texture = window.TEXTURES[this.element.getAttribute('data-src')]
 
     this.program = new Program(this.gl,
     {
@@ -38,7 +35,7 @@ export default class MenuElement
       fragment,
       uniforms:
       {
-        tMap: { value: texture },
+        tMap: { value: this.texture },
         u_imageSize: { value: [0, 0] },
         u_planeSize: { value: [0, 0] },
         u_alpha: { value: 0.0 },
@@ -49,13 +46,7 @@ export default class MenuElement
       }
     })
 
-    image.crossOrigin = 'anonymous'
-    image.src = this.element.getAttribute('data-src')
-    image.onload = () =>
-    {
-      this.program.uniforms.u_imageSize.value = [image.naturalWidth, image.naturalHeight]
-      texture.image = image
-    }
+    this.program.uniforms.u_imageSize.value = [this.texture.image.naturalWidth, this.texture.image.naturalHeight]
 
     this.plane = new Mesh(this.gl, {
       geometry: this.geo,

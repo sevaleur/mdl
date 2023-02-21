@@ -52,7 +52,32 @@ const handleReq = async api =>
   const preloader = await api.getSingle('preloader')
   const navigation = await api.getSingle('navigation')
 
+  const home = await api.getSingle('home', {
+    fetchLinks: [
+      'gallery.gallery_link_image',
+      'gallery.gallery_title'
+    ]
+  })
+  const about = await api.getSingle('about')
+  const all_galleries = await api.getAllByType('gallery')
+
+  const assets = []
+
+  assets.push(about.data.title_image.url)
+  assets.push(about.data.footer_image.url)
+
+  all_galleries.forEach(gallery =>
+  {
+    gallery.data.gallery_images.forEach(asset =>
+    {
+      assets.push(asset.image.url)
+    })
+  })
+
   return {
+    assets,
+    home: home.data,
+    about: about.data,
     meta,
     preloader,
     navigation
@@ -63,16 +88,9 @@ app.get('/', async(req, res) =>
 {
     const api = initApi(req)
     const defaults = await handleReq(api)
-    const home = await api.getSingle('home', {
-      fetchLinks: [
-        'gallery.gallery_link_image',
-        'gallery.gallery_title'
-      ]
-    })
 
     res.render('pages/home', {
-      ...defaults,
-      home: home.data
+      ...defaults
     })
 })
 
@@ -80,11 +98,9 @@ app.get('/about', async(req, res) =>
 {
     const api = initApi(req)
     const defaults = await handleReq(api)
-    const about = await api.getSingle('about')
 
     res.render('pages/about', {
-      ...defaults,
-      about: about.data
+      ...defaults
     })
 })
 

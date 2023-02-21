@@ -22,9 +22,9 @@ export default class App
 
     this.createContent()
 
+    this.createCanvas()
     this.createPreloader()
     this.createNavigation()
-    this.createCanvas()
     this.createPages()
 
     this.addEventListeners()
@@ -39,22 +39,22 @@ export default class App
     Create.
   */
 
+  createCanvas()
+  {
+    this.canvas = new Canvas({
+      template: this.template
+    })
+  }
+
   createPreloader()
   {
-    this.preloader = new Preloader()
+    this.preloader = new Preloader({ canvas: this.canvas })
     this.preloader.once('completed', this.onPreloaded.bind(this))
   }
 
   createNavigation()
   {
     this.navigation = new Navigation({
-      template: this.template
-    })
-  }
-
-  createCanvas()
-  {
-    this.canvas = new Canvas({
       template: this.template
     })
   }
@@ -84,6 +84,9 @@ export default class App
   onPreloaded()
   {
     this.onResize()
+
+    this.canvas.onPreloaded()
+
     this.preloader.destroy()
 
     this.page.show()

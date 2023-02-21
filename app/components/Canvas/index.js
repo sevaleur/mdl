@@ -29,7 +29,6 @@ export default class Canvas
     this.createScene()
 
     this.onResize()
-    this.onChange(this.template)
   }
 
   /*
@@ -130,6 +129,11 @@ export default class Canvas
   /*
     Events.
   */
+
+  onPreloaded()
+  {
+    this.onChange(this.template)
+  }
 
   onChangeStart()
   {

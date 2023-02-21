@@ -1,6 +1,6 @@
-import each from 'lodash/each'
+import { Texture } from 'ogl'
 import gsap from 'gsap'
-import Splitting from 'splitting'
+import each from 'lodash/each'
 
 import Component from "classes/Component"
 
@@ -8,26 +8,62 @@ import { COLOR_CULTURED, COLOR_CADET_BLUE_CRAYOLA, COLOR_BLACK_CORAL } from '../
 
 export default class Preloader extends Component
 {
-  constructor()
+  constructor({ canvas })
   {
     super({
       element: '.preloader',
       elements: {
         numberText: '.preloader__number__text',
         svg: 'svg',
-
-        images: document.querySelectorAll('img'),
       }
     })
 
-    Splitting({
-      target: this.elements.numberText,
-      by: 'chars'
-    })
+    this.canvas = canvas
 
     this.length = 0
     this.finished = false
+    window.TEXTURES = {}
 
+    this.createLoader()
+    this.startLoading()
+  }
+
+  createLoader()
+  {
+    window.ASSETS.forEach(image =>
+    {
+      const texture = new Texture(this.canvas.gl, {
+        generateMipmaps: false
+      })
+
+      const media = new window.Image()
+      media.crossOrigin = 'Anonymous'
+      media.src = image
+      media.onload = () =>
+      {
+        texture.image = media
+
+        this.onAssetLoaded()
+      }
+
+      window.TEXTURES[image] = texture
+    })
+  }
+
+  onAssetLoaded(image)
+  {
+    this.length += 1
+
+    this.percent = this.length / window.ASSETS.length
+
+    this.elements.numberText.innerHTML = `${Math.round(this.percent * 100)}`
+
+    if(this.percent === 1 && this.finished)
+      this.onLoaded()
+  }
+
+  startLoading()
+  {
     this.tl = gsap.timeline({
       onComplete: () => {
         this.finished = true
@@ -37,33 +73,8 @@ export default class Preloader extends Component
       }
     })
 
-    this.createLoader()
-
     const paths = document.querySelectorAll('path')
     each(paths, p => this.loading(p))
-  }
-
-  createLoader()
-  {
-    each(this.elements.images, element =>
-    {
-      element.onload = () => this.onAssetLoaded(element)
-      element.src = element.getAttribute('data-src')
-    })
-
-    this.number_chars = this.elements.numberText.querySelectorAll('.char')
-  }
-
-  onAssetLoaded(image)
-  {
-    this.length += 1
-
-    this.percent = this.length / this.elements.images.length
-
-    this.elements.numberText.innerHTML = `${Math.round(this.percent * 100)}`
-
-    if(this.percent === 1 && this.finished)
-      this.onLoaded()
   }
 
   loading(p)
