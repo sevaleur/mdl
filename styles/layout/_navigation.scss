@@ -25,7 +25,7 @@
 
 .navigation__home__link
 {
-  @extend %link__reversed--hidden;
+  @extend %link__center--hidden;
   @extend %desc-16;
 
   font-weight: 300;
@@ -47,7 +47,7 @@
 
 .navigation__list__item__link
 {
-  @extend %link--hidden;
+  @extend %link__center--hidden;
   @extend %desc-16;
 
   font-weight: 300;

@@ -225,7 +225,8 @@ export default class App
     {
       link.onclick = event =>
       {
-        window.open(link.children[0].href, '_blank')
+        const target = link.querySelector('a')
+        window.open(target.href, '_blank')
       }
     })
   }

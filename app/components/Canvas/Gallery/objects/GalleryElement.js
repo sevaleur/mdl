@@ -48,6 +48,10 @@ export default class GalleryElement
       }
     })
 
+    this.a_r = this.texture.image.naturalHeight / this.texture.image.naturalWidth
+    this.target_height = this.a_r * 300
+    this.target_width = this.a_r * this.new_height
+
     this.program.uniforms.u_imageSize.value = [this.texture.image.naturalWidth, this.texture.image.naturalHeight]
 
     this.plane = new Mesh(this.gl, {

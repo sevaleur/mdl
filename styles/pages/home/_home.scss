@@ -25,6 +25,12 @@
         top: 50%;
         left: 50%;
         transform: translate(-32rem * 0.5, -50%);
+        transform: translateY(-50%);
+
+        border: 2px solid $color-cadet-blue-crayola;
+        border-right: none;
+        border-left: none;
+        padding: 2rem;
       }
 
       &__link
@@ -100,24 +106,18 @@
     right: 4rem;
     z-index: 1;
 
+    display: flex;
+    align-items: center;
+
     &__title
     {
       text-align: right;
       margin: 0 1rem;
-      padding: 0 0.5rem;
-
-      &:nth-child(even)
-      {
-        @extend %link__reversed--hidden;
-      }
-
-      &:nth-child(odd)
-      {
-        @extend %link--hidden;
-      }
+      padding: 2rem 0.5rem;
 
       &__text
       {
+        @extend %link__center--hidden;
         @extend %desc-16;
 
         font-weight: 300;

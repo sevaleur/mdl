@@ -13,7 +13,6 @@ html
   overscroll-behavior: none;
   overflow: hidden;
   position: fixed;
-  line-height: 1;
 
   background: #030303;
   color: $color-cultured;
@@ -97,6 +96,7 @@ img
 [data-animation="title"]
 {
   overflow: hidden;
+  //line-height: 1;
 
   span
   {

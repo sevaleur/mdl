@@ -6,35 +6,10 @@
 }
 
 /*
-  Top link line.
+  Bottom link line // from center.
 */
 
-%link__line__top {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-  transition: transform 0.7s $ease-in-out;
-}
-
-%link__line__top--visible {
-  transform: scaleX(1);
-  transform-origin: right center;
-}
-
-%link__line__top--hidden {
-  transform: scaleX(0);
-  transform-origin: left center;
-}
-
-/*
-  Bottom link line.
-*/
-
-%link__line__btm {
+%link__line__center {
   content: '';
   position: absolute;
   bottom: 0;
@@ -45,14 +20,104 @@
   transition: transform 0.7s $ease-in-out;
 }
 
-%link__line__btm--visible {
+%link__line__center--visible {
+  transform: scaleX(1);
+  transform-origin: center center;
+}
+
+%link__line__center--hidden {
+  transform: scaleX(0);
+  transform-origin: center center;
+}
+
+/*
+  Complete link center.
+*/
+
+%link__center {
+  @extend %link__wrapper;
+
+  display: inline-block;
+
+  &:after {
+    @extend %link__line__center;
+    @extend %link__line__center--visible;
+  }
+
+  &:hover {
+    &:after {
+      @extend %link__line__center--hidden;
+    }
+  }
+}
+
+%link__center--hidden {
+  @extend %link__wrapper;
+
+  display: inline-block;
+
+  &:after {
+    @extend %link__line__center;
+    @extend %link__line__center--hidden;
+  }
+
+  &:hover {
+
+    &:after {
+      @extend %link__line__center--visible;
+    }
+  }
+}
+
+
+/*
+  Top link line left.
+*/
+
+%link__line__top {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.7s $ease-in-out;
+}
+
+%link__line__top--visible {
   transform: scaleX(1);
   transform-origin: left center;
 }
 
-%link__line__btm--hidden {
+%link__line__top--hidden {
   transform: scaleX(0);
   transform-origin: right center;
+}
+
+/*
+  Bottom link line right.
+*/
+
+%link__line__btm {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.7s $ease-in-out;
+}
+
+%link__line__btm--visible {
+  transform: scaleX(1);
+  transform-origin: right center;
+}
+
+%link__line__btm--hidden {
+  transform: scaleX(0);
+  transform-origin: left center;
 }
 
 /*
@@ -117,117 +182,6 @@
 
 
 /*
-  Top link line // reversed.
-*/
-
-%link__line__top__reversed {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-  transition: transform 0.7s $ease-in-out;
-}
-
-%link__line__top__reversed--visible {
-  transform: scaleX(1);
-  transform-origin: left center;
-}
-
-%link__line__top__reversed--hidden {
-  transform: scaleX(0);
-  transform-origin: right center;
-}
-
-/*
-  Bottom link line // reversed.
-*/
-
-%link__line__btm__reversed {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-  transition: transform 0.7s $ease-in-out;
-}
-
-%link__line__btm__reversed--visible {
-  transform: scaleX(1);
-  transform-origin: right center;
-}
-
-%link__line__btm__reversed--hidden {
-  transform: scaleX(0);
-  transform-origin: left center;
-}
-
-/*
-  Complete link // reversed.
-*/
-
-%link__reversed {
-  @extend %link__wrapper;
-
-  display: inline-block;
-
-  &:before
-  {
-    @extend %link__line__top__reversed;
-    @extend %link__line__top__reversed--visible;
-  }
-
-  &:after {
-    @extend %link__line__btm__reversed;
-    @extend %link__line__btm__reversed--visible;
-  }
-
-  &:hover {
-    &:before
-    {
-      @extend %link__line__top__reversed--hidden;
-    }
-
-    &:after {
-      @extend %link__line__btm__reversed--hidden;
-    }
-  }
-}
-
-%link__reversed--hidden {
-  @extend %link__wrapper;
-
-  display: inline-block;
-
-  &:before
-  {
-    @extend %link__line__top__reversed;
-    @extend %link__line__top__reversed--hidden;
-  }
-
-  &:after {
-    @extend %link__line__btm__reversed;
-    @extend %link__line__btm__reversed--hidden;
-  }
-
-  &:hover {
-    &:before
-    {
-      @extend %link__line__top__reversed--visible;
-    }
-
-    &:after {
-      @extend %link__line__btm__reversed--visible;
-    }
-  }
-}
-
-
-/*
   Top link line // Menu gallery.
 */
 
@@ -253,7 +207,7 @@
 }
 
 /*
-  Bottom link line // reversed.
+  Bottom link line // Menu gallery.
 */
 
 %link__line__btm__menu {
@@ -278,7 +232,7 @@
 }
 
 /*
-  Complete link // reversed.
+  Complete link // Menu gallery.
 */
 
 %link__menu {
