@@ -1,0 +1,16 @@
+extends ../base.pug
+
+block variables
+    - var template = 'video'
+
+block content
+  .short(data-background=video.background_color data-color=video.text_color)
+    .short__wrapper
+      figure.short__selected
+        video.short__selected__video(src=video.selected_video.url autoplay loop)
+
+      .short__title
+        h1.short__title__text=video.video_title
+
+      .short__desc
+        p.short__desc__text!=video.video_desc.replace(/\n/g, '<br>')

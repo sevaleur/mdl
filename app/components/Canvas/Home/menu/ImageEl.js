@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import vertex from 'shaders/home/element/vertex.glsl'
 import fragment from 'shaders/home/element/fragment.glsl'
 
-export default class MenuElement
+export default class ImageEl
 {
   constructor({ element, index, geometry, gl, length, scene, screen, viewport })
   {
@@ -27,7 +27,7 @@ export default class MenuElement
 
   createMesh()
   {
-    this.texture = window.TEXTURES[this.element.getAttribute('data-src')]
+    this.texture = window.IMAGE_TEXTURES[this.element.getAttribute('data-src')]
 
     this.program = new Program(this.gl,
     {

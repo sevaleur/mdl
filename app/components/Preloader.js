@@ -22,7 +22,7 @@ export default class Preloader extends Component
 
     this.length = 0
     this.finished = false
-    window.TEXTURES = {}
+    window.IMAGE_TEXTURES = {}
 
     this.createLoader()
     this.startLoading()
@@ -46,7 +46,7 @@ export default class Preloader extends Component
         this.onAssetLoaded()
       }
 
-      window.TEXTURES[image] = texture
+      window.IMAGE_TEXTURES[image] = texture
     })
   }
 

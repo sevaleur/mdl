@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import map from 'lodash/map'
 import Prefix from 'prefix'
 
-import MenuElement from './menu/MenuElement'
+import ImageEl from './menu/ImageEl'
 
 export default class Gallery
 {
@@ -52,20 +52,21 @@ export default class Gallery
     this.gallery_element = document.querySelector('.home__gallery')
     this.gallery_wrapper = document.querySelector('.home__gallery__wrapper')
 
-    this.elements = document.querySelectorAll('img.home__gallery__media__image')
-    this.length = this.elements.length
+    this.img_el = document.querySelectorAll('img.home__gallery__media__image')
+
+    this.img_length = this.img_el.length
   }
 
   createMenu()
   {
-    this.menu_elements = map(this.elements, (element, index) =>
+    this.image_elements = map(this.img_el, (element, index) =>
     {
-      return new MenuElement({
+      return new ImageEl({
         element,
         index,
         geometry: this.geo,
         gl: this.gl,
-        length: this.length,
+        length: this.img_length,
         scene: this.group,
         screen: this.screen,
         viewport: this.viewport
@@ -79,12 +80,12 @@ export default class Gallery
 
   show()
   {
-    map(this.menu_elements, element => element.show())
+    map(this.image_elements, element => element.show())
   }
 
   hide()
   {
-    map(this.menu_elements, element => element.hide())
+    map(this.image_elements, element => element.hide())
   }
 
   /*
@@ -95,12 +96,12 @@ export default class Gallery
   {
     this.bounds = this.gallery_wrapper.getBoundingClientRect()
 
-    map(this.menu_elements, element => element.onResize({
+    map(this.image_elements, element => element.onResize({
       screen: this.screen,
       viewport: this.viewport,
     }))
 
-    this.scroll.limit = this.bounds.width - this.menu_elements[0].element.clientWidth
+    this.scroll.limit = this.bounds.width - this.image_elements[0].element.clientWidth
   }
 
   onTouchDown({ y, x })
@@ -136,7 +137,7 @@ export default class Gallery
 
     this.gallery_element.style[this.t_prefix] = `translateX(${this.scroll.current}px)`
 
-    map(this.menu_elements, element => element.update(this.scroll))
+    map(this.image_elements, element => element.update(this.scroll))
 
     this.scroll.last = this.scroll.current
   }

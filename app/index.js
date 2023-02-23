@@ -8,6 +8,7 @@ import Navigation from 'components/Navigation'
 import Home from 'pages/home'
 import About from 'pages/about'
 import Gallery from 'pages/gallery'
+import Video from 'pages/video'
 
 export default class App
 {
@@ -70,7 +71,8 @@ export default class App
     this.pages = {
       home: new Home(),
       about: new About(),
-      gallery: new Gallery()
+      gallery: new Gallery(),
+      video: new Video()
     }
 
     this.page = this.pages[this.template]

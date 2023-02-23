@@ -5,8 +5,8 @@ const prismic = require('@prismicio/client')
 const prismicH = require('@prismicio/helpers')
 
 const express = require('express')
-
 const app = express()
+
 const path = require('path')
 const port = 3000
 
@@ -26,6 +26,11 @@ const linkResolver = doc =>
     if(doc.type === 'gallery')
     {
       return `/gallery/${doc.slug}`
+    }
+
+    if(doc.type === 'video')
+    {
+      return `/video/${doc.slug}`
     }
 
     if(doc.type === 'about')
@@ -58,7 +63,9 @@ const handleReq = async api =>
       'gallery.gallery_title'
     ]
   })
+
   const about = await api.getSingle('about')
+
   const all_galleries = await api.getAllByType('gallery')
 
   const assets = []
@@ -115,6 +122,25 @@ app.get('/gallery/:uid', async(req, res) =>
       res.render('pages/gallery', {
         ...defaults,
         gallery: gallery.data
+      })
+    }
+    catch (error)
+    {
+      console.log(error)
+    }
+})
+
+app.get('/video/:uid', async(req, res) =>
+{
+    try
+    {
+      const api = initApi(req)
+      const defaults = await handleReq(api)
+      const video = await api.getByUID('video', req.params.uid)
+
+      res.render('pages/video', {
+        ...defaults,
+        video: video.data
       })
     }
     catch (error)

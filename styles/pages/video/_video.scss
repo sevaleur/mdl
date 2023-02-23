@@ -1,0 +1,60 @@
+.short
+{
+  @extend %cover;
+
+  &__wrapper
+  {
+    @extend %cover;
+
+    padding: 10rem;
+  }
+
+  &__selected
+  {
+    height: 80%;
+    width: 100%;
+
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &__video
+    {
+      @extend %cover;
+
+      object-fit: cover;
+    }
+  }
+
+  &__title
+  {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+
+    width: 100%;
+    text-align: center;
+
+    &__text
+    {
+      @extend %title-80;
+    }
+  }
+
+  &__desc
+  {
+    position: absolute;
+
+    bottom: 5%;
+    left: 10rem;
+    transform: translateY(-5%);
+
+    &__text
+    {
+      @extend %desc-30;
+
+      line-height: 3.5rem;
+    }
+  }
+}

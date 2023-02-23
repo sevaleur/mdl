@@ -9,14 +9,12 @@ block content
 
       .home__gallery
         .home__gallery__wrapper
+
           .home__gallery__imgwrap
             each obj in home.work_gallery
               a.home__gallery__link(href=Link=(`${obj.work_gallery_images.type}/${obj.work_gallery_images.uid}`))
                 figure.home__gallery__media
                   img.home__gallery__media__image(alt=obj.work_gallery_images.data.gallery_link_image.alt data-src=obj.work_gallery_images.data.gallery_link_image.url)
-
-          .home__gallery__videowrap
-            
 
       .home__content
         each obj in home.work_gallery

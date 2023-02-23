@@ -28,7 +28,7 @@ export default class Media
 
   createMesh()
   {
-    this.texture = window.TEXTURES[this.element.getAttribute('data-src')]
+    this.texture = window.IMAGE_TEXTURES[this.element.getAttribute('data-src')]
 
     this.program = new Program(this.gl,
     {
