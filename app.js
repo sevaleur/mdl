@@ -45,6 +45,12 @@ app.use((req, res, next) => {
     res.locals.Link = linkResolver
     res.locals.prismicH = prismicH
 
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    )
+
     next()
   })
 

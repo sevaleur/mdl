@@ -1,5 +1,9 @@
+import gsap from 'gsap'
+
 import Page from 'classes/Page'
 import Hover from 'animations/Hover'
+
+import { COLOR_CULTURED, COLOR_CADET_BLUE_CRAYOLA, COLOR_BLACK_CORAL } from '../../utils/color_variables'
 
 export default class Home extends Page
 {
@@ -19,6 +23,15 @@ export default class Home extends Page
     super.create()
 
     this.initAnimation()
+    this.createLogo()
+  }
+
+  createLogo()
+  {
+    this.tl = gsap.timeline()
+
+    const paths = document.querySelectorAll('path')
+    paths.forEach(path => this.drawLogo(path))
   }
 
   initAnimation()
@@ -29,6 +42,38 @@ export default class Home extends Page
     this.hover = new Hover(this.titles)
 
     this.onHover()
+  }
+
+  drawLogo(path)
+  {
+    const colors = [COLOR_CADET_BLUE_CRAYOLA, COLOR_BLACK_CORAL, COLOR_CULTURED]
+
+    this.svg_path = path
+    const delay = Math.random()
+    const length = this.svg_path.getTotalLength()
+
+    colors.forEach((color, index) =>
+    {
+      this.tl.set(this.svg_path,
+      {
+        strokeDasharray: length + 0.5,
+        strokeDashoffset: length + 0.6,
+        fill: '#000000',
+        autoRound: false
+      }, 0)
+
+      this.tl.to(this.svg_path,
+      {
+        strokeDashoffset: 0,
+        autoRound: false,
+        fill: '#EEF1EF',
+        duration: 2.,
+        ease: `power3.out`,
+        delay: 2
+      }, index * 0.25 + delay)
+
+      this.svg_path.setAttribute('stroke', color)
+    })
   }
 
   onHover()

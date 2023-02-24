@@ -22,6 +22,8 @@
 
 /*! ../../../../../../../../fonts/amatic.png */
 
+/*! ../../utils/color_variables */
+
 /*! ../core/Geometry.js */
 
 /*! ../math/Euler.js */
@@ -41,8 +43,6 @@
 /*! ../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */
 
 /*! ../utils/Raycast */
-
-/*! ../utils/color_variables */
 
 /*! ../utils/log.js */
 
@@ -339,6 +339,8 @@
 /*! ./memoize */
 
 /*! ./menu/ImageEl */
+
+/*! ./menu/VideoEl */
 
 /*! ./named-references */
 
@@ -1212,6 +1214,10 @@
 
 /*!****************************************************!*\
   !*** ./app/components/Canvas/Home/menu/ImageEl.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./app/components/Canvas/Home/menu/VideoEl.js ***!
   \****************************************************/
 
 /*!****************************************************!*\

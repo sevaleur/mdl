@@ -9,7 +9,8 @@ export default class Video extends Page
       element: '.video',
       elements: {
         title: '.short__title__text',
-        desc: '.short__desc__text'
+        desc: '.short__desc__text',
+        video: 'video'
       }
     })
 

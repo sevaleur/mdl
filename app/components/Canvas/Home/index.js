@@ -5,6 +5,7 @@ import map from 'lodash/map'
 import Prefix from 'prefix'
 
 import ImageEl from './menu/ImageEl'
+import VideoEl from './menu/VideoEl'
 
 export default class Gallery
 {
@@ -53,8 +54,10 @@ export default class Gallery
     this.gallery_wrapper = document.querySelector('.home__gallery__wrapper')
 
     this.img_el = document.querySelectorAll('img.home__gallery__image__media__image')
+    this.vid_el = document.querySelectorAll('video.home__gallery__video__media__video')
 
     this.img_length = this.img_el.length
+    this.vid_length = this.vid_el.length
   }
 
   createMenu()
@@ -72,6 +75,20 @@ export default class Gallery
         viewport: this.viewport
       })
     })
+
+    this.video_elements = map(this.vid_el, (element, index) =>
+    {
+      return new VideoEl({
+        element,
+        index,
+        geometry: this.geo,
+        gl: this.gl,
+        length: this.vid_length,
+        scene: this.group,
+        screen: this.screen,
+        viewport: this.viewport
+      })
+    })
   }
 
   /*
@@ -81,11 +98,13 @@ export default class Gallery
   show()
   {
     map(this.image_elements, element => element.show())
+    map(this.video_elements, element => element.show())
   }
 
   hide()
   {
     map(this.image_elements, element => element.hide())
+    map(this.video_elements, element => element.hide())
   }
 
   /*
@@ -100,6 +119,13 @@ export default class Gallery
       screen: this.screen,
       viewport: this.viewport,
     }))
+
+    map(this.video_elements, element => element.onResize({
+      screen: this.screen,
+      viewport: this.viewport,
+    }))
+
+    console.log(this.bounds)
 
     this.scroll.limit = this.bounds.width - this.image_elements[0].element.clientWidth
   }
@@ -132,12 +158,13 @@ export default class Gallery
 
   update()
   {
-    this.scroll.target = gsap.utils.clamp(-this.scroll.limit, 0, this.scroll.target)
+    this.scroll.target = gsap.utils.clamp(-this.scroll.limit, this.scroll.limit, this.scroll.target)
     this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
 
     this.gallery_element.style[this.t_prefix] = `translateX(${this.scroll.current}px)`
 
     map(this.image_elements, element => element.update(this.scroll))
+    map(this.video_elements, element => element.update(this.scroll))
 
     this.scroll.last = this.scroll.current
   }
