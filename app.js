@@ -60,7 +60,9 @@ const handleReq = async api =>
   const home = await api.getSingle('home', {
     fetchLinks: [
       'gallery.gallery_link_image',
-      'gallery.gallery_title'
+      'gallery.gallery_title',
+      'video.selected_video',
+      'video.video_title'
     ]
   })
 

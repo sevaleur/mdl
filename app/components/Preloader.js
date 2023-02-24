@@ -118,9 +118,9 @@ export default class Preloader extends Component
 
       this.animateOut.to(this.element,
       {
-        duration: 1.5,
+        duration: 1.,
         ease: 'expo.out',
-        opacity: 0,
+        opacity: 0.0,
       }, '-=1')
 
       this.animateOut.call(_ =>

@@ -9,7 +9,7 @@ export default class Home extends Page
       id: 'home',
       element: '.home',
       elements: {
-
+        logo: 'svg'
       }
     })
   }
@@ -23,7 +23,7 @@ export default class Home extends Page
 
   initAnimation()
   {
-    this.link_elements = document.querySelectorAll('.home__gallery__link')
+    this.link_elements = document.querySelectorAll('.home__gallery__image__link')
     this.titles = document.querySelectorAll('[data-splitting]')
 
     this.hover = new Hover(this.titles)

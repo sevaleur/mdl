@@ -4,6 +4,18 @@
 
   z-index: 0;
 
+  svg
+  {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 40rem;
+    width: 40rem;
+    opacity: 1;
+  }
+
   &__wrapper
   {
     @extend %cover;
@@ -22,55 +34,115 @@
 
       }
 
+      &__vidwrap
+      {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        right: 70%;
+        transform: translateY(-50%);
+
+        /* border: 2px solid $color-cadet-blue-crayola;
+        border-right: none;
+        border-left: none; */
+        padding: 2rem;
+      }
+
+      &__video
+      {
+
+        &__link
+        {
+          @extend %link__menu--hidden;
+
+          padding: 2rem 0;
+          display: block;
+          margin: 0 1.325rem;
+
+          &:first-child
+          {
+            margin-left: 0;
+          }
+
+          &:last-child
+          {
+            margin-right: 0;
+          }
+        }
+
+        &__media
+        {
+          height: 65rem;
+          width: 15rem;
+          position: relative;
+
+          //visibility: hidden;
+
+          &__video
+          {
+            @extend %cover;
+
+            object-fit: cover;
+          }
+        }
+      }
+
+
       &__imgwrap
       {
         display: flex;
         align-items: center;
         position: absolute;
         top: 50%;
-        left: 60%;
-        transform: translate(-32rem * 0.5, -60%);
+        left: 70%;
+        transform: translateY(-50%);
 
-        border: 2px solid $color-cadet-blue-crayola;
+       /*  border: 2px solid $color-cadet-blue-crayola;
         border-right: none;
-        border-left: none;
+        border-left: none; */
         padding: 2rem;
       }
 
-      &__link
+      &__image
       {
-        @extend %link__menu--hidden;
 
-        padding: 2rem 0;
-        display: block;
-        margin: 0 1.325rem;
-
-        &:first-child
+        &__link
         {
-          margin-left: 0;
+          @extend %link__menu--hidden;
+
+          padding: 2rem 0;
+          display: block;
+          margin: 0 1.325rem;
+
+          &:first-child
+          {
+            margin-left: 0;
+          }
+
+          &:last-child
+          {
+            margin-right: 0;
+          }
         }
 
-        &:last-child
+        &__media
         {
-          margin-right: 0;
+          height: 65rem;
+          width: 15rem;
+          position: relative;
+
+          visibility: hidden;
+
+          &__image
+          {
+            @extend %cover;
+
+            object-fit: cover;
+          }
         }
       }
 
-      &__media
-      {
-        height: 65rem;
-        width: 15rem;
-        position: relative;
-
-        visibility: hidden;
-
-        &__image
-        {
-          @extend %cover;
-
-          object-fit: cover;
-        }
-      }
 
   }
 

@@ -52,7 +52,7 @@ export default class Gallery
     this.gallery_element = document.querySelector('.home__gallery')
     this.gallery_wrapper = document.querySelector('.home__gallery__wrapper')
 
-    this.img_el = document.querySelectorAll('img.home__gallery__media__image')
+    this.img_el = document.querySelectorAll('img.home__gallery__image__media__image')
 
     this.img_length = this.img_el.length
   }
