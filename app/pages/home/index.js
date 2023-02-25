@@ -62,15 +62,31 @@ export default class Home extends Page
         autoRound: false
       }, 0)
 
-      this.tl.to(this.svg_path,
+      if(this.svg_path.classList.contains('corner'))
       {
-        strokeDashoffset: 0,
-        autoRound: false,
-        fill: '#EEF1EF',
-        duration: 2.,
-        ease: `power3.out`,
-        delay: 2
-      }, index * 0.25 + delay)
+        this.tl.to(this.svg_path,
+        {
+          strokeDashoffset: 0,
+          autoRound: false,
+          fill: 'none',
+          strokeWidth: 6,
+          duration: 2.,
+          ease: `power3.out`,
+          delay: 2
+        }, index * 0.25 + delay)
+      }
+      else
+      {
+        this.tl.to(this.svg_path,
+        {
+          strokeDashoffset: 0,
+          autoRound: false,
+          fill: '#EEF1EF',
+          duration: 3.,
+          ease: `power3.out`,
+          delay: 3
+        }, index * 0.52 + delay)
+      }
 
       this.svg_path.setAttribute('stroke', color)
     })

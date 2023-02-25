@@ -1,0 +1,11 @@
+/*! ../../utils/color_variables */
+
+/*! animations/Hover */
+
+/*! classes/Page */
+
+/*! gsap */
+
+/*!*********************************!*\
+  !*** ./app/pages/home/index.js ***!
+  \*********************************/

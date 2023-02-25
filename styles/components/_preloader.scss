@@ -8,21 +8,14 @@
   text-align: center;
   z-index: z('preloader');
 
-  svg
-  {
-    height: 40rem;
-    width: 40rem;
-    opacity: 1;
-  }
-
   &__number
   {
-    @extend %desc-20;
+    @extend %desc-100;
 
     position: absolute;
-    bottom: 30%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -10%);
+    transform: translate(-50%, -50%);
     overflow: hidden;
 
     &__text
