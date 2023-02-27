@@ -139,6 +139,7 @@ export default class VideoEl
     this.plane.scale.y = this.viewport.height * this.bounds.height / this.screen.height
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
+    this.program.uniforms.u_imageSize.value = [this.video.videoWidth, this.video.videoHeight]
   }
 
   updateX(current=0)
@@ -163,11 +164,11 @@ export default class VideoEl
   {
     if(!this.bounds) return
 
-    if (this.video.readyState >= this.video.HAVE_ENOUGH_DATA) {
+    if (this.video.readyState >= this.video.HAVE_ENOUGH_DATA)
+    {
       if (!this.texture.image) this.texture.image = this.video
       this.texture.needsUpdate = true
-      this.program.uniforms.u_imageSize.value = [this.video.videoWidth, this.video.videoHeight]
-  }
+    }
 
     this.updateScale()
     this.updateX(scroll.current)

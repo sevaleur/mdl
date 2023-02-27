@@ -125,8 +125,6 @@ export default class Gallery
       viewport: this.viewport,
     }))
 
-    console.log(this.bounds)
-
     this.scroll.limit = this.bounds.width - this.image_elements[0].element.clientWidth
   }
 
@@ -158,7 +156,7 @@ export default class Gallery
 
   update()
   {
-    this.scroll.target = gsap.utils.clamp(-this.scroll.limit, this.scroll.limit, this.scroll.target)
+    this.scroll.target = gsap.utils.clamp(-this.scroll.limit, 0, this.scroll.target)
     this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
 
     this.gallery_element.style[this.t_prefix] = `translateX(${this.scroll.current}px)`

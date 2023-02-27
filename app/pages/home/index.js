@@ -69,7 +69,7 @@ export default class Home extends Page
           strokeDashoffset: 0,
           autoRound: false,
           fill: 'none',
-          strokeWidth: 6,
+          strokeWidth: 2,
           duration: 2.,
           ease: `power3.out`,
           delay: 2
@@ -81,7 +81,7 @@ export default class Home extends Page
         {
           strokeDashoffset: 0,
           autoRound: false,
-          fill: '#EEF1EF',
+          fill: '#949494',
           duration: 3.,
           ease: `power3.out`,
           delay: 3

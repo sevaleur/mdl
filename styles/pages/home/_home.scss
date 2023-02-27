@@ -4,15 +4,15 @@
 
   z-index: 0;
 
-  svg
+  .logo
   {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    height: 40rem;
-    width: 40rem;
+    height: 80rem;
+    width: 100rem;
     opacity: 1;
   }
 
@@ -38,15 +38,12 @@
       {
         display: flex;
         align-items: center;
+        padding: 2rem;
+
         position: absolute;
         top: 50%;
-        right: 70%;
-        transform: translateY(-50%);
-
-        /* border: 2px solid $color-cadet-blue-crayola;
-        border-right: none;
-        border-left: none; */
-        padding: 2rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
 
       &__video
@@ -73,8 +70,8 @@
 
         &__media
         {
-          height: 65rem;
-          width: 15rem;
+          height: 55rem;
+          width: 10rem;
           position: relative;
 
           visibility: hidden;
@@ -95,8 +92,8 @@
         align-items: center;
         position: absolute;
         top: 50%;
-        left: 70%;
-        transform: translateY(-50%);
+        left: 150%;
+        transform: translate(-62%, -50%);
 
        /*  border: 2px solid $color-cadet-blue-crayola;
         border-right: none;
@@ -128,8 +125,8 @@
 
         &__media
         {
-          height: 65rem;
-          width: 15rem;
+          height: 55rem;
+          width: 10rem;
           position: relative;
 
           visibility: hidden;
@@ -153,13 +150,14 @@
     {
       position: absolute;
       bottom: 6rem;
-      left: 4rem;
+      left: 50%;
+      transform: translateX(-50%);
       text-align: center;
       padding: 1rem;
 
       &__text
       {
-        @extend %title-80;
+        @extend %title-50;
 
         padding: 1rem;
         overflow: hidden;
@@ -185,7 +183,20 @@
     display: flex;
     align-items: center;
 
-    &__title
+    &__link
+    {
+
+      &__media
+      {
+        height: 4rem;
+        width: 4rem;
+
+        position: relative;
+        stroke: #EEF1EF;
+      }
+    }
+
+    /* &__title
     {
       text-align: right;
       margin: 0 1rem;
@@ -201,12 +212,7 @@
         line-height: 1;
         padding: 1rem 0;
         cursor: pointer;
-
-        &__link
-        {
-          visibility: hidden;
-        }
       }
-    }
+    } */
   }
 }
