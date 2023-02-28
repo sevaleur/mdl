@@ -32,22 +32,43 @@ export default class Home extends Page
     this.selector_videos = document.querySelector('.selectors__videos')
     this.selector_photos = document.querySelector('.selectors__photos')
 
-    this.selector_videos.addEventListener('onchange', () =>
+    this.onMutation(this.selector_videos, this.selector_photos)
+  }
+
+  onMutation(videos, photos)
+  {
+    const videoObserver = new MutationObserver((e) =>
     {
       this.hover = null
 
       this.hover = new Hover(this.video_titles)
-
       this.onHover(this.video_link_elements)
+      console.log(e)
     })
 
-    this.selector_photos.addEventListener('onchange', () =>
+    videoObserver.observe(videos,
+    {
+      attributes: true,
+      attributeFilter: ['class'],
+      childList: true,
+      characterData: true
+    })
+
+    const photoObserver = new MutationObserver((e) =>
     {
       this.hover = null
 
       this.hover = new Hover(this.image_titles)
-
       this.onHover(this.image_link_elements)
+      console.log(e)
+    })
+
+    photoObserver.observe(photos,
+    {
+      attributes: true,
+      attributeFilter: ['class'],
+      childList: true,
+      characterData: true
     })
   }
 

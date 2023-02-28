@@ -45,11 +45,11 @@
     @extend %link__line__through__lr--visible;
   }
 
-  &:hover {
+  /* &:hover {
     &:after {
       @extend %link__line__through__lr--hidden;
     }
-  }
+  } */
 }
 
 %link__through__lr--hidden {
@@ -103,11 +103,11 @@
     @extend %link__line__through__rl--visible;
   }
 
-  &:hover {
+  /* &:hover {
     &:after {
       @extend %link__line__through__rl--hidden;
     }
-  }
+  } */
 }
 
 %link__through__rl--hidden {
