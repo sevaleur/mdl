@@ -32,7 +32,7 @@ export default class Gallery
     this.createGeometry()
     this.getElements()
     this.createMenu()
-    this.createMenuListener()
+    this.createMenuSelector()
 
     this.onResize()
 
@@ -64,35 +64,6 @@ export default class Gallery
     this.vid_length = this.vid_el.length
   }
 
-  createMenuListener()
-  {
-    this.selector_videos.setAttribute('class', 'selectors__videos--active')
-
-    this.selector_photos.addEventListener('click', () =>
-    {
-      gsap.to(this.scroll,
-      {
-        target: -this.scroll.limit,
-        duration: 0.5,
-      })
-
-      this.selector_videos.setAttribute('class', 'selectors__videos')
-      this.selector_photos.setAttribute('class', 'selectors__photos--active')
-    })
-
-    this.selector_videos.addEventListener('click', () =>
-    {
-      gsap.to(this.scroll,
-      {
-        target: 0,
-        duration: 0.5,
-      })
-
-      this.selector_photos.setAttribute('class', 'selectors__photos')
-      this.selector_videos.setAttribute('class', 'selectors__videos--active')
-    })
-  }
-
   createMenu()
   {
     this.image_elements = map(this.img_el, (element, index) =>
@@ -121,6 +92,35 @@ export default class Gallery
         screen: this.screen,
         viewport: this.viewport
       })
+    })
+  }
+
+  createMenuSelector()
+  {
+    this.selector_videos.setAttribute('class', 'selectors__videos--active')
+
+    this.selector_photos.addEventListener('click', () =>
+    {
+      gsap.to(this.scroll,
+      {
+        target: -this.scroll.limit,
+        duration: 0.5,
+      })
+
+      this.selector_videos.setAttribute('class', 'selectors__videos')
+      this.selector_photos.setAttribute('class', 'selectors__photos--active')
+    })
+
+    this.selector_videos.addEventListener('click', () =>
+    {
+      gsap.to(this.scroll,
+      {
+        target: 0,
+        duration: 0.5,
+      })
+
+      this.selector_photos.setAttribute('class', 'selectors__photos')
+      this.selector_videos.setAttribute('class', 'selectors__videos--active')
     })
   }
 

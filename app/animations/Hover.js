@@ -49,6 +49,12 @@ export default class Hover
       scaleX: 1,
       stagger: 0.03,
     })
+
+    gsap.to(this.elements,
+    {
+      duration: 1,
+      opacity: 1,
+    })
   }
 
   animate_out()
@@ -63,6 +69,12 @@ export default class Hover
       scaleY: 0,
       scaleX: 0,
       stagger: 0.03,
+    })
+
+    gsap.to(this.elements,
+    {
+        duration: 1,
+        opacity: 0
     })
   }
 }

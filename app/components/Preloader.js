@@ -117,9 +117,8 @@ export default class Preloader extends Component
           fill: 'none',
           strokeWidth: 2,
           duration: 2.,
-          ease: `power3.out`,
-          delay: 1
-        }, index * 0.25 + delay)
+          ease: `power3.out`
+        }, 0)
       }
       else
       {
@@ -130,7 +129,7 @@ export default class Preloader extends Component
           fill: '#EEF1EF',
           duration: 3.,
           ease: `power3.out`,
-          delay: 2
+          delay: 0.5
         }, index * 0.25 + delay)
       }
 
@@ -143,8 +142,8 @@ export default class Preloader extends Component
     return new Promise(resolve =>
     {
       this.animateOut = gsap.timeline({
-        delay: 1
-      })
+        delay: 0.5
+      }, '-=1')
 
       this.animateOut.to(this.element,
       {

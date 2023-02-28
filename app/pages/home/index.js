@@ -1,5 +1,3 @@
-import gsap from 'gsap'
-
 import Page from 'classes/Page'
 import Hover from 'animations/Hover'
 
@@ -31,34 +29,38 @@ export default class Home extends Page
     this.image_titles = document.querySelectorAll('.home__content__images__title__text')
     this.video_titles = document.querySelectorAll('.home__content__videos__title__text')
 
-    this.hover = new Hover(this.image_titles)
+    this.selector_videos = document.querySelector('.selectors__videos')
+    this.selector_photos = document.querySelector('.selectors__photos')
 
-    this.onHover()
+    this.selector_videos.addEventListener('onchange', () =>
+    {
+      this.hover = null
+
+      this.hover = new Hover(this.video_titles)
+
+      this.onHover(this.video_link_elements)
+    })
+
+    this.selector_photos.addEventListener('onchange', () =>
+    {
+      this.hover = null
+
+      this.hover = new Hover(this.image_titles)
+
+      this.onHover(this.image_link_elements)
+    })
   }
 
-  onHover()
+  onHover(links)
   {
-    /* this.video_link_elements.forEach((element, index) =>
+    links.forEach((link, index) =>
     {
-      element.addEventListener('mouseover', () =>
+      link.addEventListener('mouseover', () =>
       {
         this.hover.init(index)
       })
 
-      element.addEventListener('mouseleave', () =>
-      {
-        this.hover.reset()
-      })
-    }) */
-
-    this.image_link_elements.forEach((element, index) =>
-    {
-      element.addEventListener('mouseover', () =>
-      {
-        this.hover.init(index)
-      })
-
-      element.addEventListener('mouseleave', () =>
+      link.addEventListener('mouseleave', () =>
       {
         this.hover.reset()
       })
