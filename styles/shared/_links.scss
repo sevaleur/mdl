@@ -6,6 +6,122 @@
 }
 
 /*
+  line through - right out.
+*/
+
+%link__line__through__lr {
+  content: '';
+  position: absolute;
+  bottom: 50%;
+  left: 0%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.7s $ease-in-out;
+}
+
+%link__line__through__lr--visible {
+  transform: scaleX(1);
+  transform-origin: right center;
+}
+
+%link__line__through__lr--hidden {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+/*
+  Complete link through - left out.
+*/
+
+%link__through__lr {
+  @extend %link__wrapper;
+
+  display: inline-block;
+
+  &:after {
+    @extend %link__line__through__lr;
+    @extend %link__line__through__lr--visible;
+  }
+
+  &:hover {
+    &:after {
+      @extend %link__line__through__lr--hidden;
+    }
+  }
+}
+
+%link__through__lr--hidden {
+  @extend %link__wrapper;
+
+  display: inline-block;
+
+  &:after {
+    @extend %link__line__through__lr;
+    @extend %link__line__through__lr--hidden;
+  }
+}
+
+/*
+  line through - right//left out.
+*/
+
+%link__line__through__rl {
+  content: '';
+  position: absolute;
+  bottom: 50%;
+  left: 0%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.7s $ease-in-out;
+}
+
+%link__line__through__rl--visible {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+%link__line__through__rl--hidden {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/*
+  Complete link through - right left out.
+*/
+
+%link__through__rl {
+  @extend %link__wrapper;
+
+  display: inline-block;
+
+  &:after {
+    @extend %link__line__through__rl;
+    @extend %link__line__through__rl--visible;
+  }
+
+  &:hover {
+    &:after {
+      @extend %link__line__through__rl--hidden;
+    }
+  }
+}
+
+%link__through__rl--hidden {
+  @extend %link__wrapper;
+
+  display: inline-block;
+
+  &:after {
+    @extend %link__line__through__rl;
+    @extend %link__line__through__rl--hidden;
+  }
+}
+
+/*
   Bottom link line // from center.
 */
 

@@ -8,7 +8,7 @@
   text-align: center;
   z-index: z('preloader');
 
-  .logo
+  .logo_preloader
   {
     position: absolute;
     top: 50%;
@@ -22,12 +22,12 @@
 
   &__number
   {
-    @extend %desc-100;
+    @extend %desc-50;
 
     position: absolute;
-    bottom: 30%;
+    bottom: 25%;
     left: 50%;
-    transform: translate(-50%, -30%);
+    transform: translate(-50%, -25%);
     overflow: hidden;
 
     &__text

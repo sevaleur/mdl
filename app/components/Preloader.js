@@ -19,6 +19,7 @@ export default class Preloader extends Component
     this.canvas = canvas
 
     this.length = 0
+    this.finished = false
 
     window.IMAGE_TEXTURES = {}
 
@@ -50,10 +51,33 @@ export default class Preloader extends Component
 
   createLogo()
   {
-    this.tl = gsap.timeline()
-
+    const colors = [COLOR_CADET_BLUE_CRAYOLA, COLOR_BLACK_CORAL, COLOR_CULTURED]
     const paths = document.querySelectorAll('path')
-    paths.forEach(path => this.drawLogo(path))
+
+    this.tl = gsap.timeline({
+      onComplete: () =>
+      {
+        this.tl.reverse()
+      },
+      onReverseComplete: () =>
+      {
+        paths.forEach(p =>
+        {
+          this.tl.set(p,
+          {
+            fill: '#000'
+          })
+
+          p.setAttribute('stroke', '#000000')
+        })
+
+        this.finished = true
+        if(this.percent === 1 && this.finished)
+          this.onLoaded()
+      }
+    })
+
+    paths.forEach(path => this.drawLogo(path, colors))
   }
 
   onAssetLoaded(image)
@@ -64,14 +88,12 @@ export default class Preloader extends Component
 
     this.elements.numberText.innerHTML = `${Math.round(this.percent * 100)}`
 
-    if(this.percent === 1)
+    if(this.percent === 1 && this.finished)
       this.onLoaded()
   }
 
-  drawLogo(path)
+  drawLogo(path, colors)
   {
-    const colors = [COLOR_CADET_BLUE_CRAYOLA, COLOR_BLACK_CORAL, COLOR_CULTURED]
-
     this.svg_path = path
     const delay = Math.random()
     const length = this.svg_path.getTotalLength()
@@ -96,7 +118,7 @@ export default class Preloader extends Component
           strokeWidth: 2,
           duration: 2.,
           ease: `power3.out`,
-          delay: 2
+          delay: 1
         }, index * 0.25 + delay)
       }
       else
@@ -108,8 +130,8 @@ export default class Preloader extends Component
           fill: '#EEF1EF',
           duration: 3.,
           ease: `power3.out`,
-          delay: 3
-        }, index * 0.52 + delay)
+          delay: 2
+        }, index * 0.25 + delay)
       }
 
       this.svg_path.setAttribute('stroke', color)
@@ -121,7 +143,7 @@ export default class Preloader extends Component
     return new Promise(resolve =>
     {
       this.animateOut = gsap.timeline({
-        delay: 2
+        delay: 1
       })
 
       this.animateOut.to(this.element,

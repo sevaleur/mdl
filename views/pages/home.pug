@@ -7,14 +7,13 @@ block content
   .home(data-background=home.background_color data-color=home.text_color)
     .home__wrapper
 
-      svg.logo(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.1 258.67" stroke-width='1px' fill='none' stroke='#000' stroke-miterlimit='10')
-        path.corner(d="M291.1 3h25v25")
-      svg.logo(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.1 258.67" stroke-width='1px' fill='none' stroke='#000' stroke-miterlimit='10')
-        path.corner(d="M315.66 230.67v25h-25")
-      svg.logo(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.1 258.67" stroke-width='1px' fill='none' stroke='#000' stroke-miterlimit='10')
-        path.corner(d="M28 255.17H3v-25")
-      svg.logo(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.1 258.67" stroke-width='1px' fill='none' stroke='#000' stroke-miterlimit='10')
-        path.corner(d="M3 28V3h25")
+      .selectors
+        .selectors__videos
+          p.selectors__videos__text=home.video_selector
+        .selectors__slash
+          p.selectors__slash__text= '|'
+        .selectors__photos
+          p.selectors__photos__text=home.photo_selector
 
       .home__gallery
         .home__gallery__wrapper
@@ -32,11 +31,17 @@ block content
                   img.home__gallery__image__media__image(alt=obj.work_gallery_images.data.gallery_link_image.alt data-src=obj.work_gallery_images.data.gallery_link_image.url)
 
       .home__content
-        each obj in home.work_gallery
-          .home__content__title
-            h2.home__content__title__text(data-splitting)=obj.work_gallery_images.data.gallery_title
+        .home__content__images
+          each obj in home.work_gallery
+            .home__content__images__title
+              h2.home__content__images__title__text(data-splitting)=obj.work_gallery_images.data.gallery_title
 
-      .home__links
+        //.home__content__videos
+          each obj in home.work_video_gallery
+            .home__content__videos__title
+              h2.home__content__videos__title__text(data-splitting)=obj.work_gallery_videos.data.video_title
+
+      //.home__links
         each obj in home.home_links
           .home__links__title
             p.home__links__title__text.outside__link=obj.link_name

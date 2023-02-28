@@ -142,7 +142,6 @@ export default class ImageEl
     this.y = this.bounds.top / this.screen.height
 
     this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height)
-    //this.plane.position.y += Math.cos((this.plane.position.x / this.viewport.width) * Math.PI) * .5 - .5;
   }
 
   update(scroll)

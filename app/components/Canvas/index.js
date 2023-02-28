@@ -1,4 +1,5 @@
 import { Camera, Renderer, Transform } from 'ogl'
+import gsap from 'gsap'
 
 import Home from './Home'
 import Gallery from './Gallery'

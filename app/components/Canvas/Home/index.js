@@ -32,6 +32,7 @@ export default class Gallery
     this.createGeometry()
     this.getElements()
     this.createMenu()
+    this.createMenuListener()
 
     this.onResize()
 
@@ -53,11 +54,43 @@ export default class Gallery
     this.gallery_element = document.querySelector('.home__gallery')
     this.gallery_wrapper = document.querySelector('.home__gallery__wrapper')
 
+    this.selector_videos = document.querySelector('.selectors__videos')
+    this.selector_photos = document.querySelector('.selectors__photos')
+
     this.img_el = document.querySelectorAll('img.home__gallery__image__media__image')
     this.vid_el = document.querySelectorAll('video.home__gallery__video__media__video')
 
     this.img_length = this.img_el.length
     this.vid_length = this.vid_el.length
+  }
+
+  createMenuListener()
+  {
+    this.selector_videos.setAttribute('class', 'selectors__videos--active')
+
+    this.selector_photos.addEventListener('click', () =>
+    {
+      gsap.to(this.scroll,
+      {
+        target: -this.scroll.limit,
+        duration: 0.5,
+      })
+
+      this.selector_videos.setAttribute('class', 'selectors__videos')
+      this.selector_photos.setAttribute('class', 'selectors__photos--active')
+    })
+
+    this.selector_videos.addEventListener('click', () =>
+    {
+      gsap.to(this.scroll,
+      {
+        target: 0,
+        duration: 0.5,
+      })
+
+      this.selector_photos.setAttribute('class', 'selectors__photos')
+      this.selector_videos.setAttribute('class', 'selectors__videos--active')
+    })
   }
 
   createMenu()
@@ -145,9 +178,9 @@ export default class Gallery
 
   }
 
-  onWheel({ pixelY })
+  onWheel({ pixelY, pixelX })
   {
-    this.scroll.target -= pixelY * 0.5
+    //this.scroll.target -= pixelX * 0.5
   }
 
   /*

@@ -38,7 +38,7 @@ export default class VideoEl
     this.video.loop = true
     this.video.muted = true
 
-    this.video.play()
+    this.play()
 
     this.video.onload = () =>
     {
@@ -132,6 +132,16 @@ export default class VideoEl
   /*
     Update.
   */
+
+  play()
+  {
+    this.video.play()
+  }
+
+  pause()
+  {
+    this.video.pause()
+  }
 
   updateScale()
   {

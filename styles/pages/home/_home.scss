@@ -4,17 +4,67 @@
 
   z-index: 0;
 
-  .logo
+
+  .selectors
   {
     position: absolute;
-    top: 50%;
+    top: 20rem;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 
-    height: 80rem;
-    width: 100rem;
-    opacity: 1;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    z-index: 10;
+
+    &__videos
+    {
+      @extend %link__through__lr--hidden;
+
+      cursor: pointer;
+
+      &--active
+      {
+        @extend %link__through__lr;
+      }
+
+      &__text
+      {
+        @extend %desc-16;
+
+        letter-spacing: .2rem;
+      }
+    }
+
+    &__slash
+    {
+
+      &__text
+      {
+        @extend %desc-30;
+      }
+    }
+
+    &__photos
+    {
+      @extend %link__through__rl--hidden;
+
+      cursor: pointer;
+
+      &--active
+      {
+        @extend %link__through__rl;
+      }
+
+      &__text
+      {
+        @extend %desc-16;
+
+        letter-spacing: .2rem;
+      }
+    }
   }
+
 
   &__wrapper
   {
@@ -146,31 +196,66 @@
   &__content
   {
 
-    &__title
+    &__videos
     {
-      position: absolute;
-      bottom: 6rem;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      padding: 1rem;
 
-      &__text
+      &__title
       {
-        @extend %title-50;
-
+        position: absolute;
+        bottom: 20rem;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
         padding: 1rem;
-        overflow: hidden;
 
-        span
+        &__text
         {
+          @extend %title-50;
+
+          padding: 1rem;
+          overflow: hidden;
+
           span
           {
-            opacity: 0;
+            span
+            {
+              opacity: 0;
+            }
           }
         }
       }
     }
+
+    &__images
+    {
+
+      &__title
+      {
+        position: absolute;
+        bottom: 10rem;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        padding: 1rem;
+
+        &__text
+        {
+          @extend %title-50;
+
+          padding: 1rem;
+          overflow: hidden;
+
+          span
+          {
+            span
+            {
+              opacity: 0;
+            }
+          }
+        }
+      }
+    }
+
   }
 
   &__links
