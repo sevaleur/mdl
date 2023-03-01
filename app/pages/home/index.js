@@ -18,47 +18,37 @@ export default class Home extends Page
   {
     super.create()
 
-    this.initAnimation()
+    this.getElements()
   }
 
-  initAnimation()
+  getElements()
   {
-    this.video_link_elements = document.querySelectorAll('.home__gallery__video__link')
-    this.image_link_elements = document.querySelectorAll('.home__gallery__image__link')
+    const video_link_elements = document.querySelectorAll('.home__gallery__video__link')
+    const image_link_elements = document.querySelectorAll('.home__gallery__image__link')
 
-    this.image_titles = document.querySelectorAll('.home__content__images__title__text')
-    this.video_titles = document.querySelectorAll('.home__content__videos__title__text')
+    const image_titles = document.querySelectorAll('.home__content__images__title__text')
+    const video_titles = document.querySelectorAll('.home__content__videos__title__text')
 
-    this.selector_videos = document.querySelector('.selectors__videos')
-    this.selector_photos = document.querySelector('.selectors__photos')
+    const selector_v = document.querySelector('.selectors__videos')
+    const selector_p = document.querySelector('.selectors__photos')
 
-    this.onMutation(this.selector_videos, this.video_titles, this.video_link_elements)
-    this.onMutation(this.selector_photos, this.image_titles, this.image_link_elements)
+    this.onMutation(selector_v, video_titles, video_link_elements)
+    this.onMutation(selector_p, image_titles, image_link_elements)
   }
 
   onMutation(selector, titles, links)
   {
-    const prev = selector.className
-
     const mutationObserver = new MutationObserver((mutations) =>
     {
       mutations.forEach(mutation =>
       {
         if(mutation.attributeName === 'class')
         {
-          console.log(prev)
           const current = mutation.target.className
-          console.log(current)
-          if(prev !== current)
+          if(current.match(/(--active)(?![_a-zA-Z0-9-])/g))
           {
-            console.log('class changed')
             this.hover = new Hover(titles)
             this.onHover(links)
-          }
-          else
-          {
-            console.log('class removed')
-            this.hover = null
           }
         }
       })
