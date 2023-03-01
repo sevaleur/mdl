@@ -38,7 +38,7 @@ export default class VideoEl
     this.video.loop = true
     this.video.muted = true
 
-    this.play()
+    this.pause()
 
     this.video.onload = () =>
     {
