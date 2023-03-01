@@ -29,8 +29,22 @@ export default class Home extends Page
     const image_titles = document.querySelectorAll('.home__content__images__title__text')
     const video_titles = document.querySelectorAll('.home__content__videos__title__text')
 
-    const selector_v = document.querySelector('.selectors__videos')
-    const selector_p = document.querySelector('.selectors__photos')
+    let selector_v = document.querySelector('.selectors__videos')
+    let selector_p = document.querySelector('.selectors__photos')
+
+    if(!selector_v)
+    {
+      selector_v = document.querySelector('.selectors__videos--active')
+      this.hover = new Hover(video_titles)
+      this.onHover(video_link_elements)
+    }
+
+    if(!selector_p)
+    {
+      selector_p = document.querySelector('.selectors__photos--active')
+      this.hover = new Hover(image_titles)
+      this.onHover(image_link_elements)
+    }
 
     this.onMutation(selector_v, video_titles, video_link_elements)
     this.onMutation(selector_p, image_titles, image_link_elements)
@@ -59,7 +73,7 @@ export default class Home extends Page
       attributes: true,
       attributeFilter: ['class'],
       childList: false,
-      characterData: true
+      characterData: false
     })
   }
 

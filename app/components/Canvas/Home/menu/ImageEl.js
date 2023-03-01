@@ -75,23 +75,23 @@ export default class ImageEl
   {
     gsap.fromTo(
       this.program.uniforms.u_alpha,
-    {
-      value: 0.0
-    },
-    {
-      value: 1.0,
-      duration: 1,
-    })
+      {
+        value: 0.0
+      },
+      {
+        value: 1.0,
+        duration: 1,
+      })
   }
 
   hide()
   {
     gsap.to(
       this.program.uniforms.u_alpha,
-    {
-      value: 0.0,
-      duration: 1
-    })
+      {
+        value: 0.0,
+        duration: 1
+      })
   }
 
   /*

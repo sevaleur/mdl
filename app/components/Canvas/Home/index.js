@@ -5,7 +5,6 @@ import map from 'lodash/map'
 import Prefix from 'prefix'
 
 import ImageEl from './menu/ImageEl'
-import VideoEl from './menu/VideoEl'
 
 export default class Gallery
 {
@@ -58,7 +57,7 @@ export default class Gallery
     this.selector_photos = document.querySelector('.selectors__photos')
 
     this.img_el = document.querySelectorAll('img.home__gallery__image__media__image')
-    this.vid_el = document.querySelectorAll('video.home__gallery__video__media__video')
+    this.vid_el = document.querySelectorAll('img.home__gallery__video__media__image')
 
     this.img_length = this.img_el.length
     this.vid_length = this.vid_el.length
@@ -82,7 +81,7 @@ export default class Gallery
 
     this.video_elements = map(this.vid_el, (element, index) =>
     {
-      return new VideoEl({
+      return new ImageEl({
         element,
         index,
         geometry: this.geo,

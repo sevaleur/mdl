@@ -45,12 +45,6 @@ app.use((req, res, next) => {
     res.locals.Link = linkResolver
     res.locals.prismicH = prismicH
 
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    )
-
     next()
   })
 
@@ -67,7 +61,7 @@ const handleReq = async api =>
     fetchLinks: [
       'gallery.gallery_link_image',
       'gallery.gallery_title',
-      'video.selected_video',
+      'video.preview_frame',
       'video.video_title'
     ]
   })
@@ -75,6 +69,7 @@ const handleReq = async api =>
   const about = await api.getSingle('about')
 
   const all_galleries = await api.getAllByType('gallery')
+  const all_videos = await api.getAllByType('video')
 
   const assets = []
 
@@ -87,6 +82,11 @@ const handleReq = async api =>
     {
       assets.push(asset.image.url)
     })
+  })
+
+  all_videos.forEach(video =>
+  {
+    assets.push(video.data.preview_frame.url)
   })
 
   return {

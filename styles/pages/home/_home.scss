@@ -8,7 +8,7 @@
   .selectors
   {
     position: absolute;
-    top: 20rem;
+    top: 10rem;
     left: 50%;
     transform: translateX(-50%);
 
@@ -126,7 +126,7 @@
 
           visibility: hidden;
 
-          &__video
+          &__image
           {
             @extend %cover;
 
@@ -144,10 +144,6 @@
         top: 50%;
         left: 150%;
         transform: translate(-62%, -50%);
-
-       /*  border: 2px solid $color-cadet-blue-crayola;
-        border-right: none;
-        border-left: none; */
         padding: 2rem;
       }
 

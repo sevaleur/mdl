@@ -27,23 +27,7 @@ export default class VideoEl
 
   createMesh()
   {
-    this.texture = new Texture(this.gl, {
-      generateMipmaps: false
-    })
-
-    this.video = this.element
-    this.video.crossOrigin = 'Anonymous'
-    this.video.src = this.element.getAttribute('src')
-
-    this.video.loop = true
-    this.video.muted = true
-
-    this.pause()
-
-    this.video.onload = () =>
-    {
-      this.texture.image = this.video
-    }
+    this.texture = window.IMAGE_TEXTURES[this.element.getAttribute('data-src')]
 
     this.program = new Program(this.gl,
     {
@@ -61,6 +45,8 @@ export default class VideoEl
         u_viewportSize: { value: [this.viewport.width, this.viewport.height] }
       }
     })
+
+    this.program.uniforms.u_imageSize.value = [this.texture.image.naturalWidth, this.texture.image.naturalHeight]
 
     this.plane = new Mesh(this.gl, {
       geometry: this.geo,
@@ -133,23 +119,12 @@ export default class VideoEl
     Update.
   */
 
-  play()
-  {
-    this.video.play()
-  }
-
-  pause()
-  {
-    this.video.pause()
-  }
-
   updateScale()
   {
     this.plane.scale.x = (this.viewport.width * this.bounds.width / this.screen.width)
     this.plane.scale.y = this.viewport.height * this.bounds.height / this.screen.height
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
-    this.program.uniforms.u_imageSize.value = [this.video.videoWidth, this.video.videoHeight]
   }
 
   updateX(current=0)
@@ -173,12 +148,6 @@ export default class VideoEl
   update(scroll)
   {
     if(!this.bounds) return
-
-    if (this.video.readyState >= this.video.HAVE_ENOUGH_DATA)
-    {
-      if (!this.texture.image) this.texture.image = this.video
-      this.texture.needsUpdate = true
-    }
 
     this.updateScale()
     this.updateX(scroll.current)

@@ -22,7 +22,7 @@ block content
             each obj in home.work_video_gallery
               a.home__gallery__video__link(href=Link=(`${obj.work_gallery_videos.type}/${obj.work_gallery_videos.uid}`))
                 figure.home__gallery__video__media
-                  video.home__gallery__video__media__video(src=obj.work_gallery_videos.data.selected_video.url autoplay muted loop)
+                  img.home__gallery__video__media__image(alt=obj.work_gallery_videos.data.preview_frame.alt data-src=obj.work_gallery_videos.data.preview_frame.url )
 
           .home__gallery__imgwrap
             each obj in home.work_gallery

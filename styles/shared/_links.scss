@@ -12,7 +12,7 @@
 %link__line__through__lr {
   content: '';
   position: absolute;
-  bottom: 50%;
+  top: 50%;
   left: 0%;
   transform: translateY(-50%);
   width: 100%;
@@ -70,7 +70,7 @@
 %link__line__through__rl {
   content: '';
   position: absolute;
-  bottom: 50%;
+  top: 50%;
   left: 0%;
   transform: translateY(-50%);
   width: 100%;
