@@ -144,10 +144,10 @@ export default class Preloader extends Component
 
     border_tl.to('.preloader__border',
     {
-      borderTopWidth: '40rem',
-      borderRightWidth: '25rem',
-      borderBottomWidth: '40rem',
-      borderLeftWidth: '25rem',
+      borderTopWidth: '20rem',
+      borderRightWidth: '15rem',
+      borderBottomWidth: '20rem',
+      borderLeftWidth: '15rem',
       autoRound: false,
       delay: 0.5,
       ease: 'power2.inOut'
