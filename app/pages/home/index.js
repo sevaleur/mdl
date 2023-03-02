@@ -1,6 +1,8 @@
 import Page from 'classes/Page'
 import Hover from 'animations/Hover'
 
+import gsap from 'gsap'
+
 export default class Home extends Page
 {
   constructor()

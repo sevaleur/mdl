@@ -57,6 +57,7 @@ export default class Preloader extends Component
     this.tl = gsap.timeline({
       onComplete: () =>
       {
+        this.onMidway()
         this.tl.reverse()
       },
       onReverseComplete: () =>
@@ -137,19 +138,36 @@ export default class Preloader extends Component
     })
   }
 
+  onMidway()
+  {
+    const border_tl = gsap.timeline()
+
+    border_tl.to('.preloader__border',
+    {
+      borderTopWidth: '40rem',
+      borderRightWidth: '25rem',
+      borderBottomWidth: '40rem',
+      borderLeftWidth: '25rem',
+      autoRound: false,
+      delay: 0.5,
+      ease: 'power2.inOut'
+    }, 0)
+  }
+
   onLoaded()
   {
     return new Promise(resolve =>
     {
       this.animateOut = gsap.timeline({
         delay: 0.5
-      }, '-=1')
+      })
 
       this.animateOut.to(this.element,
       {
         duration: 1.,
         ease: 'expo.out',
         opacity: 0.0,
+        delay: 2.0,
       }, '-=1')
 
       this.animateOut.call(_ =>

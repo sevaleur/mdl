@@ -70,11 +70,5 @@ export default class Hover
       scaleX: 0,
       stagger: 0.03,
     })
-
-    gsap.to(this.elements,
-    {
-        duration: 1,
-        opacity: 0
-    })
   }
 }
