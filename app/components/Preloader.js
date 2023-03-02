@@ -57,7 +57,6 @@ export default class Preloader extends Component
     this.tl = gsap.timeline({
       onComplete: () =>
       {
-        this.onMidway()
         this.tl.reverse()
       },
       onReverseComplete: () =>
@@ -116,8 +115,8 @@ export default class Preloader extends Component
           strokeDashoffset: 0,
           autoRound: false,
           fill: 'none',
-          strokeWidth: 2,
-          duration: 2.,
+          strokeWidth: 10,
+          duration: 1.,
           ease: `power3.out`
         }, 0)
       }
@@ -128,7 +127,7 @@ export default class Preloader extends Component
           strokeDashoffset: 0,
           autoRound: false,
           fill: '#EEF1EF',
-          duration: 3.,
+          duration: 1.5,
           ease: `power3.out`,
           delay: 0.5
         }, index * 0.25 + delay)
@@ -136,22 +135,6 @@ export default class Preloader extends Component
 
       this.svg_path.setAttribute('stroke', color)
     })
-  }
-
-  onMidway()
-  {
-    const border_tl = gsap.timeline()
-
-    border_tl.to('.preloader__border',
-    {
-      borderTopWidth: '20rem',
-      borderRightWidth: '15rem',
-      borderBottomWidth: '20rem',
-      borderLeftWidth: '15rem',
-      autoRound: false,
-      delay: 0.5,
-      ease: 'power2.inOut'
-    }, 0)
   }
 
   onLoaded()

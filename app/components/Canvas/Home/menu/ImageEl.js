@@ -130,7 +130,7 @@ export default class ImageEl
   updateX(current=0)
   {
     this.x = (this.bounds.left + current) / this.screen.width
-    const pos_viewport = this.x / 100
+    const pos_viewport = this.plane.position.x + this.x / 100
 
     this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -.35, .35, pos_viewport)
 

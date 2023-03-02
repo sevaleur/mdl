@@ -180,7 +180,7 @@ export default class Gallery
 
   onWheel({ pixelY, pixelX })
   {
-    this.scroll.target -= pixelX * 0.5
+    //this.scroll.target -= pixelX * 0.5
   }
 
   /*
@@ -198,23 +198,6 @@ export default class Gallery
     map(this.video_elements, element => element.update(this.scroll))
 
     this.scroll.last = this.scroll.current
-
-    if(this.scroll.current <= -this.scroll.limit / 2)
-    {
-      if(this.selector_videos.classList.contains('selectors__videos--active'))
-      {
-        this.selector_videos.setAttribute('class', 'selectors__videos')
-        this.selector_photos.setAttribute('class', 'selectors__photos--active')
-      }
-    }
-    else
-    {
-      if(this.selector_photos.classList.contains('selectors__photos--active'))
-      {
-        this.selector_photos.setAttribute('class', 'selectors__photos')
-        this.selector_videos.setAttribute('class', 'selectors__videos--active')
-      }
-    }
   }
 
   /*

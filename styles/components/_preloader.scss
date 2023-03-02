@@ -22,12 +22,12 @@
 
   &__number
   {
-    @extend %desc-50;
+    @extend %desc-20;
 
     position: absolute;
-    bottom: 25%;
+    bottom: 30%;
     left: 50%;
-    transform: translate(-50%, -25%);
+    transform: translate(-50%, -40%);
     overflow: hidden;
 
     &__text
@@ -35,14 +35,4 @@
       display: inline-block;
     }
   }
-}
-
-.preloader__border
-{
-  @extend %cover;
-
-  border-width:0px;
-  border-style:solid;
-  border-color:#EEF1EF;
-  z-index:-1;
 }
