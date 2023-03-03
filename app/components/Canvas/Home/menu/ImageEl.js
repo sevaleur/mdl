@@ -122,7 +122,7 @@ export default class ImageEl
   updateScale()
   {
     this.plane.scale.x = this.viewport.width * this.bounds.width / this.screen.width
-    //this.plane.scale.y = this.viewport.height * this.bounds.height / this.screen.height
+    this.plane.scale.y = this.viewport.height * this.bounds.height / this.screen.height
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
   }
