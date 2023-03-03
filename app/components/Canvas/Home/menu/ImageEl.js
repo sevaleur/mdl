@@ -122,7 +122,7 @@ export default class ImageEl
   updateScale()
   {
     this.plane.scale.x = this.viewport.width * this.bounds.width / this.screen.width
-    this.plane.scale.y = this.viewport.height * this.bounds.height / this.screen.height
+    //this.plane.scale.y = this.viewport.height * this.bounds.height / this.screen.height
 
     this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, this.plane.scale.y]
   }
@@ -133,6 +133,8 @@ export default class ImageEl
     const pos_viewport = this.plane.position.x + this.x / 100
 
     this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -.35, .35, pos_viewport)
+    //this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, gsap.utils.mapRange(-4, 4, -.35, .35, pos_viewport)]
+    //this.plane.scale.y = gsap.utils.mapRange(-.35, .35, Math.PI, -Math.PI, this.plane.position.x)
 
     this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width)
   }
@@ -151,7 +153,7 @@ export default class ImageEl
     this.updateScale()
     this.updateX(scroll.current)
     this.updateY()
-    this.createBounds()
+    /* this.createBounds() */
 
     this.plane.program.uniforms.u_scroll.value = ((scroll.current - scroll.last) / this.screen.width) * 30
   }
