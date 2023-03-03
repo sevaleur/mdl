@@ -28,7 +28,7 @@ block content
             each obj in home.work_gallery
               a.home__gallery__image__link(href=Link=(`${obj.work_gallery_images.type}/${obj.work_gallery_images.uid}`))
                 figure.home__gallery__image__media
-                  img.home__gallery__image__media__image(alt=obj.work_gallery_images.data.gallery_link_image.alt data-src=obj.work_gallery_images.data.gallery_link_image.url)
+                  img.home__gallery__image__media__image.loaded(alt=obj.work_gallery_images.data.gallery_link_image.alt data-src=obj.work_gallery_images.data.gallery_link_image.url)
 
       .home__content
         .home__content__images

@@ -25,6 +25,8 @@ export default class Home extends Page
 
   getElements()
   {
+    this.all_image = document.querySelectorAll('.home__gallery__video__media__image')
+
     const video_link_elements = document.querySelectorAll('.home__gallery__video__link')
     const image_link_elements = document.querySelectorAll('.home__gallery__image__link')
 
