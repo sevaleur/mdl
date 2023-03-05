@@ -60,6 +60,9 @@ export default class Gallery
     this.img_el = document.querySelectorAll('img.home__gallery__image__media__image')
     this.vid_el = document.querySelectorAll('img.home__gallery__video__media__image')
 
+    this.vid_links = document.querySelectorAll('.home__gallery__video__link')
+    this.img_links = document.querySelectorAll('.home__gallery__image__link')
+
     this.img_length = this.img_el.length
     this.vid_length = this.vid_el.length
   }
@@ -71,6 +74,7 @@ export default class Gallery
       return new ImageEl({
         element,
         index,
+        link: this.vid_links[index],
         geometry: this.geo,
         gl: this.gl,
         length: this.img_length,
@@ -85,6 +89,7 @@ export default class Gallery
       return new ImageEl({
         element,
         index,
+        link: this.img_links[index],
         geometry: this.geo,
         gl: this.gl,
         length: this.vid_length,

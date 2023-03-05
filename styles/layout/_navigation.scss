@@ -15,21 +15,38 @@
 
 .navigation__home
 {
-  height: 100%;
-  width: 100%;
-
   position: absolute;
   left: 4rem;
-  top: 4rem;
+  top: 2rem;
+
+  height: 10rem;
+  width: 20rem;
 }
 
 .navigation__home__link
 {
-  @extend %link__center--hidden;
-  @extend %desc-16;
+  height: 100%;
+  width: 100%;
 
-  font-weight: 300;
-  padding: 1rem 0;
+  font-size: 0;
+}
+
+.navigation__home__logo
+{
+  height: 100%;
+  width: 100%;
+
+  fill: #EEF1EF;
+  stroke: #EEF1EF;
+  stroke-width: 1px;
+  stroke-miterlimit: 10;
+  opacity: 1;
+  transition: all 0.2s linear;
+
+  &:hover
+  {
+    opacity: 0.5;
+  }
 }
 
 .navigation__list

@@ -1,8 +1,6 @@
 import Page from 'classes/Page'
 import Hover from 'animations/Hover'
 
-import gsap from 'gsap'
-
 export default class Home extends Page
 {
   constructor()
@@ -25,8 +23,6 @@ export default class Home extends Page
 
   getElements()
   {
-    this.all_image = document.querySelectorAll('.home__gallery__video__media__image')
-
     const video_link_elements = document.querySelectorAll('.home__gallery__video__link')
     const image_link_elements = document.querySelectorAll('.home__gallery__image__link')
 

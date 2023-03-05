@@ -1,21 +1,27 @@
 import { Mesh, Program } from 'ogl'
 import gsap from 'gsap'
 
+import Prefix from 'prefix'
+
 import vertex from 'shaders/home/element/vertex.glsl'
 import fragment from 'shaders/home/element/fragment.glsl'
 
 export default class ImageEl
 {
-  constructor({ element, index, geometry, gl, length, scene, screen, viewport })
+  constructor({ element, index, link, geometry, gl, length, scene, screen, viewport })
   {
     this.element = element
     this.index = index
+    this.link = link
     this.geo = geometry
     this.gl = gl
     this.length = length
     this.scene = scene
     this.screen = screen
     this.viewport = viewport
+
+    //this.l_prefix = Prefix('transform')
+    this.l_prefix = Prefix('top')
 
     this.createMesh()
     this.createBounds()
@@ -133,17 +139,20 @@ export default class ImageEl
     const pos_viewport = this.plane.position.x + this.x / 100
 
     this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-4, 4, -.35, .35, pos_viewport)
-    //this.plane.program.uniforms.u_planeSize.value = [this.plane.scale.x, gsap.utils.mapRange(-4, 4, -.35, .35, pos_viewport)]
-    //this.plane.scale.y = gsap.utils.mapRange(-.35, .35, Math.PI, -Math.PI, this.plane.position.x)
 
     this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width)
   }
 
   updateY()
   {
-    this.y = this.bounds.top / this.screen.height
+    this.plane.position.y = gsap.utils.mapRange(-this.viewport.width, this.viewport.width, -Math.PI, Math.PI, this.plane.position.x)
 
-    this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height)
+    this.y = this.plane.position.y
+    this.link_pos = this.viewport.height + this.plane.scale.y + (this.y * this.viewport.height)
+
+    //this.link.style[this.l_prefix] = `translateY(-${(this.link_pos)}%)`
+    this.link.style[this.l_prefix] = `${this.link_pos}%`
+
   }
 
   update(scroll)
