@@ -108,37 +108,11 @@ export default class Gallery
     {
       const photo_tl = gsap.timeline()
 
-      /* this.vid_el.forEach((image, index) =>
-      {
-        photo_tl.fromTo(image,
-        {
-          scaleY: 1,
-        },
-        {
-          scaleY: 0,
-          duration: 1,
-          delay: index * 0.1
-        }, 0)
-      }) */
-
       photo_tl.to(this.scroll,
       {
         target: -this.scroll.limit,
         duration: 0.5,
       }, 0)
-
-      /* this.img_el.forEach((image, index) =>
-      {
-        photo_tl.fromTo(image,
-        {
-          scaleY: 0,
-        },
-        {
-          scaleY: 1,
-          duration: 1,
-          delay: index * 0.1
-        }, 0)
-      }) */
 
       this.selector_videos.setAttribute('class', 'selectors__videos')
       this.selector_photos.setAttribute('class', 'selectors__photos--active')
@@ -153,20 +127,6 @@ export default class Gallery
           target: 0,
           duration: 0.5,
         })
-
-
-      /* this.vid_el.forEach((image, index) =>
-      {
-        vid_tl.fromTo(image,
-        {
-          scaleY: 0,
-        },
-        {
-          scaleY: 1,
-          duration: 1,
-          delay: index * 0.1
-        }, 0)
-      }) */
 
       this.selector_photos.setAttribute('class', 'selectors__photos')
       this.selector_videos.setAttribute('class', 'selectors__videos--active')

@@ -161,7 +161,6 @@ export default class ImageEl
     this.updateScale()
     this.updateX(scroll.current)
     this.updateY()
-    /* this.createBounds() */
 
     this.plane.program.uniforms.u_scroll.value = ((scroll.current - scroll.last) / this.screen.width) * 30
   }
