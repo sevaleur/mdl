@@ -270,37 +270,51 @@
     display: flex;
     align-items: center;
 
-    &__link
+    &__media
     {
+      height: 2.5rem;
+      width: 2.5rem;
 
-      &__media
+      margin: 0 1.325rem;
+      vertical-align: top;
+      opacity: 1;
+      transition: all 0.2s linear;
+
+      &:hover
       {
-        height: 4rem;
-        width: 4rem;
+        opacity: 0.5;
+      }
 
-        position: relative;
-        stroke: #EEF1EF;
+      &:first-child
+      {
+        margin-left: 0;
+      }
+
+      &:last-child
+      {
+        margin-right: 0;
+      }
+
+      &__div
+      {
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+
+        &__link
+        {
+          visibility: hidden;
+        }
+      }
+
+      &__image
+      {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        filter: invert(1);
       }
     }
-
-    /* &__title
-    {
-      text-align: right;
-      margin: 0 1rem;
-      padding: 2rem 0.5rem;
-
-      &__text
-      {
-        @extend %link__center--hidden;
-        @extend %desc-16;
-
-        font-weight: 300;
-        display: block;
-        line-height: 1;
-        padding: 1rem 0;
-        cursor: pointer;
-      }
-    } */
   }
 }
 

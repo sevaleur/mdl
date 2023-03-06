@@ -41,8 +41,9 @@ block content
             .home__content__videos__title
               h2.home__content__videos__title__text(data-splitting)=obj.work_gallery_videos.data.video_title
 
-      //.home__links
+      .home__links
         each obj in home.home_links
-          .home__links__title
-            p.home__links__title__text.outside__link=obj.link_name
-              a.home__links__title__text__link(href=(obj.link.url))
+          .home__links__media
+            .home__links__media__div.outside__link
+              a.home__links__media__div__link(href=(obj.link.url))
+              img.home__links__media__image(alt=obj.link_icon.alt data-src=obj.link_icon.url)

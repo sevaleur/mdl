@@ -20,8 +20,6 @@ export default class ImageEl
     this.screen = screen
     this.viewport = viewport
 
-    console.log(this.link)
-
     this.l_prefix = Prefix('transform')
 
     this.createMesh()
