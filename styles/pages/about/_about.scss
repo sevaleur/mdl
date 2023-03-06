@@ -74,10 +74,15 @@
 
         border-bottom: 1px solid $color-cadet-blue-crayola;
 
-        &__text
+        &__div
         {
-          @extend %desc-40;
+
+          &__text
+          {
+            @extend %desc-40;
+          }
         }
+
       }
 
       &__bg
