@@ -147,11 +147,11 @@ export default class ImageEl
   {
     this.plane.position.y = gsap.utils.mapRange(-this.viewport.width, this.viewport.width, -Math.PI, Math.PI, this.plane.position.x)
 
-    this.y = this.plane.position.y
-    this.link_pos = this.viewport.height + this.plane.scale.y + (this.y * this.viewport.height)
+    this.y = this.plane.position.y * this.screen.height
+    this.link_pos = (this.y / this.viewport.height) - (this.screen.height / 2) - (this.plane.scale.y / 2)
 
     //this.link.style[this.l_prefix] = `translateY(-${(this.link_pos)}%)`
-    this.link.style[this.l_prefix] = `${this.link_pos}%`
+    this.link.style[this.l_prefix] = `-${this.link_pos}px`
 
   }
 
