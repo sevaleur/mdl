@@ -20,8 +20,9 @@ export default class ImageEl
     this.screen = screen
     this.viewport = viewport
 
-    //this.l_prefix = Prefix('transform')
-    this.l_prefix = Prefix('top')
+    console.log(this.link)
+
+    this.l_prefix = Prefix('transform')
 
     this.createMesh()
     this.createBounds()
@@ -148,11 +149,9 @@ export default class ImageEl
     this.plane.position.y = gsap.utils.mapRange(-this.viewport.width, this.viewport.width, -Math.PI, Math.PI, this.plane.position.x)
 
     this.y = this.plane.position.y * this.screen.height
-    this.link_pos = (this.y / this.viewport.height) - (this.screen.height / 2) - (this.plane.scale.y / 2)
+    this.link_pos = (this.y / this.viewport.height) + (-this.viewport.height / 2) + (this.bounds.height / 2) - (this.bounds.height / 2)
 
-    //this.link.style[this.l_prefix] = `translateY(-${(this.link_pos)}%)`
-    this.link.style[this.l_prefix] = `-${this.link_pos}px`
-
+    this.link.style[this.l_prefix] = `translateY(${-this.link_pos}px)`
   }
 
   update(scroll)

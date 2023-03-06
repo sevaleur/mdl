@@ -69,7 +69,7 @@ export default class Gallery
 
   createMenu()
   {
-    this.image_elements = map(this.img_el, (element, index) =>
+    this.video_elements = map(this.vid_el, (element, index) =>
     {
       return new ImageEl({
         element,
@@ -77,14 +77,14 @@ export default class Gallery
         link: this.vid_links[index],
         geometry: this.geo,
         gl: this.gl,
-        length: this.img_length,
+        length: this.vid_length,
         scene: this.group,
         screen: this.screen,
         viewport: this.viewport
       })
     })
 
-    this.video_elements = map(this.vid_el, (element, index) =>
+    this.image_elements = map(this.img_el, (element, index) =>
     {
       return new ImageEl({
         element,
@@ -92,7 +92,7 @@ export default class Gallery
         link: this.img_links[index],
         geometry: this.geo,
         gl: this.gl,
-        length: this.vid_length,
+        length: this.img_length,
         scene: this.group,
         screen: this.screen,
         viewport: this.viewport
