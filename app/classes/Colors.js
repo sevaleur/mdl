@@ -4,13 +4,20 @@ class Colors
 {
   change({
     backgroundColor,
-    color
+    color,
   })
   {
     gsap.to(document.documentElement,
     {
       backgroundColor,
       color,
+      duration: 1.5,
+    })
+
+    gsap.to(document.querySelectorAll('.p'),
+    {
+      stroke: color,
+      fill: color,
       duration: 1.5,
     })
   }

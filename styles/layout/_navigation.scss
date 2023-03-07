@@ -17,10 +17,10 @@
 {
   position: absolute;
   left: 4rem;
-  top: 2rem;
+  top: 4rem;
 
-  height: 10rem;
-  width: 20rem;
+  height: 5rem;
+  width: 15rem;
 }
 
 .navigation__home__link
@@ -31,15 +31,8 @@
   font-size: 0;
 }
 
-.navigation__home__logo
+svg.navigation__home__logo
 {
-  height: 100%;
-  width: 100%;
-
-  fill: #EEF1EF;
-  stroke: #EEF1EF;
-  stroke-width: 1px;
-  stroke-miterlimit: 10;
   opacity: 1;
   transition: all 0.2s linear;
 
@@ -47,6 +40,16 @@
   {
     opacity: 0.5;
   }
+}
+
+.p
+{
+  height: 100%;
+  width: 100%;
+
+  stroke-width: 1px;
+  stroke-miterlimit: 10;
+  mix-blend-mode: difference;
 }
 
 .navigation__list

@@ -1,4 +1,8 @@
+import gsap from 'gsap'
+
 import Page from 'classes/Page'
+
+import { COLOR_CULTURED, COLOR_DARK_JUNGLE_GREEN } from '../../utils/color_variables'
 
 export default class About extends Page
 {
@@ -13,9 +17,5 @@ export default class About extends Page
         title: '.about__title'
       }
     })
-
-
-
   }
-
 }
