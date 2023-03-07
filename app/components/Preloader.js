@@ -115,7 +115,7 @@ export default class Preloader extends Component
           strokeDashoffset: 0,
           autoRound: false,
           fill: 'none',
-          strokeWidth: 10,
+          strokeWidth: 7,
           duration: 1.,
           ease: `power3.out`
         }, 0)
