@@ -111,7 +111,7 @@ export default class Gallery
       photo_tl.to(this.scroll,
       {
         target: -this.scroll.limit,
-        duration: 0.5,
+        duration: 1,
       }, 0)
 
       this.selector_videos.setAttribute('class', 'selectors__videos')
@@ -125,7 +125,7 @@ export default class Gallery
       vid_tl.to(this.scroll,
         {
           target: 0,
-          duration: 0.5,
+          duration: 1,
         })
 
       this.selector_photos.setAttribute('class', 'selectors__photos')
