@@ -351,23 +351,58 @@
       }
     }
 
-   /*  &__icons
+    &__icons
     {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &__icon
       {
+        height: 2.5rem;
+        width: 2.5rem;
 
-        &__link
+        margin: 0 1.325rem;
+        vertical-align: top;
+        opacity: 1;
+        transition: all 0.2s linear;
+
+        &:hover
         {
-
+          opacity: 0.5;
         }
+
+        &:first-child
+        {
+          margin-left: 0;
+        }
+
+        &:last-child
+        {
+          margin-right: 0;
+        }
+
+        &__div
+        {
+          height: 100%;
+          width: 100%;
+          cursor: pointer;
+
+          &__link
+          {
+            visibility: hidden;
+          }
+        }
+
 
         &__image
         {
-
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
         }
       }
-    } */
+    }
   }
 
   &__footer

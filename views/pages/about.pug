@@ -57,11 +57,12 @@ block content
             h2.about__contact__title__text(data-animation='title')=about.contact
           .about__contact__details
             p.about__contact__details__text(data-animation="label")=about.contact_desc
-          //.about__contact__icons
+          .about__contact__icons
             each obj in about.contact_icons
               .about__contact__icons__icon
-                a.about__contact__icons__icon__link(href=(obj.contact_icons_link.url))
-                img.about__contact__icons__icon__image(data-src=obj.contact_icons_icon.url alt=obj.contact_icons_icon.alt)
+                .about__contact__icons__icon__div.outside__link
+                  a.about__contact__icons__icon__div__link(href=(obj.contact_icons_link.url))
+                  img.about__contact__icons__icon__image(data-src=obj.contact_icons_icon.url alt=obj.contact_icons_icon.alt)
 
         section.about__footer
           .about__footer__media
