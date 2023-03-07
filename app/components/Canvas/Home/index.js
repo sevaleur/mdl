@@ -26,6 +26,8 @@ export default class Gallery
       ease: 0.05
     }
 
+    this.show_animation = false
+
     this.t_prefix = Prefix('transform')
 
     this.createGeometry()
@@ -139,6 +141,22 @@ export default class Gallery
 
   show()
   {
+    let show_tl = gsap.timeline({
+      onComplete: () =>
+      {
+        this.show_animation = true
+      }
+    })
+
+    show_tl.set(this.scroll, { current: this.scroll.limit })
+
+    show_tl.to(
+      this.scroll,
+      {
+        taget: 0,
+        duration: 1
+      })
+
     map(this.image_elements, element => element.show())
     map(this.video_elements, element => element.show())
   }
@@ -198,8 +216,12 @@ export default class Gallery
 
   update()
   {
-    this.scroll.target = gsap.utils.clamp(-this.scroll.limit, 0, this.scroll.target)
-    this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
+
+    if(this.show_animation)
+    {
+      this.scroll.target = gsap.utils.clamp(-this.scroll.limit, 0, this.scroll.target)
+      this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
+    }
 
     this.gallery_element.style[this.t_prefix] = `translateX(${this.scroll.current}px)`
 
