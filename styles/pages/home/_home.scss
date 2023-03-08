@@ -2,7 +2,7 @@
 {
   @extend %page;
 
-  z-index: 0;
+  z-index: z('content');
 
 
   .selectors
@@ -88,6 +88,7 @@
       {
         display: flex;
         align-items: center;
+        justify-content: center;
         padding: 2rem;
 
         position: absolute;
@@ -96,6 +97,7 @@
         transform: translate(-50%, -50%);
 
         height: 100%;
+        width: 100%;
       }
 
       &__video
@@ -107,7 +109,7 @@
 
           padding: 2rem 0;
           display: block;
-          margin: 0 1.325rem;
+          margin: 0 4rem;
 
           &:first-child
           {
@@ -122,7 +124,7 @@
 
         &__media
         {
-          height: 55rem;
+          height: 35rem;
           width: 10rem;
           position: relative;
 
@@ -142,14 +144,16 @@
       {
         display: flex;
         align-items: center;
+        justify-content: center;
         position: absolute;
         padding: 2rem;
 
         top: 50%;
         left: 150%;
-        transform: translate(-62%, -50%);
+        transform: translate(-55%, -50%);
 
         height: 100%;
+        width: 100%;
       }
 
       &__image
@@ -161,7 +165,7 @@
 
           padding: 2rem 0;
           display: block;
-          margin: 0 1.325rem;
+          margin: 0 4rem;
 
           &:first-child
           {
@@ -176,7 +180,7 @@
 
         &__media
         {
-          height: 55rem;
+          height: 35rem;
           width: 10rem;
           position: relative;
 
@@ -197,22 +201,23 @@
 
     &__videos
     {
-
       &__title
       {
         position: absolute;
-        bottom: 10rem;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
+        top: 15%;
+        left: 20%;
+
         padding: 1rem;
+
+        width: 100%;
 
         &__text
         {
-          @extend %title-50;
+          @extend %title-80;
 
           padding: 1rem;
           overflow: hidden;
+
           opacity: 0;
 
           span
@@ -232,15 +237,15 @@
       &__title
       {
         position: absolute;
-        bottom: 10rem;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
+        top: 15%;
+        left: 20%;
         padding: 1rem;
+
+        width: 100%;
 
         &__text
         {
-          @extend %title-50;
+          @extend %title-80;
 
           padding: 1rem;
           overflow: hidden;
@@ -256,7 +261,18 @@
         }
       }
     }
+  }
 
+  &__description
+  {
+    position: absolute;
+    bottom: 6rem;
+    left: 4rem;
+
+    &__text
+    {
+      @extend %desc-16;
+    }
   }
 
   &__links

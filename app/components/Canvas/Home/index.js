@@ -8,7 +8,7 @@ import ImageEl from './menu/ImageEl'
 
 export default class Gallery
 {
-  constructor({ gl, scene, screen, viewport, camera })
+  constructor({ gl, scene, screen, viewport, renderer, camera })
   {
     this.gl = gl
     this.scene = scene
@@ -32,7 +32,7 @@ export default class Gallery
 
     this.createGeometry()
     this.getElements()
-    this.createMenu()
+    this.createMenu(renderer)
     this.createMenuSelector()
 
     this.onResize()
@@ -69,7 +69,7 @@ export default class Gallery
     this.vid_length = this.vid_el.length
   }
 
-  createMenu()
+  createMenu(renderer)
   {
     this.video_elements = map(this.vid_el, (element, index) =>
     {
@@ -82,7 +82,7 @@ export default class Gallery
         length: this.vid_length,
         scene: this.group,
         screen: this.screen,
-        viewport: this.viewport
+        viewport: this.viewport,
       })
     })
 
@@ -97,7 +97,7 @@ export default class Gallery
         length: this.img_length,
         scene: this.group,
         screen: this.screen,
-        viewport: this.viewport
+        viewport: this.viewport,
       })
     })
   }

@@ -137,14 +137,14 @@ export default class ImageEl
     this.x = (this.bounds.left + current) / this.screen.width
     const pos_viewport = this.plane.position.x + this.x / 100
 
-    this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-this.viewport.width / 2, this.viewport.width / 2, -0.35, 0.35, pos_viewport)
+    this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-this.viewport.width, this.viewport.width, -0.35, 0.35, pos_viewport)
 
     this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width)
   }
 
   updateY()
   {
-    this.plane.position.y = gsap.utils.mapRange(-this.viewport.width, this.viewport.width, -Math.PI + this.index, Math.PI - this.index, this.plane.position.x)
+    this.plane.position.y = gsap.utils.mapRange(-this.viewport.width, this.viewport.width, -Math.PI, Math.PI, this.plane.position.x)
 
     this.y = this.plane.position.y * this.screen.height
     this.link_pos = (this.y / this.viewport.height) + (-this.viewport.height / 2)
@@ -160,6 +160,6 @@ export default class ImageEl
     this.updateX(scroll.current)
     this.updateY()
 
-    this.plane.program.uniforms.u_scroll.value = ((scroll.current - scroll.last) / this.screen.width) * 30
+    this.plane.program.uniforms.u_scroll.value = ((scroll.current - scroll.last) / this.screen.width) * 40
   }
 }

@@ -30,16 +30,18 @@ block content
                 figure.home__gallery__image__media
                   img.home__gallery__image__media__image.loaded(alt=obj.work_gallery_images.data.gallery_link_image.alt data-src=obj.work_gallery_images.data.gallery_link_image.url)
 
-      .home__content
-        .home__content__images
-          each obj in home.work_gallery
-            .home__content__images__title
-              h2.home__content__images__title__text(data-splitting)=obj.work_gallery_images.data.gallery_title
+      .home__content__videos
+        each obj in home.work_video_gallery
+          .home__content__videos__title
+            h2.home__content__videos__title__text(data-splitting)=obj.work_gallery_videos.data.video_title
 
-        .home__content__videos
-          each obj in home.work_video_gallery
-            .home__content__videos__title
-              h2.home__content__videos__title__text(data-splitting)=obj.work_gallery_videos.data.video_title
+      .home__content__images
+        each obj in home.work_gallery
+          .home__content__images__title
+            h2.home__content__images__title__text(data-splitting)=obj.work_gallery_images.data.gallery_title
+
+      .home__description
+        p.home__description__text!=home.small_description.replace(/\n/g, '<br>')
 
       .home__links
         each obj in home.home_links

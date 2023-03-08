@@ -68,6 +68,7 @@ export default class Canvas
       scene: this.scene,
       screen: this.screen,
       viewport: this.viewport,
+      renderer: this.renderer,
       camera: this.camera
     })
   }
