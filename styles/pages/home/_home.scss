@@ -113,7 +113,8 @@
 
     &__video
     {
-      display: block;
+      display: flex;
+      align-items: center;
       margin: 0 4rem;
 
       &:first-child
@@ -131,6 +132,7 @@
         @extend %link__menu--hidden;
 
         padding: 2rem 0;
+        display: block;
       }
 
       &__media
@@ -154,9 +156,23 @@
 
         &__text
         {
+          @extend %title-25;
+
           writing-mode: vertical-rl;
           transform: scale(-1, -1);
+          letter-spacing: 0.5rem;
+          word-spacing: 2rem;
+          //padding: 1rem;
+          overflow: hidden;
+          opacity: 0;
 
+          span
+          {
+            span
+            {
+              opacity: 0;
+            }
+          }
         }
       }
     }
@@ -180,7 +196,8 @@
 
     &__image
     {
-      display: block;
+      display: flex;
+      align-items: center;
       margin: 0 4rem;
 
       &:first-child
@@ -198,6 +215,7 @@
         @extend %link__menu--hidden;
 
         padding: 2rem 0;
+        display: block;
       }
 
       &__media
@@ -221,9 +239,23 @@
 
         &__text
         {
-          writing-mode: vertical-rl;
-          transform: scale(-1, -1);
+          @extend %title-25;
 
+          writing-mode: vertical-lr;
+          transform: scale(1, 1);
+          letter-spacing: 0.5rem;
+          word-spacing: 2rem;
+          //padding: 1rem;
+          overflow: hidden;
+          opacity: 0;
+
+          span
+          {
+            span
+            {
+              opacity: 0;
+            }
+          }
         }
       }
     }

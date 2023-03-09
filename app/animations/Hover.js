@@ -32,7 +32,7 @@ export default class Hover
     {
       'will-change': 'opacity, transform',
       opacity: 0,
-      y: '120%',
+      x: '-120%',
       scaleY: 2.3,
       scaleX: 0.7,
       transformOrigin: '50% 0%'
@@ -44,7 +44,7 @@ export default class Hover
       ease: 'back.inOut(2)',
 
       opacity: 1,
-      y: '0%',
+      x: '0%',
       scaleY: 1,
       scaleX: 1,
       stagger: 0.03,
@@ -65,7 +65,7 @@ export default class Hover
       ease: 'back.inOut(2)',
 
       opacity: 0,
-      y: '-120%',
+      x: '-120%',
       scaleY: 0,
       scaleX: 0,
       stagger: 0.03,

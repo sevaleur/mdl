@@ -78,7 +78,7 @@ export default class GalleryElement
     this.full_height = ((this.gallery_height / this.screen.height) * this.viewport.height)
     this.new_pos += this.full_height
 
-    this.pos_x = Math.sin(this.index + Math.PI) * ((this.viewport.width / 2))
+    this.pos_x = Math.cos(this.index) * ((this.screen.height / 2) / this.bounds.height)
   }
 
   /*
@@ -146,10 +146,7 @@ export default class GalleryElement
   {
     this.x = this.bounds.left / this.screen.width
 
-    //this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width) + this.pos_x
-
-    this.plane.position.x = gsap.utils.mapRange(-this.viewport.height, this.viewport.height, -this.pos_x, this.pos_x, this.plane.position.y)
-
+    this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width) + this.pos_x
   }
 
   updateY(current=0)

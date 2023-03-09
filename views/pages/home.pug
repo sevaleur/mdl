@@ -21,11 +21,11 @@ block content
           .home__gallery__vidwrap
             each obj in home.work_video_gallery
               .home__gallery__video
+                .home__gallery__video__title
+                  h2.home__gallery__video__title__text(data-splitting)=obj.work_gallery_videos.data.video_title
                 a.home__gallery__video__link(href=Link=(`${obj.work_gallery_videos.type}/${obj.work_gallery_videos.uid}`))
                   figure.home__gallery__video__media
                     img.home__gallery__video__media__image(alt=obj.work_gallery_videos.data.preview_frame.alt data-src=obj.work_gallery_videos.data.preview_frame.url)
-                //.home__gallery__video__title
-                  h2.home__gallery__video__title__text(data-splitting)=obj.work_gallery_videos.data.video_title
 
           .home__gallery__imgwrap
             each obj in home.work_gallery
@@ -33,7 +33,7 @@ block content
                 a.home__gallery__image__link(href=Link=(`${obj.work_gallery_images.type}/${obj.work_gallery_images.uid}`))
                   figure.home__gallery__image__media
                     img.home__gallery__image__media__image.loaded(alt=obj.work_gallery_images.data.gallery_link_image.alt data-src=obj.work_gallery_images.data.gallery_link_image.url)
-                //.home__gallery__image__title
+                .home__gallery__image__title
                   h2.home__gallery__image__title__text(data-splitting)=obj.work_gallery_images.data.gallery_title
 
       //.home__content__videos

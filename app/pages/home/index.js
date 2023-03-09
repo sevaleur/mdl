@@ -18,16 +18,16 @@ export default class Home extends Page
   {
     super.create()
 
-   /*  this.getElements() */
+    this.getElements()
   }
 
-  /* getElements()
+  getElements()
   {
     const video_link_elements = document.querySelectorAll('.home__gallery__video__link')
     const image_link_elements = document.querySelectorAll('.home__gallery__image__link')
 
-    const image_titles = document.querySelectorAll('.home__content__images__title__text')
-    const video_titles = document.querySelectorAll('.home__content__videos__title__text')
+    const image_titles = document.querySelectorAll('.home__gallery__image__title__text')
+    const video_titles = document.querySelectorAll('.home__gallery__video__title__text')
 
     let selector_v = document.querySelector('.selectors__videos')
     let selector_p = document.querySelector('.selectors__photos')
@@ -91,6 +91,6 @@ export default class Home extends Page
         this.hover.reset()
       })
     })
-  } */
+  }
 
 }
