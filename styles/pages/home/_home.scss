@@ -88,8 +88,8 @@
 
       position: absolute;
       top: 50%;
-      //left: 50%;
-      transform: translateY(-50%);
+      left: 50%;
+      transform: translate(-50%, -50%);
 
       height: 100%;
       width: 100%;
@@ -156,13 +156,13 @@
 
         &__text
         {
-          @extend %title-25;
+          @extend %title-30;
 
           writing-mode: vertical-rl;
           transform: scale(-1, -1);
           letter-spacing: 0.5rem;
           word-spacing: 2rem;
-          //padding: 1rem;
+          padding-right: 1rem;
           overflow: hidden;
           opacity: 0;
 
@@ -239,80 +239,13 @@
 
         &__text
         {
-          @extend %title-25;
+          @extend %title-30;
 
           writing-mode: vertical-lr;
           transform: scale(1, 1);
           letter-spacing: 0.5rem;
           word-spacing: 2rem;
-          //padding: 1rem;
-          overflow: hidden;
-          opacity: 0;
-
-          span
-          {
-            span
-            {
-              opacity: 0;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &__content
-  {
-
-    &__videos
-    {
-      &__title
-      {
-        position: absolute;
-        top: 15%;
-        left: 20%;
-
-        padding: 1rem;
-
-        width: 100%;
-
-        &__text
-        {
-          @extend %title-80;
-
-          padding: 1rem;
-          overflow: hidden;
-
-          opacity: 0;
-
-          span
-          {
-            span
-            {
-              opacity: 0;
-            }
-          }
-        }
-      }
-    }
-
-    &__images
-    {
-
-      &__title
-      {
-        position: absolute;
-        top: 15%;
-        left: 20%;
-        padding: 1rem;
-
-        width: 100%;
-
-        &__text
-        {
-          @extend %title-80;
-
-          padding: 1rem;
+          padding-right: 1rem;
           overflow: hidden;
           opacity: 0;
 
@@ -337,6 +270,8 @@
     &__text
     {
       @extend %desc-16;
+
+      text-transform: uppercase;
     }
   }
 

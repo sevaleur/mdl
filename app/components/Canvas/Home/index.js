@@ -210,7 +210,7 @@ export default class Gallery
 
   onWheel({ pixelY, pixelX })
   {
-    //this.scroll.target -= pixelX * 0.5
+    this.scroll.target -= pixelX * 0.5
   }
 
   /*
