@@ -1,0 +1,11 @@
+/*! gsap */
+
+/*! ogl */
+
+/*! shaders/gallery/element/fragment.glsl */
+
+/*! shaders/gallery/element/vertex.glsl */
+
+/*!*****************************************************************!*\
+  !*** ./app/components/Canvas/Gallery/objects/GalleryElement.js ***!
+  \*****************************************************************/
