@@ -147,6 +147,7 @@ export default class GalleryElement
     this.x = this.bounds.left / this.screen.width
 
     this.plane.position.x = (-this.viewport.width / 2) + (this.plane.scale.x / 2) + (this.x * this.viewport.width) + this.pos_x
+    //this.plane.position.x = gsap.utils.mapRange(-this.viewport.height, this.viewport.height, Math.cos(-this.index), Math.sin(this.index), this.plane.position.y)
   }
 
   updateY(current=0)
@@ -154,7 +155,7 @@ export default class GalleryElement
     this.y = (this.bounds.top - current) / this.screen.height
     const pos_viewport = this.plane.position.y - this.y / 100
 
-    this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-this.viewport.height / 2, this.viewport.height / 2, -0.35, 0.35, pos_viewport)
+    this.plane.program.uniforms.u_offset.value = gsap.utils.mapRange(-this.viewport.height, this.viewport.height, -0.35, 0.35, pos_viewport)
 
     this.plane.position.y = (this.viewport.height / 2) - (this.plane.scale.y / 2) - (this.y * this.viewport.height) + this.new_pos
   }

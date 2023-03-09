@@ -8,7 +8,7 @@ import ImageEl from './menu/ImageEl'
 
 export default class Gallery
 {
-  constructor({ gl, scene, screen, viewport, renderer, camera })
+  constructor({ gl, scene, screen, viewport, camera })
   {
     this.gl = gl
     this.scene = scene
@@ -23,7 +23,7 @@ export default class Gallery
       target: 0,
       last: 0,
       speed: 0.1,
-      ease: 0.05
+      ease: 0.05,
     }
 
     this.show_animation = false
@@ -32,7 +32,7 @@ export default class Gallery
 
     this.createGeometry()
     this.getElements()
-    this.createMenu(renderer)
+    this.createMenu()
     this.createMenuSelector()
 
     this.onResize()
@@ -56,6 +56,9 @@ export default class Gallery
     this.gallery_element = document.querySelector('.home__gallery')
     this.gallery_wrapper = document.querySelector('.home__gallery__wrapper')
 
+    this.video_wrapper = document.querySelector('.home__gallery__vidwrap')
+    this.image_wrapper = document.querySelector('.home__gallery__imgwrap')
+
     this.selector_videos = document.querySelector('.selectors__videos')
     this.selector_photos = document.querySelector('.selectors__photos')
 
@@ -69,7 +72,7 @@ export default class Gallery
     this.vid_length = this.vid_el.length
   }
 
-  createMenu(renderer)
+  createMenu()
   {
     this.video_elements = map(this.vid_el, (element, index) =>
     {
@@ -173,7 +176,7 @@ export default class Gallery
 
   onResize()
   {
-    this.bounds = this.gallery_wrapper.getBoundingClientRect()
+    this.full_bounds = this.gallery_wrapper.getBoundingClientRect()
 
     map(this.image_elements, element => element.onResize({
       screen: this.screen,
@@ -185,7 +188,7 @@ export default class Gallery
       viewport: this.viewport,
     }))
 
-    this.scroll.limit = this.bounds.width - this.image_elements[0].element.clientWidth
+    this.scroll.limit = this.full_bounds.width - this.image_elements[0].element.clientWidth
   }
 
   onTouchDown({ y, x })

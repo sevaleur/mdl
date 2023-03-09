@@ -79,121 +79,154 @@
 
     z-index: 1;
 
-      &__wrapper
-      {
+    &__wrapper
+    {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
 
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      height: 100%;
+      width: 100%;
+    }
+
+    &__vidwrap
+    {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      height: 100%;
+      width: 100%;
+    }
+
+    &__video
+    {
+      display: block;
+      margin: 0 4rem;
+
+      &:first-child
+      {
+        margin-left: 0;
       }
 
-      &__vidwrap
+      &:last-child
       {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        height: 100%;
-        width: 100%;
+        margin-right: 0;
       }
 
-      &__video
+      &__link
       {
+        @extend %link__menu--hidden;
 
-        &__link
-        {
-          @extend %link__menu--hidden;
-
-          padding: 2rem 0;
-          display: block;
-          margin: 0 4rem;
-
-          &:first-child
-          {
-            margin-left: 0;
-          }
-
-          &:last-child
-          {
-            margin-right: 0;
-          }
-        }
-
-        &__media
-        {
-          height: 35rem;
-          width: 10rem;
-          position: relative;
-
-          visibility: hidden;
-
-          &__image
-          {
-            @extend %cover;
-
-            object-fit: cover;
-          }
-        }
+        padding: 2rem 0;
       }
 
-
-      &__imgwrap
+      &__media
       {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        padding: 2rem;
+        height: 55rem;
+        width: 10rem;
+        position: relative;
 
-        top: 50%;
-        left: 150%;
-        transform: translate(-55%, -50%);
+        visibility: hidden;
 
-        height: 100%;
-        width: 100%;
-      }
-
-      &__image
-      {
-
-        &__link
+        &__image
         {
-          @extend %link__menu--hidden;
+          @extend %cover;
 
-          padding: 2rem 0;
-          display: block;
-          margin: 0 4rem;
-
-          &:first-child
-          {
-            margin-left: 0;
-          }
-
-          &:last-child
-          {
-            margin-right: 0;
-          }
-        }
-
-        &__media
-        {
-          height: 35rem;
-          width: 10rem;
-          position: relative;
-
-          visibility: hidden;
-
-          &__image
-          {
-            @extend %cover;
-
-            object-fit: cover;
-          }
+          object-fit: cover;
         }
       }
+
+      &__title
+      {
+
+        &__text
+        {
+          writing-mode: vertical-rl;
+          transform: scale(-1, -1);
+
+        }
+      }
+    }
+
+
+    &__imgwrap
+    {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+
+      position: absolute;
+      top: 50%;
+      left: 150%;
+      transform: translate(-55%, -50%);
+
+      height: 100%;
+      width: 100%;
+    }
+
+    &__image
+    {
+      display: block;
+      margin: 0 4rem;
+
+      &:first-child
+      {
+        margin-left: 0;
+      }
+
+      &:last-child
+      {
+        margin-right: 0;
+      }
+
+      &__link
+      {
+        @extend %link__menu--hidden;
+
+        padding: 2rem 0;
+      }
+
+      &__media
+      {
+        height: 55rem;
+        width: 10rem;
+        position: relative;
+
+        visibility: hidden;
+
+        &__image
+        {
+          @extend %cover;
+
+          object-fit: cover;
+        }
+      }
+
+      &__title
+      {
+
+        &__text
+        {
+          writing-mode: vertical-rl;
+          transform: scale(-1, -1);
+
+        }
+      }
+    }
   }
 
   &__content

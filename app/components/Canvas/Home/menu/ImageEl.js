@@ -21,6 +21,7 @@ export default class ImageEl
     this.viewport = viewport
 
     this.l_prefix = Prefix('transform')
+    this.link_parent = this.link.parentElement
 
     this.createMesh()
     this.createBounds()
@@ -59,6 +60,8 @@ export default class ImageEl
     })
 
     this.plane.setParent(this.scene)
+
+    this.pos_y = Math.sin(this.index + Math.PI) * (this.viewport.height / 2)
   }
 
   createBounds()
@@ -144,12 +147,12 @@ export default class ImageEl
 
   updateY()
   {
-    this.plane.position.y = gsap.utils.mapRange(-this.viewport.width, this.viewport.width, -Math.PI, Math.PI, this.plane.position.x)
+    this.plane.position.y = gsap.utils.mapRange(-this.viewport.width, this.viewport.width, -this.pos_y, this.pos_y, this.plane.position.x)
 
     this.y = this.plane.position.y * this.screen.height
     this.link_pos = (this.y / this.viewport.height) + (-this.viewport.height / 2)
 
-    this.link.style[this.l_prefix] = `translateY(${-this.link_pos}px)`
+    this.link_parent.style[this.l_prefix] = `translateY(${-this.link_pos}px)`
   }
 
   update(scroll)
