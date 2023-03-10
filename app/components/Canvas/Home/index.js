@@ -144,22 +144,6 @@ export default class Gallery
 
   show()
   {
-    let show_tl = gsap.timeline({
-      onComplete: () =>
-      {
-        this.show_animation = true
-      }
-    })
-
-    show_tl.set(this.scroll, { current: this.scroll.limit })
-
-    show_tl.to(
-      this.scroll,
-      {
-        taget: 0,
-        duration: 1
-      })
-
     map(this.image_elements, element => element.show())
     map(this.video_elements, element => element.show())
   }
@@ -188,7 +172,7 @@ export default class Gallery
       viewport: this.viewport,
     }))
 
-    this.scroll.limit = this.full_bounds.width - this.image_elements[0].element.clientWidth
+    this.scroll.limit = this.full_bounds.width /* - this.image_elements[0].element.clientWidth */
   }
 
   onTouchDown({ y, x })
@@ -211,6 +195,7 @@ export default class Gallery
   onWheel({ pixelY, pixelX })
   {
     this.scroll.target -= pixelX * 0.5
+    this.scroll.target -= pixelY * 0.5
   }
 
   /*
@@ -219,12 +204,8 @@ export default class Gallery
 
   update()
   {
-
-    if(this.show_animation)
-    {
-      this.scroll.target = gsap.utils.clamp(-this.scroll.limit, 0, this.scroll.target)
-      this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
-    }
+    this.scroll.target = gsap.utils.clamp(-this.scroll.limit, 0, this.scroll.target)
+    this.scroll.current = gsap.utils.interpolate(this.scroll.current, this.scroll.target, this.scroll.ease)
 
     this.gallery_element.style[this.t_prefix] = `translateX(${this.scroll.current}px)`
 

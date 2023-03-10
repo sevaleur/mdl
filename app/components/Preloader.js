@@ -150,7 +150,7 @@ export default class Preloader extends Component
         duration: 1.,
         ease: 'expo.out',
         opacity: 0.0,
-        delay: 2.0,
+        delay: 1.0,
       }, '-=1')
 
       this.animateOut.call(_ =>
