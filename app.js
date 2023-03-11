@@ -62,7 +62,8 @@ const handleReq = async api =>
       'gallery.gallery_link_image',
       'gallery.gallery_title',
       'video.preview_frame',
-      'video.video_title'
+      'video.video_client_text',
+      'video.video_title_sm_text'
     ]
   })
 

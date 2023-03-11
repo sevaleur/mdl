@@ -56,9 +56,6 @@ export default class Gallery
     this.gallery_element = document.querySelector('.home__gallery')
     this.gallery_wrapper = document.querySelector('.home__gallery__wrapper')
 
-    this.video_wrapper = document.querySelector('.home__gallery__vidwrap')
-    this.image_wrapper = document.querySelector('.home__gallery__imgwrap')
-
     this.selector_videos = document.querySelector('.selectors__videos')
     this.selector_photos = document.querySelector('.selectors__photos')
 
@@ -113,7 +110,8 @@ export default class Gallery
     {
       const photo_tl = gsap.timeline()
 
-      photo_tl.to(this.scroll,
+      photo_tl.to(
+        this.scroll,
       {
         target: -this.scroll.limit,
         duration: 1,
@@ -127,7 +125,8 @@ export default class Gallery
     {
       const vid_tl = gsap.timeline()
 
-      vid_tl.to(this.scroll,
+      vid_tl.to(
+        this.scroll,
         {
           target: 0,
           duration: 1,
@@ -172,7 +171,7 @@ export default class Gallery
       viewport: this.viewport,
     }))
 
-    this.scroll.limit = this.full_bounds.width /* - this.image_elements[0].element.clientWidth */
+    this.scroll.limit = this.full_bounds.width
   }
 
   onTouchDown({ y, x })

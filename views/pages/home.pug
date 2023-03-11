@@ -17,19 +17,17 @@ block content
 
       .home__gallery
         .home__gallery__wrapper
-
-          .home__gallery__vidwrap
+          .home__gallery__videos
             each obj in home.work_video_gallery
               .home__gallery__video
                 .home__gallery__video__titles
-                    h2.home__gallery__video__titles__left(data-splitting)=obj.work_gallery_videos.data.video_title
+                    h2.home__gallery__video__titles__left(data-splitting)=obj.work_gallery_videos.data.video_client_text
                 a.home__gallery__video__link(href=Link=(`${obj.work_gallery_videos.type}/${obj.work_gallery_videos.uid}`))
                   figure.home__gallery__video__media
                     img.home__gallery__video__media__image(alt=obj.work_gallery_videos.data.preview_frame.alt data-src=obj.work_gallery_videos.data.preview_frame.url)
                 .home__gallery__video__titles
-                    h2.home__gallery__video__titles__right(data-splitting)=obj.work_gallery_videos.data.video_title
-
-          .home__gallery__imgwrap
+                    h2.home__gallery__video__titles__right(data-splitting)=obj.work_gallery_videos.data.video_title_sm_text
+          .home__gallery__images
             each obj in home.work_gallery
               .home__gallery__image
                 .home__gallery__image__titles
@@ -44,7 +42,7 @@ block content
         .occupations__occupation
           p.occupations__occupation__text=home.occupation_one
         .occupations__slash
-          p.occupations__slash__text= '|'
+          p.occupations__slash__text= '//'
         .occupations__occupation
           p.occupations__occupation__text=home.occupation_two
 

@@ -4,6 +4,12 @@
 
   z-index: z('content');
 
+  &__wrapper
+  {
+    @extend %cover;
+
+    overflow: hidden;
+  }
 
   .selectors
   {
@@ -65,18 +71,11 @@
     }
   }
 
-  &__wrapper
-  {
-    @extend %cover;
-
-    overflow: hidden;
-  }
-
   &__gallery
   {
     @extend %cover;
 
-    z-index: 1;´
+    z-index: 1;
 
     &__wrapper
     {
@@ -94,16 +93,17 @@
       width: 100%;
     }
 
-    &__vidwrap
+    &__videos
     {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 0 4rem;
 
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
+      left: 50%;
+      transform: translate(-50%, -50%);
 
       height: 100%;
       width: 100%;
@@ -135,7 +135,7 @@
 
       &__media
       {
-        height: 55rem;
+        height: 45rem;
         width: 10rem;
         position: relative;
 
@@ -196,19 +196,17 @@
       }
     }
 
-
-    &__imgwrap
+    &__images
     {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 0 4rem;
 
       position: absolute;
       top: 50%;
-      left: 100%;
-
-      transform: translateY(-50%);
+      left: 150%;
+      transform: translate(-50%, -50%);
 
       height: 100%;
       width: 100%;
@@ -240,7 +238,7 @@
 
       &__media
       {
-        height: 55rem;
+        height: 45rem;
         width: 10rem;
         position: relative;
 

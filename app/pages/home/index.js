@@ -32,71 +32,48 @@ export default class Home extends Page
     const video_titles_left = document.querySelectorAll('.home__gallery__video__titles__left')
     const video_titles_right = document.querySelectorAll('.home__gallery__video__titles__right')
 
-    let selector_v = document.querySelector('.selectors__videos')
-    let selector_p = document.querySelector('.selectors__photos')
-
-    if(!selector_v)
-    {
-      selector_v = document.querySelector('.selectors__videos--active')
-      this.hover_left = new Hover(video_titles_left)
-      this.hover_right = new Hover(video_titles_right)
-      this.onHover(video_link_elements)
-    }
-
-    if(!selector_p)
-    {
-      selector_p = document.querySelector('.selectors__photos--active')
-      this.hover_left = new Hover(image_titles_left)
-      this.hover_right = new Hover(image_titles_right)
-      this.onHover(image_link_elements)
-    }
-
-    this.onMutation(selector_v, video_titles_left, video_titles_right, video_link_elements)
-    this.onMutation(selector_p, image_titles_left, image_titles_right, image_link_elements)
+    this.init(image_titles_left, image_titles_right, video_titles_left, video_titles_right, video_link_elements, image_link_elements)
   }
 
-  onMutation(selector, titles_left, titles_right, links)
+  init(i_left, i_right, v_left, v_right, v_links, i_links)
   {
-    const mutationObserver = new MutationObserver((mutations) =>
-    {
-      mutations.forEach(mutation =>
-      {
-        if(mutation.attributeName === 'class')
-        {
-          const current = mutation.target.className
-          if(current.match(/(--active)(?![_a-zA-Z0-9-])/g))
-          {
-            this.hover_left = new Hover(titles_left)
-            this.hover_right = new Hover(titles_right)
-            this.onHover(links)
-          }
-        }
-      })
-    })
+    this.hover_image_left = new Hover(i_left)
+    this.hover_image_right = new Hover(i_right)
+    this.hover_video_left = new Hover(v_left)
+    this.hover_video_right = new Hover(v_right)
 
-    mutationObserver.observe(selector,
-    {
-      attributes: true,
-      attributeFilter: ['class'],
-      childList: false,
-      characterData: false
-    })
+    this.onHover(v_links, i_links)
   }
 
-  onHover(links)
+  onHover(v_links, i_links)
   {
-    links.forEach((link, index) =>
+    v_links.forEach((link, index) =>
     {
       link.addEventListener('mouseover', () =>
       {
-        this.hover_left.init(index)
-        this.hover_right.init(index)
+        this.hover_video_left.init(index)
+        this.hover_video_right.init(index)
       })
 
       link.addEventListener('mouseleave', () =>
       {
-        this.hover_left.reset()
-        this.hover_right.reset()
+        this.hover_video_left.reset()
+        this.hover_video_right.reset()
+      })
+    })
+
+    i_links.forEach((link, index) =>
+    {
+      link.addEventListener('mouseover', () =>
+      {
+        this.hover_image_left.init(index)
+        this.hover_image_right.init(index)
+      })
+
+      link.addEventListener('mouseleave', () =>
+      {
+        this.hover_image_left.reset()
+        this.hover_image_right.reset()
       })
     })
   }
