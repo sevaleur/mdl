@@ -149,20 +149,37 @@
         }
       }
 
-      &__title
+      &__titles
       {
-       /*  position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); */
 
-        &__text
+        &__right
         {
           @extend %title-30;
 
           writing-mode: vertical-lr;
           transform: scale(1, 1);
-          letter-spacing: 0.5rem;
+          /*  letter-spacing: 0.5rem; */
+          word-spacing: 2rem;
+          padding-right: 1rem;
+          overflow: hidden;
+          opacity: 0;
+
+          span
+          {
+            span
+            {
+              opacity: 0;
+            }
+          }
+        }
+
+        &__left
+        {
+          @extend %title-30;
+
+          writing-mode: vertical-rl;
+          transform: scale(-1, -1);
+          /*  letter-spacing: 0.5rem; */
           word-spacing: 2rem;
           padding-right: 1rem;
           overflow: hidden;
@@ -237,20 +254,16 @@
         }
       }
 
-      &__title
+      &__titles
       {
-        /* position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); */
 
-        &__text
+        &__right
         {
           @extend %title-30;
 
           writing-mode: vertical-lr;
           transform: scale(1, 1);
-          letter-spacing: 0.5rem;
+          /*  letter-spacing: 0.5rem; */
           word-spacing: 2rem;
           padding-right: 1rem;
           overflow: hidden;
@@ -258,7 +271,27 @@
 
           span
           {
+            span
+            {
+              opacity: 0;
+            }
+          }
+        }
 
+        &__left
+        {
+          @extend %title-30;
+
+          writing-mode: vertical-rl;
+          transform: scale(-1, -1);
+          /*  letter-spacing: 0.5rem; */
+          word-spacing: 2rem;
+          padding-right: 1rem;
+          overflow: hidden;
+          opacity: 0;
+
+          span
+          {
             span
             {
               opacity: 0;
@@ -269,24 +302,41 @@
     }
   }
 
-  &__description
+  .occupations
   {
     position: absolute;
-    bottom: 6rem;
+    bottom: 4rem;
     left: 4rem;
 
-    &__text
-    {
-      @extend %desc-16;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 
-      text-transform: uppercase;
+    &__occupation
+    {
+
+      &__text
+      {
+        @extend %desc-16;
+
+        letter-spacing: .2rem;
+      }
+    }
+
+    &__slash
+    {
+
+      &__text
+      {
+        @extend %desc-25;
+      }
     }
   }
 
   &__links
   {
     position: absolute;
-    bottom: 6rem;
+    bottom: 4rem;
     right: 4rem;
     z-index: 1;
 

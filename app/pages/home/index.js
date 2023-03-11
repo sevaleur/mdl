@@ -26,8 +26,11 @@ export default class Home extends Page
     const video_link_elements = document.querySelectorAll('.home__gallery__video__link')
     const image_link_elements = document.querySelectorAll('.home__gallery__image__link')
 
-    const image_titles = document.querySelectorAll('.home__gallery__image__title__text')
-    const video_titles = document.querySelectorAll('.home__gallery__video__title__text')
+    const image_titles_left = document.querySelectorAll('.home__gallery__image__titles__left')
+    const image_titles_right = document.querySelectorAll('.home__gallery__image__titles__right')
+
+    const video_titles_left = document.querySelectorAll('.home__gallery__video__titles__left')
+    const video_titles_right = document.querySelectorAll('.home__gallery__video__titles__right')
 
     let selector_v = document.querySelector('.selectors__videos')
     let selector_p = document.querySelector('.selectors__photos')
@@ -35,22 +38,24 @@ export default class Home extends Page
     if(!selector_v)
     {
       selector_v = document.querySelector('.selectors__videos--active')
-      this.hover = new Hover(video_titles)
+      this.hover_left = new Hover(video_titles_left)
+      this.hover_right = new Hover(video_titles_right)
       this.onHover(video_link_elements)
     }
 
     if(!selector_p)
     {
       selector_p = document.querySelector('.selectors__photos--active')
-      this.hover = new Hover(image_titles)
+      this.hover_left = new Hover(image_titles_left)
+      this.hover_right = new Hover(image_titles_right)
       this.onHover(image_link_elements)
     }
 
-    this.onMutation(selector_v, video_titles, video_link_elements)
-    this.onMutation(selector_p, image_titles, image_link_elements)
+    this.onMutation(selector_v, video_titles_left, video_titles_right, video_link_elements)
+    this.onMutation(selector_p, image_titles_left, image_titles_right, image_link_elements)
   }
 
-  onMutation(selector, titles, links)
+  onMutation(selector, titles_left, titles_right, links)
   {
     const mutationObserver = new MutationObserver((mutations) =>
     {
@@ -61,7 +66,8 @@ export default class Home extends Page
           const current = mutation.target.className
           if(current.match(/(--active)(?![_a-zA-Z0-9-])/g))
           {
-            this.hover = new Hover(titles)
+            this.hover_left = new Hover(titles_left)
+            this.hover_right = new Hover(titles_right)
             this.onHover(links)
           }
         }
@@ -83,12 +89,14 @@ export default class Home extends Page
     {
       link.addEventListener('mouseover', () =>
       {
-        this.hover.init(index)
+        this.hover_left.init(index)
+        this.hover_right.init(index)
       })
 
       link.addEventListener('mouseleave', () =>
       {
-        this.hover.reset()
+        this.hover_left.reset()
+        this.hover_right.reset()
       })
     })
   }
