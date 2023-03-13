@@ -208,8 +208,8 @@ export default class Gallery
 
     this.gallery_element.style[this.t_prefix] = `translateX(${this.scroll.current}px)`
 
-    map(this.image_elements, element => element.update(this.scroll))
     map(this.video_elements, element => element.update(this.scroll))
+    map(this.image_elements, element => element.update(this.scroll))
 
     this.scroll.last = this.scroll.current
   }
